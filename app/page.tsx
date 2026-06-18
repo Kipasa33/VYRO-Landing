@@ -175,6 +175,27 @@ function PriceCard() {
   );
 }
 
+function FoundersEditionCard() {
+  return (
+    <motion.article className="price-card accent founder-card" whileHover={{ y: -8 }}>
+      <span className="popular">Best Value</span>
+      <h3>🚀 Founder&apos;s Edition</h3>
+      <p className="founder-intro">Be one of the first VYRO users.</p>
+      <p className="price">$19 <span>today</span></p>
+      <p className="price-note">$49+ after launch</p>
+      <ul>
+        <li><Check size={16} /> Lifetime License</li>
+        <li><Check size={16} /> All Future Updates</li>
+        <li><Check size={16} /> All Future AI Modules</li>
+        <li><Check size={16} /> No Subscription Ever</li>
+        <li><Check size={16} /> Priority Access to New Features</li>
+      </ul>
+      <button onClick={() => startPolarCheckout()}>Get VYRO <ArrowUpRight size={17} /></button>
+      <small className="price-footer">Limited Early Adopter Offer</small>
+    </motion.article>
+  );
+}
+
 export default function Home() {
   const [dark, setDark] = useState(false);
   const [openFaq, setOpenFaq] = useState(0);
@@ -254,7 +275,7 @@ export default function Home() {
 
       <section className="section-shell pricing" id="pricing">
         <div className="section-heading centered"><span>03 / ONE LITTLE ROBOT</span><h2>One price.<br /><em>VYRO forever.</em></h2></div>
-        <div className="price-grid"><PriceCard /></div>
+        <div className="price-grid"><PriceCard /><FoundersEditionCard /></div>
         <motion.aside className="macos-coming-soon" initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: .65 }} whileHover={{ y: -5, rotate: -.35 }}>
           <div className="macos-icon" aria-hidden="true">🍎</div>
           <div className="macos-copy">
