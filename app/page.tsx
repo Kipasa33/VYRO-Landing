@@ -24,7 +24,7 @@ const faqs = [
   ["Do I need an internet connection?", "Some features work offline. Advanced AI and cloud features may require an internet connection."],
   ["Does VYRO have emotions?", "Kind of. VYRO can get happy, bored, sleepy, excited, shocked, and occasionally dramatic."],
   ["Does VYRO sleep?", "Yes. If you ignore VYRO for too long, it may get bored, complain, and fall asleep until you come back."],
-  ["What makes VYRO different?", "Most assistants live inside a chat window. VYRO lives on your desktop and has a personality."],
+  ["What makes VYRO different?", "Most assistants live inside a chat window. VYRO Desktop Assistant lives on your desktop as a playful Desktop AI Robot with a personality."],
 ];
 
 const socialProofMessages = [
@@ -220,7 +220,7 @@ export default function Home() {
         <motion.div className="hero-copy" initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: .45 }}>
           <h2>Talk to your desktop.<br /><em>It talks back.</em></h2>
           <a href="#pricing" className="main-cta">Download for Windows <ArrowDown size={20} /></a>
-          <small>Windows 10 &amp; 11</small>
+          <small>VYRO AI for Windows 10 &amp; 11</small>
         </motion.div>
         <motion.div className="hero-chips" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: .65 }}>
           <span>Listens</span><span>Talks</span><span>Opens apps</span><span>Gets bored</span>
@@ -235,7 +235,7 @@ export default function Home() {
               {[0, 1, 2, 3, 4].map((star) => <motion.span key={star} whileHover={{ y: -4, scale: 1.14, rotate: star % 2 ? 8 : -8 }}>★</motion.span>)}
             </div>
             <blockquote>&quot;Your desktop finally has a personality.&quot;</blockquote>
-            <p>Early users are already talking, laughing, and working with VYRO every day.</p>
+            <p>Early users are already talking, laughing, and working with VYRO, an AI Assistant for Windows, every day.</p>
           </motion.div>
         </motion.div>
       </section>
@@ -264,7 +264,7 @@ export default function Home() {
       </section>
 
       <section className="section-shell demo" id="demo">
-        <div className="demo-head"><span>02 / IN THE WILD</span><h2>See VYRO<br /><em>do its thing.</em></h2><p>No cinematic trailer. Just a little guy living on a desktop.</p></div>
+        <div className="demo-head"><span>02 / IN THE WILD</span><h2>See VYRO<br /><em>do its thing.</em></h2><p>No cinematic trailer. Just a Windows AI Companion living on your desktop.</p></div>
         <div className="video-shell">
           <div className="window-bar"><div><i /><i /><i /></div><span>vyro_demo_definitely_final.mp4</span><b>LIVE-ish</b></div>
           <video src="/vyro.mp4" controls={playing} autoPlay={playing} playsInline />
