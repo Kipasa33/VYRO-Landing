@@ -84,8 +84,8 @@ function SocialProofToast() {
 }
 
 function VYROMascot() {
-  const [line, setLine] = useState("Psst. I live here now.");
-  const [showLine, setShowLine] = useState(true);
+  const [line, setLine] = useState("");
+  const [showLine, setShowLine] = useState(false);
   const [annoyed, setAnnoyed] = useState(false);
   const nextVoiceRef = useRef(0);
   const activeAudioRef = useRef<HTMLAudioElement | null>(null);
@@ -134,24 +134,24 @@ function VYROMascot() {
         )}
       </AnimatePresence>
       <button className="robot" onClick={poke} aria-label="Poke VYRO">
-        <span className="antenna"><i /></span>
-        <span className="ear left" />
-        <span className="ear right" />
+        <span className="ai-aura" />
+        <span className="orbit-ring ring-one" />
+        <span className="orbit-ring ring-two" />
         <span className="head">
           <span className="face">
             <span className="eye"><i /></span>
             <span className="eye"><i /></span>
-            <span className="mouth"><i /><i /><i /></span>
+            <span className="mouth" />
           </span>
           <span className="shine" />
         </span>
         <span className="neck" />
         <span className="body">
           <span className="chest">V</span>
-          <span className="status">ONLINE-ish</span>
+          <span className="status">AI CORE</span>
         </span>
-        <span className="arm left"><i /></span>
-        <span className="arm right"><i /></span>
+        <span className="side-fin left" />
+        <span className="side-fin right" />
       </button>
       <div className="shadow" />
     </motion.div>
