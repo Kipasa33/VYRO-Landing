@@ -2,7 +2,7 @@ import { CheckCircle2, Download, Home, Mic, Play, ShieldCheck } from "lucide-rea
 import Link from "next/link";
 
 const downloadUrl =
-  "https://github.com/Kipasa33/deskbuddy-ai/releases/latest/download/VYRO-Setup.exe";
+  "https://github.com/Kipasa33/deskbuddy-ai/releases/download/v0.1.0/VYRO.Setup.0.1.0.exe";
 
 const steps = [
   { icon: Download, title: "Download VYRO" },
