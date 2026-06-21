@@ -276,7 +276,7 @@ export default function Home() {
       <section className="section-shell pricing" id="pricing">
         <div className="section-heading centered"><span>03 / ONE LITTLE ROBOT</span><h2>One price.<br /><em>VYRO forever.</em></h2></div>
         <div className="price-grid"><PriceCard /><FoundersEditionCard /></div>
-        <p className="purchased-link">Already purchased? <a href="/download">Download VYRO</a></p>
+        <p className="purchased-link">Already purchased? <a href="/recover-key">Recover your license key</a></p>
         <motion.aside className="macos-coming-soon" initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: .65 }} whileHover={{ y: -5, rotate: -.35 }}>
           <div className="macos-icon" aria-hidden="true">🍎</div>
           <div className="macos-copy">
