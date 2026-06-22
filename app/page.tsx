@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { ArrowDown, ArrowUpRight, Check, ChevronDown, Moon, Play, Sun, Volume2, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { startPolarCheckout } from "./lib/polar-checkout";
+import VyroCompanion, { type VyroMood } from "./components/VyroCompanion";
 
 const voiceReactions = [
   { src: "/audio/robot_click_01.mp3", line: "Bro, I’m listening." },
@@ -83,18 +84,34 @@ function SocialProofToast() {
   );
 }
 
+const MOOD_CONTROLS: { label: string; mood: VyroMood; emoji: string }[] = [
+  { label: "Wave", mood: "happy", emoji: "👋" },
+  { label: "Think", mood: "thinking", emoji: "💭" },
+  { label: "Focus", mood: "focus", emoji: "🎯" },
+  { label: "Sleep", mood: "sleep", emoji: "😴" },
+  { label: "Shock", mood: "shock", emoji: "⚡" },
+];
+
 function VYROMascot() {
   const [line, setLine] = useState("");
   const [showLine, setShowLine] = useState(false);
-  const [annoyed, setAnnoyed] = useState(false);
+  const [mood, setMood] = useState<VyroMood>("idle");
   const nextVoiceRef = useRef(0);
   const activeAudioRef = useRef<HTMLAudioElement | null>(null);
+  const moodTimerRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
 
   useEffect(() => {
     return () => {
       activeAudioRef.current?.pause();
+      clearTimeout(moodTimerRef.current);
     };
   }, []);
+
+  function flashMood(next: VyroMood, ms: number) {
+    setMood(next);
+    clearTimeout(moodTimerRef.current);
+    moodTimerRef.current = setTimeout(() => setMood("idle"), ms);
+  }
 
   function poke() {
     const reaction = voiceReactions[nextVoiceRef.current];
@@ -116,45 +133,37 @@ function VYROMascot() {
 
     setLine(reaction.line);
     setShowLine(true);
-    void audio.play();
+    void audio.play().catch(() => {});
 
-    if (Math.random() < 0.24) {
-      setAnnoyed(true);
-      setTimeout(() => setAnnoyed(false), 600);
-    }
+    flashMood(Math.random() < 0.3 ? "shock" : "happy", 1000);
   }
 
   return (
-    <motion.div className="robot-wrap" animate={annoyed ? { x: [0, -12, 11, -9, 7, 0] } : { y: [0, -10, 0] }} transition={annoyed ? { duration: .45 } : { duration: 3.5, repeat: Infinity, ease: "easeInOut" }}>
+    <div className="vyro-stage">
       <AnimatePresence>
         {showLine && (
-          <motion.button aria-label="Close VYRO speech bubble" className="speech" initial={{ opacity: 0, scale: .8, y: 10 }} animate={{ opacity: 1, scale: 1, y: 0 }} exit={{ opacity: 0 }} onClick={() => setShowLine(false)}>
+          <motion.button aria-label="Close VYRO speech bubble" className="vyro-speech" initial={{ opacity: 0, scale: .8, y: 10 }} animate={{ opacity: 1, scale: 1, y: 0 }} exit={{ opacity: 0 }} onClick={() => setShowLine(false)}>
             {line}<X size={13} />
           </motion.button>
         )}
       </AnimatePresence>
-      <button className="robot" onClick={poke} aria-label="Poke VYRO">
-        <span className="ai-aura" />
-        <span className="orbit-ring ring-one" />
-        <span className="orbit-ring ring-two" />
-        <span className="head">
-          <span className="face">
-            <span className="eye"><i /></span>
-            <span className="eye"><i /></span>
-            <span className="mouth" />
-          </span>
-          <span className="shine" />
-        </span>
-        <span className="neck" />
-        <span className="body">
-          <span className="chest">V</span>
-          <span className="status">AI CORE</span>
-        </span>
-        <span className="side-fin left" />
-        <span className="side-fin right" />
-      </button>
-      <div className="shadow" />
-    </motion.div>
+
+      <VyroCompanion mood={mood} onPoke={poke} size={300} ariaLabel="Poke VYRO, your AI desktop companion" />
+
+      <div className="vyro-moods" role="group" aria-label="Try VYRO's moods">
+        {MOOD_CONTROLS.map((control) => (
+          <button
+            key={control.label}
+            type="button"
+            className={mood === control.mood ? "is-active" : ""}
+            aria-pressed={mood === control.mood}
+            onClick={() => flashMood(control.mood, control.mood === "sleep" ? 4500 : 2800)}
+          >
+            <span aria-hidden="true">{control.emoji}</span>{control.label}
+          </button>
+        ))}
+      </div>
+    </div>
   );
 }
 
