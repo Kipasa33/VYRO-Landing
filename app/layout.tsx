@@ -12,6 +12,7 @@ const description =
 const socialDescription =
   "Talk to your desktop. It talks back. VYRO AI is a playful AI assistant for Windows with voice commands, focus mode, emotions, and productivity tools.";
 const socialImage = `${siteUrl}/vyro-mascot-clean.png`;
+const siteIcon = `${siteUrl}/icon-512x512.png`;
 
 const softwareApplicationJsonLd = {
   "@context": "https://schema.org",
@@ -36,7 +37,7 @@ const organizationJsonLd = {
   "@type": "Organization",
   name: "VYRO",
   url: siteUrl,
-  logo: socialImage,
+  logo: siteIcon,
   sameAs: [siteUrl],
 };
 
@@ -58,6 +59,18 @@ export const metadata: Metadata = {
   ],
   alternates: {
     canonical: siteUrl,
+  },
+  manifest: "/manifest.webmanifest",
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/icon-16x16.png", sizes: "16x16", type: "image/png" },
+      { url: "/icon-32x32.png", sizes: "32x32", type: "image/png" },
+      { url: "/icon-192x192.png", sizes: "192x192", type: "image/png" },
+      { url: "/icon-512x512.png", sizes: "512x512", type: "image/png" },
+    ],
+    shortcut: ["/favicon.ico"],
+    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
   },
   openGraph: {
     title,
