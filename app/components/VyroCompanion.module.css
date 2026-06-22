@@ -1,0 +1,359 @@
+.root {
+  position: relative;
+  display: inline-block;
+  line-height: 0;
+  cursor: pointer;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+  /* cursor-tracking vars, written from JS */
+  --veye-x: 0;
+  --veye-y: 0;
+  --vtilt: 0;
+}
+
+.root:focus-visible {
+  border-radius: 28px;
+  box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.55);
+}
+
+.character {
+  display: block;
+  overflow: visible;
+  animation: vyro-float 4.4s ease-in-out infinite;
+  will-change: transform;
+}
+
+/* gentle hover lift + speed-up of the float */
+.root:hover .character {
+  animation-duration: 3.4s;
+}
+
+/* ---------- soft blue glow ---------- */
+.glow {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: vyro-glow 4.6s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+/* ---------- ground shadow breathes with the float ---------- */
+.shadow {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: vyro-shadow 4.4s ease-in-out infinite;
+}
+
+/* ---------- detached floating arms ---------- */
+.arm {
+  transform-box: fill-box;
+  transform-origin: center;
+  will-change: transform;
+}
+.armLeft {
+  animation: vyro-arm-l 4.4s ease-in-out infinite;
+}
+.armRight {
+  animation: vyro-arm-r 4.4s ease-in-out infinite;
+}
+
+/* ---------- body bob (slight delay vs head for squash/float feel) ---------- */
+.body {
+  transform-box: fill-box;
+  transform-origin: center top;
+  animation: vyro-body 4.4s ease-in-out infinite;
+}
+
+.coreLight {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: vyro-core 3.2s ease-in-out infinite;
+}
+
+/* ---------- head tilt toward cursor ---------- */
+.headTilt {
+  transform-box: fill-box;
+  transform-origin: 110px 150px;
+  transform: rotate(calc(var(--vtilt, 0) * 0.18deg)) translateX(calc(var(--veye-x, 0) * 0.18px));
+  transition: transform 200ms ease-out;
+}
+
+.statusOrb {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: vyro-orb 2.8s ease-in-out infinite;
+}
+
+.glassSweep {
+  animation: vyro-sweep 6s ease-in-out infinite;
+}
+
+/* ---------- mood decorations ---------- */
+.thinkDots circle {
+  animation: vyro-think 1.4s ease-in-out infinite;
+}
+.thinkDots circle:nth-child(2) {
+  animation-delay: 0.18s;
+}
+.thinkDots circle:nth-child(3) {
+  animation-delay: 0.36s;
+}
+
+.zzz text {
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: vyro-zzz 3.2s ease-in-out infinite;
+}
+.zzz text:nth-child(2) {
+  animation-delay: 0.5s;
+}
+.zzz text:nth-child(3) {
+  animation-delay: 1s;
+}
+
+.shockMark {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: vyro-pop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+.scanLine {
+  transform-box: fill-box;
+  animation: vyro-scan 1.8s ease-in-out infinite;
+}
+
+/* ---------- mood-level character motion ---------- */
+.root[data-mood="shock"] .character {
+  animation: vyro-jolt 0.5s ease-out;
+}
+.root[data-mood="shock"] .armLeft {
+  transform: translate(-5px, -6px) rotate(-12deg);
+}
+.root[data-mood="shock"] .armRight {
+  transform: translate(5px, -6px) rotate(12deg);
+}
+.root[data-mood="happy"] .character {
+  animation: vyro-hop 0.9s ease-in-out;
+}
+.root[data-mood="sleep"] .character {
+  animation: vyro-breathe 5.2s ease-in-out infinite;
+}
+.root[data-mood="sleep"] .glow {
+  opacity: 0.5;
+}
+.root[data-mood="sleep"] .statusOrb,
+.root[data-mood="sleep"] .coreLight {
+  opacity: 0.35;
+}
+.root[data-mood="focus"] .glow {
+  animation: vyro-focus-glow 1.6s ease-in-out infinite;
+}
+.root[data-mood="focus"] .character {
+  animation-duration: 6s;
+}
+
+/* ===================== keyframes ===================== */
+@keyframes vyro-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes vyro-breathe {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-3px) scale(1.012);
+  }
+}
+
+@keyframes vyro-glow {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.85;
+    transform: scale(1.06);
+  }
+}
+
+@keyframes vyro-focus-glow {
+  0%,
+  100% {
+    opacity: 0.7;
+    transform: scale(0.96);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.02);
+  }
+}
+
+@keyframes vyro-shadow {
+  0%,
+  100% {
+    transform: scaleX(1);
+    opacity: 0.18;
+  }
+  50% {
+    transform: scaleX(0.82);
+    opacity: 0.12;
+  }
+}
+
+@keyframes vyro-body {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes vyro-arm-l {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-7px) rotate(-6deg);
+  }
+}
+
+@keyframes vyro-arm-r {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-7px) rotate(6deg);
+  }
+}
+
+@keyframes vyro-core {
+  0%,
+  100% {
+    opacity: 0.8;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.12);
+  }
+}
+
+@keyframes vyro-orb {
+  0%,
+  100% {
+    opacity: 0.85;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}
+
+@keyframes vyro-sweep {
+  0%,
+  100% {
+    opacity: 0.05;
+  }
+  50% {
+    opacity: 0.12;
+  }
+}
+
+@keyframes vyro-think {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translateY(-5px);
+    opacity: 1;
+  }
+}
+
+@keyframes vyro-zzz {
+  0% {
+    opacity: 0;
+    transform: translate(0, 4px) scale(0.7);
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(6px, -14px) scale(1.1);
+  }
+}
+
+@keyframes vyro-pop {
+  0% {
+    opacity: 0;
+    transform: scale(0.2) translateY(6px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes vyro-scan {
+  0% {
+    transform: translateY(0);
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 0.85;
+  }
+  100% {
+    transform: translateY(77px);
+    opacity: 0.2;
+  }
+}
+
+@keyframes vyro-jolt {
+  0% {
+    transform: translateY(0) scale(1);
+  }
+  20% {
+    transform: translateY(-8px) scale(1.04);
+  }
+  40% {
+    transform: translateX(-5px);
+  }
+  60% {
+    transform: translateX(5px);
+  }
+  80% {
+    transform: translateX(-3px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes vyro-hop {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  35% {
+    transform: translateY(-14px);
+  }
+  70% {
+    transform: translateY(-2px);
+  }
+}
