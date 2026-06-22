@@ -43,10 +43,16 @@
   animation: vyro-shadow 4.4s ease-in-out infinite;
 }
 
-/* ---------- detached floating arms ---------- */
-.arm {
+/* ---------- shoulder connectors (bob with the body group) ---------- */
+.shoulder {
   transform-box: fill-box;
   transform-origin: center;
+}
+
+/* ---------- floating arms (linked to the torso via shoulder joints) ---------- */
+.arm {
+  transform-box: fill-box;
+  transform-origin: 50% 25%;
   will-change: transform;
 }
 .armLeft {
@@ -225,7 +231,7 @@
     transform: translateY(0) rotate(0deg);
   }
   50% {
-    transform: translateY(-7px) rotate(-6deg);
+    transform: translateY(-6px) rotate(-4deg);
   }
 }
 
@@ -235,7 +241,7 @@
     transform: translateY(0) rotate(0deg);
   }
   50% {
-    transform: translateY(-7px) rotate(6deg);
+    transform: translateY(-6px) rotate(4deg);
   }
 }
 
