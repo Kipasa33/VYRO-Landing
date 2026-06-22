@@ -34,15 +34,13 @@ nav { position: absolute; z-index: 20; top: 0; left: 0; width: 100%; display: fl
 .eyebrow i { width: .48rem; height: .48rem; background: #21c16b; border-radius: 50%; box-shadow: 0 0 0 3px rgba(33,193,107,.18); }
 .hero h1 { position: absolute; z-index: 1; top: 38%; left: 50%; width: max-content; margin: 0; transform: translate(-50%, -50%); font-family: var(--font-display); font-size: clamp(7rem, 18vw, 18rem); font-weight: 900; line-height: .78; letter-spacing: -.06em; background: linear-gradient(90deg, #7dd3fc 0%, #8b5cf6 52%, #22d3ee 100%); background-clip: text; -webkit-background-clip: text; color: transparent; -webkit-text-fill-color: transparent; opacity: .18; filter: drop-shadow(0 0 1rem rgba(34,211,238,.5)) drop-shadow(0 0 2.2rem rgba(139,92,246,.34)); pointer-events: none; user-select: none; }
 .hero h1 span { font-size: .07em; vertical-align: top; letter-spacing: 0; }
-/* VYRO companion stage (animated SVG lives in app/components/VyroCompanion) */
-.vyro-stage { z-index: 3; position: relative; display: flex; flex-direction: column; align-items: center; gap: .85rem; margin: -1rem 0 -1.5rem; flex: 0 0 auto; }
-.vyro-speech { position: absolute; z-index: 8; top: 1.4rem; right: -.4rem; display: flex; align-items: center; gap: .45rem; max-width: 12rem; padding: .68rem .78rem; background: rgba(11,22,34,.82); color: #e8fbff; border: 1px solid rgba(125,211,252,.55); border-radius: .9rem; box-shadow: 0 .9rem 2rem rgba(7,18,28,.25), 0 0 1rem rgba(34,211,238,.22); backdrop-filter: blur(12px); font-size: .68rem; line-height: 1.45; font-weight: 700; text-align: left; }
-.vyro-speech svg { flex: 0 0 auto; }
-.vyro-moods { display: flex; flex-wrap: wrap; justify-content: center; gap: .4rem; max-width: 20rem; }
-.vyro-moods button { display: inline-flex; align-items: center; gap: .35rem; padding: .42rem .7rem; background: var(--surface); border: 1px solid rgba(22,22,22,.4); border-radius: 2rem; backdrop-filter: blur(.6rem); font-size: .56rem; font-weight: 700; transition: transform .18s ease, box-shadow .18s ease, background .18s ease, color .18s ease; }
-.vyro-moods button:hover { transform: translateY(-2px); }
-.vyro-moods button.is-active { background: #0b1626; color: #d6fbff; border-color: rgba(125,211,252,.6); box-shadow: 0 0 0 2px rgba(34,211,238,.25), 0 0 1rem rgba(34,211,238,.3); }
-[data-theme="dark"] .vyro-moods button { border-color: rgba(255,255,255,.32); }
+.robot-wrap { z-index: 3; position: relative; width: min(72vw, 17rem); height: 22rem; margin: -1.5rem 0 -2rem; flex: 0 0 auto; display: grid; place-items: center; perspective: 55rem; }
+.robot-video-button { position: relative; z-index: 2; width: 100%; height: 100%; display: grid; place-items: center; padding: 0; background: transparent; border: 0; transform-style: preserve-3d; }
+.vyro-robot-video { width: 100%; height: 100%; display: block; object-fit: contain; background: transparent; border: 0; filter: drop-shadow(0 1.35rem 1.4rem rgba(18,54,74,.22)) drop-shadow(0 0 1.8rem rgba(34,211,238,.24)); transform: translateZ(0); will-change: transform, filter; animation: videoMascotBreathe 5s ease-in-out infinite; }
+.robot-video-button:hover .vyro-robot-video { filter: drop-shadow(0 1.7rem 1.6rem rgba(18,54,74,.28)) drop-shadow(0 0 2.2rem rgba(34,211,238,.32)); }
+.shadow { position: absolute; z-index: 1; bottom: .9rem; left: 50%; width: 9.5rem; height: 1.15rem; border-radius: 50%; background: rgba(15,35,48,.18); filter: blur(8px); transform: translateX(-50%); animation: shadow 3.8s infinite ease-in-out; }
+@keyframes shadow { 50% { transform: translateX(-50%) scaleX(.82); opacity: .48; } }
+@keyframes videoMascotBreathe { 50% { transform: translateZ(0) scale(1.018); } }
 .hero-copy { z-index: 4; display: flex; flex-direction: column; align-items: center; gap: .8rem; }
 .hero-copy h2 { margin: 0; font-family: var(--font-display); font-size: clamp(1.8rem, 6vw, 3.15rem); line-height: 1; letter-spacing: -.06em; }
 em { color: #765cf3; font-style: normal; } [data-theme="dark"] em { color: #a99bff; }
@@ -125,7 +123,7 @@ footer{padding:6rem 1rem 2rem;text-align:center;background:#17171b;color:#f7f2e5
 @media (min-width:640px){.social-proof-section{padding:4.5rem 1.5rem 2.5rem}.social-proof-card{padding:2rem}.social-proof-stars{font-size:1.8rem}}
 @media (min-width:640px){.promo-banner{grid-template-columns:auto 1fr;align-items:start;padding:1.35rem}.promo-button{grid-column:2;width:max-content}.promo-rewards{grid-template-columns:repeat(2,max-content);gap:1rem}}
 @media (min-width:640px){.roadmap-line{left:2rem}.roadmap-item{grid-template-columns:4.1rem 1fr;gap:1.2rem;padding-bottom:1.65rem}.roadmap-icon{width:4.1rem;height:4.1rem;font-size:1.5rem}.roadmap-card{padding:1.35rem}.roadmap-card:before{top:1.7rem}.roadmap-card h3{font-size:1.7rem}.roadmap-card p{font-size:.68rem}}
-@media (min-width:768px){.nav-links a{display:block}.vyro-speech{right:-2.4rem}.section-shell{padding:8rem 2rem}.features,.faq{display:grid;grid-template-columns:.8fr 1.6fr;gap:4rem;align-items:start}.features{padding-bottom:5.2rem}.feature-grid{margin-top:0}.demo{margin:.7rem auto 2rem;padding:4rem}.demo-head{display:grid;grid-template-columns:1fr 1.2fr .8fr;align-items:end;gap:2rem}.demo-head h2,.demo-head p{margin:0}.faq-list{margin-top:1rem}}
+@media (min-width:768px){.nav-links a{display:block}.robot-wrap{width:19rem;height:23rem}.section-shell{padding:8rem 2rem}.features,.faq{display:grid;grid-template-columns:.8fr 1.6fr;gap:4rem;align-items:start}.features{padding-bottom:5.2rem}.feature-grid{margin-top:0}.demo{margin:.7rem auto 2rem;padding:4rem}.demo-head{display:grid;grid-template-columns:1fr 1.2fr .8fr;align-items:end;gap:2rem}.demo-head h2,.demo-head p{margin:0}.faq-list{margin-top:1rem}}
 @media (min-width:900px){.promo-banner{grid-template-columns:auto 1fr auto;align-items:center}.promo-button{grid-column:auto}}
 @media (min-width:1100px){.feature-grid{grid-template-columns:repeat(4,1fr)}.features{grid-template-columns:.7fr 2fr}.faq{grid-template-columns:1fr 1.5fr}}
 @media (prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important}}

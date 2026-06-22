@@ -1,15 +1,11 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowDown, ArrowUpRight, Check, ChevronDown, Moon, Play, Sun, Volume2, X } from "lucide-react";
+import { ArrowDown, ArrowUpRight, Check, ChevronDown, Moon, Play, Sun, Volume2 } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { startPolarCheckout } from "./lib/polar-checkout";
-import VyroCompanion, { type VyroMood } from "./components/VyroCompanion";
 
-const voiceReactions = [
-  { src: "/audio/robot_click_01.mp3", line: "Bro, I’m listening." },
-  { src: "/audio/robot_click_02.mp3", line: "Don’t poke me. I’m sensitive." },
-];
+const voiceReactions = ["/audio/robot_click_01.mp3", "/audio/robot_click_02.mp3"];
 
 const features = [
   { icon: "◉", title: "Listens", text: "Say it out loud. Typing is very 2025.", color: "var(--pink)" },
@@ -84,36 +80,17 @@ function SocialProofToast() {
   );
 }
 
-const MOOD_CONTROLS: { label: string; mood: VyroMood; emoji: string }[] = [
-  { label: "Wave", mood: "happy", emoji: "👋" },
-  { label: "Think", mood: "thinking", emoji: "💭" },
-  { label: "Focus", mood: "focus", emoji: "🎯" },
-  { label: "Sleep", mood: "sleep", emoji: "😴" },
-  { label: "Shock", mood: "shock", emoji: "⚡" },
-];
-
 function VYROMascot() {
-  const [line, setLine] = useState("");
-  const [showLine, setShowLine] = useState(false);
-  const [mood, setMood] = useState<VyroMood>("idle");
   const nextVoiceRef = useRef(0);
   const activeAudioRef = useRef<HTMLAudioElement | null>(null);
-  const moodTimerRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
 
   useEffect(() => {
     return () => {
       activeAudioRef.current?.pause();
-      clearTimeout(moodTimerRef.current);
     };
   }, []);
 
-  function flashMood(next: VyroMood, ms: number) {
-    setMood(next);
-    clearTimeout(moodTimerRef.current);
-    moodTimerRef.current = setTimeout(() => setMood("idle"), ms);
-  }
-
-  function poke() {
+  function playReaction() {
     const reaction = voiceReactions[nextVoiceRef.current];
     nextVoiceRef.current = (nextVoiceRef.current + 1) % voiceReactions.length;
 
@@ -122,48 +99,37 @@ function VYROMascot() {
       activeAudioRef.current.currentTime = 0;
     }
 
-    const audio = new Audio(reaction.src);
+    const audio = new Audio(reaction);
     activeAudioRef.current = audio;
     audio.addEventListener("ended", () => {
       if (activeAudioRef.current === audio) {
         activeAudioRef.current = null;
-        setShowLine(false);
       }
     }, { once: true });
 
-    setLine(reaction.line);
-    setShowLine(true);
-    void audio.play().catch(() => {});
-
-    flashMood(Math.random() < 0.3 ? "shock" : "happy", 1000);
+    void audio.play();
   }
 
   return (
-    <div className="vyro-stage">
-      <AnimatePresence>
-        {showLine && (
-          <motion.button aria-label="Close VYRO speech bubble" className="vyro-speech" initial={{ opacity: 0, scale: .8, y: 10 }} animate={{ opacity: 1, scale: 1, y: 0 }} exit={{ opacity: 0 }} onClick={() => setShowLine(false)}>
-            {line}<X size={13} />
-          </motion.button>
-        )}
-      </AnimatePresence>
-
-      <VyroCompanion mood={mood} onPoke={poke} size={300} ariaLabel="Poke VYRO, your AI desktop companion" />
-
-      <div className="vyro-moods" role="group" aria-label="Try VYRO's moods">
-        {MOOD_CONTROLS.map((control) => (
-          <button
-            key={control.label}
-            type="button"
-            className={mood === control.mood ? "is-active" : ""}
-            aria-pressed={mood === control.mood}
-            onClick={() => flashMood(control.mood, control.mood === "sleep" ? 4500 : 2800)}
-          >
-            <span aria-hidden="true">{control.emoji}</span>{control.label}
-          </button>
-        ))}
-      </div>
-    </div>
+    <motion.div
+      className="robot-wrap"
+      animate={{ y: [0, -10, 0], scale: [1, 1.012, 1] }}
+      transition={{ duration: 3.8, repeat: Infinity, ease: "easeInOut" }}
+    >
+      <motion.button
+        className="robot-video-button"
+        onClick={playReaction}
+        whileHover={{ y: -6, rotateZ: -1.2, scale: 1.025 }}
+        whileTap={{ scale: .985 }}
+        transition={{ duration: .25, ease: "easeOut" }}
+        aria-label="Play VYRO reaction"
+      >
+        <video className="vyro-robot-video" autoPlay loop muted playsInline preload="metadata" aria-label="Animated VYRO AI companion mascot">
+          <source src="/vyro-robot.webm" type="video/webm" />
+        </video>
+      </motion.button>
+      <div className="shadow video-shadow" />
+    </motion.div>
   );
 }
 
@@ -323,7 +289,7 @@ export default function Home() {
         </div>
       </section>
 
-      <footer id="footer"><div className="footer-robot">V</div><h2>Your desktop is lonely.</h2><button type="button" className="main-cta" onClick={() => startPolarCheckout()}>Give it VYRO <ArrowUpRight size={20} /></button><p>Made by a human who wanted a robot on his desktop.</p><small>Need help? Contact VYRO Support at <a href="mailto:support@vyrodesk.com">support@vyrodesk.com</a></small><small>Secure payments powered by Polar</small><small>© 2026 VYRO / PLEASE DON’T TEACH IT TAXES</small></footer>
+      <footer id="footer"><div className="footer-robot">V</div><h2>Your desktop is lonely.</h2><button type="button" className="main-cta" onClick={() => startPolarCheckout()}>Give it VYRO <ArrowUpRight size={20} /></button><p>Made by a human who wanted a robot on his desktop.</p><small>Secure payments powered by Polar</small><small>© 2026 VYRO / PLEASE DON’T TEACH IT TAXES</small></footer>
     </main>
   );
 }
