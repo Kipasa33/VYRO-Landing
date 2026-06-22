@@ -73,8 +73,12 @@ function characterSVG(mood) {
   return `
    <ellipse cx="110" cy="146" rx="104" ry="104" fill="url(#glow)"/>
    <ellipse cx="110" cy="246" rx="56" ry="9" fill="#0b2233" opacity="0.18"/>
-   <rect x="22" y="150" width="17" height="46" rx="8.5" fill="url(#arm)" stroke="#fff" stroke-opacity="0.7"/>
-   <rect x="181" y="150" width="17" height="46" rx="8.5" fill="url(#arm)" stroke="#fff" stroke-opacity="0.7"/>
+   <rect x="32" y="150" width="17" height="46" rx="8.5" fill="url(#arm)" stroke="#fff" stroke-opacity="0.7"/>
+   <rect x="171" y="150" width="17" height="46" rx="8.5" fill="url(#arm)" stroke="#fff" stroke-opacity="0.7"/>
+   <rect x="45" y="163" width="32" height="20" rx="10" fill="url(#arm)" stroke="#fff" stroke-opacity="0.55"/>
+   <rect x="143" y="163" width="32" height="20" rx="10" fill="url(#arm)" stroke="#fff" stroke-opacity="0.55"/>
+   <circle cx="59" cy="173" r="4.6" fill="#fff" opacity="0.55"/>
+   <circle cx="161" cy="173" r="4.6" fill="#fff" opacity="0.55"/>
    <rect x="72" y="156" width="76" height="80" rx="34" fill="url(#shell)" stroke="#fff" stroke-opacity="0.8"/>
    <circle cx="110" cy="198" r="9" fill="url(#eye)" filter="url(#g)"/>
    <line x1="110" y1="36" x2="110" y2="22" stroke="#c9d6e2" stroke-width="3" stroke-linecap="round"/>

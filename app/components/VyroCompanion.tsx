@@ -7,9 +7,10 @@ import styles from "./VyroCompanion.module.css";
  * VYRO — premium animated AI desktop companion.
  *
  * Design language: oversized rounded white shell, dark glass face,
- * expressive cyan eyes, a small floating body, two detached side arms,
- * and a soft blue glow. Built as a single inline SVG so it stays crisp
- * at any size and every part can be animated independently.
+ * expressive cyan eyes, a small floating body, two side arms linked to
+ * the torso by rounded shoulder joints, and a soft blue glow. Built as a
+ * single inline SVG so it stays crisp at any size and every part can be
+ * animated independently.
  *
  * Behaviours:
  *  - Natural randomized blinking (suppressed while asleep / shocked)
@@ -233,16 +234,24 @@ export default function VyroCompanion({
         {/* Ground shadow */}
         <ellipse className={styles.shadow} cx="110" cy="246" rx="56" ry="9" fill="#0b2233" opacity="0.18" />
 
-        {/* Floating side arms (detached) */}
+        {/* Floating side arms — pulled ~30% closer to the torso and linked by shoulder joints */}
         <g className={`${styles.arm} ${styles.armLeft}`}>
-          <rect x="22" y="150" width="17" height="46" rx="8.5" fill="url(#vyroShellArm)" stroke="#ffffff" strokeOpacity="0.7" />
+          <rect x="32" y="150" width="17" height="46" rx="8.5" fill="url(#vyroShellArm)" stroke="#ffffff" strokeOpacity="0.7" />
         </g>
         <g className={`${styles.arm} ${styles.armRight}`}>
-          <rect x="181" y="150" width="17" height="46" rx="8.5" fill="url(#vyroShellArm)" stroke="#ffffff" strokeOpacity="0.7" />
+          <rect x="171" y="150" width="17" height="46" rx="8.5" fill="url(#vyroShellArm)" stroke="#ffffff" strokeOpacity="0.7" />
         </g>
 
-        {/* Floating body */}
+        {/* Floating body — rounded shoulder connectors bridge the torso to each arm.
+            They live in the body group so they bob in sync with the torso and stay attached. */}
         <g className={styles.body}>
+          {/* shoulder connectors: short rounded links tucked under the torso, capping the arm tops */}
+          <rect className={styles.shoulder} x="45" y="163" width="32" height="20" rx="10" fill="url(#vyroShellArm)" stroke="#ffffff" strokeOpacity="0.55" />
+          <rect className={styles.shoulder} x="143" y="163" width="32" height="20" rx="10" fill="url(#vyroShellArm)" stroke="#ffffff" strokeOpacity="0.55" />
+          {/* subtle floating ball joints */}
+          <circle cx="59" cy="173" r="4.6" fill="#ffffff" opacity="0.55" />
+          <circle cx="161" cy="173" r="4.6" fill="#ffffff" opacity="0.55" />
+          {/* torso */}
           <rect x="72" y="156" width="76" height="80" rx="34" fill="url(#vyroShell)" stroke="#ffffff" strokeOpacity="0.8" />
           <ellipse cx="110" cy="176" rx="26" ry="9" fill="#ffffff" opacity="0.55" filter="url(#vyroSoft)" />
           <circle className={styles.coreLight} cx="110" cy="198" r="9" fill="url(#vyroEye)" filter="url(#vyroEyeGlow)" />
