@@ -44,8 +44,8 @@ const steps = [
   {
     icon: ArrowUpRight,
     label: "Refund",
-    title: "Email us for your refund",
-    description: <>Send an email to <a href="mailto:refund@vyro.app">refund@vyro.app</a> with your video link, a screenshot of your view count, the email you used to buy VYRO, and your order ID or receipt. We’ll refund 50% or 100% based on your current view count.</>,
+    title: "Need help? Contact VYRO Support",
+    description: <>Send your proof, order details, and video link to <a href="mailto:support@vyrodesk.com">support@vyrodesk.com</a>. We’ll refund 50% or 100% based on your current view count.</>,
     color: "var(--pink)",
   },
 ];

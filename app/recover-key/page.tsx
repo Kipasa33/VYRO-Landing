@@ -14,7 +14,7 @@ export default function RecoverKeyPage() {
     const portalUrl = process.env.NEXT_PUBLIC_POLAR_CUSTOMER_PORTAL_URL;
 
     if (!portalUrl) {
-      setMessage("Unable to open the customer portal. Please contact VYRO support.");
+      setMessage("Unable to open the customer portal. Please contact VYRO Support at support@vyrodesk.com.");
       return;
     }
 
@@ -24,7 +24,7 @@ export default function RecoverKeyPage() {
       setMessage("");
       window.location.assign(destination.toString());
     } catch {
-      setMessage("Unable to open the customer portal. Please contact VYRO support.");
+      setMessage("Unable to open the customer portal. Please contact VYRO Support at support@vyrodesk.com.");
     }
   }
 
@@ -58,6 +58,7 @@ export default function RecoverKeyPage() {
 
         {message && <motion.p className="recover-message" initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} role="status">{message}</motion.p>}
         <small>VYRO will never ask for your password.</small>
+        <small>Need help? Contact VYRO Support at <a href="mailto:support@vyrodesk.com">support@vyrodesk.com</a></small>
       </motion.section>
     </main>
   );

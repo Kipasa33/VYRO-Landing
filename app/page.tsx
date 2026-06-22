@@ -323,7 +323,7 @@ export default function Home() {
         </div>
       </section>
 
-      <footer id="footer"><div className="footer-robot">V</div><h2>Your desktop is lonely.</h2><button type="button" className="main-cta" onClick={() => startPolarCheckout()}>Give it VYRO <ArrowUpRight size={20} /></button><p>Made by a human who wanted a robot on his desktop.</p><small>Secure payments powered by Polar</small><small>© 2026 VYRO / PLEASE DON’T TEACH IT TAXES</small></footer>
+      <footer id="footer"><div className="footer-robot">V</div><h2>Your desktop is lonely.</h2><button type="button" className="main-cta" onClick={() => startPolarCheckout()}>Give it VYRO <ArrowUpRight size={20} /></button><p>Made by a human who wanted a robot on his desktop.</p><small>Need help? Contact VYRO Support at <a href="mailto:support@vyrodesk.com">support@vyrodesk.com</a></small><small>Secure payments powered by Polar</small><small>© 2026 VYRO / PLEASE DON’T TEACH IT TAXES</small></footer>
     </main>
   );
 }
