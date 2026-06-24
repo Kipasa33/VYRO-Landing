@@ -1,7 +1,7 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowDown, ArrowUpRight, Check, ChevronDown, Moon, Play, Sun, Volume2 } from "lucide-react";
+import { ArrowDown, ArrowUpRight, Check, ChevronDown, Moon, Pause, Play, Sun } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { startPolarCheckout } from "./lib/polar-checkout";
 
@@ -133,6 +133,46 @@ function VYROMascot() {
   );
 }
 
+function DemoVideoCard({ caption, src, poster, number }: { caption: string; src: string; poster: string; number: string }) {
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  async function togglePlayback() {
+    const video = videoRef.current;
+    if (!video) return;
+
+    if (video.paused) {
+      await video.play();
+    } else {
+      video.pause();
+    }
+  }
+
+  return (
+    <motion.article className="ugc-video-card" initial={{ opacity: 0, y: 28 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: .25 }} whileHover={{ y: -7 }} transition={{ duration: .45, ease: "easeOut" }}>
+      <div className="ugc-video-frame">
+        <video
+          ref={videoRef}
+          src={src}
+          poster={poster}
+          muted
+          playsInline
+          preload="none"
+          onClick={togglePlayback}
+          onPlay={() => setIsPlaying(true)}
+          onPause={() => setIsPlaying(false)}
+          onEnded={() => setIsPlaying(false)}
+        />
+        <button className={`ugc-play-button${isPlaying ? " is-playing" : ""}`} type="button" onClick={() => void togglePlayback()} aria-label={`${isPlaying ? "Pause" : "Play"} ${caption}`}>
+          {isPlaying ? <Pause fill="currentColor" size={22} /> : <Play fill="currentColor" size={24} />}
+        </button>
+        <span className="ugc-video-number">{number}</span>
+      </div>
+      <div className="ugc-video-caption"><span>WATCH</span><h3>{caption}</h3></div>
+    </motion.article>
+  );
+}
+
 function PriceCard() {
   return (
     <motion.article className="price-card accent" whileHover={{ y: -8 }}>
@@ -174,7 +214,6 @@ function FoundersEditionCard() {
 export default function Home() {
   const [dark, setDark] = useState(false);
   const [openFaq, setOpenFaq] = useState(0);
-  const [playing, setPlaying] = useState(false);
   useEffect(() => {
     document.documentElement.dataset.theme = dark ? "dark" : "light";
   }, [dark]);
@@ -238,14 +277,12 @@ export default function Home() {
         <div className="feature-grid">{features.map((feature, i) => <motion.article key={feature.title} style={{ "--card-color": feature.color } as React.CSSProperties} whileHover={{ y: -7, rotate: i % 2 ? 1 : -1 }}><span className="feature-icon">{feature.icon}</span><small>0{i + 1}</small><h3>{feature.title}</h3><p>{feature.text}</p></motion.article>)}</div>
       </section>
 
-      <section className="section-shell demo" id="demo">
-        <div className="demo-head"><span>02 / IN THE WILD</span><h2>See VYRO<br /><em>do its thing.</em></h2><p>No cinematic trailer. Just a Windows AI Companion living on your desktop.</p></div>
-        <div className="video-shell">
-          <div className="window-bar"><div><i /><i /><i /></div><span>vyro_demo_definitely_final.mp4</span><b>LIVE-ish</b></div>
-          <video src="/vyro.mp4" controls={playing} autoPlay={playing} playsInline />
-          {!playing && <button className="play-button" onClick={() => setPlaying(true)}><Play fill="currentColor" size={28} /><span>Watch the evidence</span></button>}
+      <section className="section-shell ugc-demo" id="demo">
+        <div className="demo-head"><span>02 / REAL MOMENTS</span><h2>See VYRO<br /><em>in action.</em></h2><p>Short demos, real reactions, and quick AI companion moments.</p></div>
+        <div className="ugc-video-grid">
+          <DemoVideoCard caption="The idea" src="/videos/vyro-the-idea.mp4" poster="/videos/vyro-the-idea-poster.jpg" number="01" />
+          <DemoVideoCard caption="VYRO in action" src="/videos/vyro-in-action.mp4" poster="/videos/vyro-in-action-poster.jpg" number="02" />
         </div>
-        <div className="sound-note"><Volume2 size={18} /> Sound on. VYRO has things to say.</div>
       </section>
 
       <section className="section-shell pricing" id="pricing">
