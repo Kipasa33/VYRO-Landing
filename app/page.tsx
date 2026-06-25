@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { ArrowDown, ArrowUpRight, Check, ChevronDown, Moon, Pause, Play, Sun } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { startPolarCheckout } from "./lib/polar-checkout";
+import { INSTAGRAM_URL, TIKTOK_URL } from "./lib/social-links";
 
 const voiceReactions = ["/audio/robot_click_01.mp3", "/audio/robot_click_02.mp3"];
 
@@ -80,6 +81,24 @@ function SocialProofToast() {
   );
 }
 
+function TikTokIcon() {
+  return (
+    <span className="ugc-social-icon tiktok-icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M14.4 3.4c.55 2.76 2.1 4.4 4.8 4.6v3.08a8.1 8.1 0 0 1-4.76-1.48v6.04a5.64 5.64 0 1 1-4.86-5.58v3.13a2.58 2.58 0 1 0 1.7 2.45V3.4h3.12Z" fill="currentColor" /></svg>
+      <i />
+    </span>
+  );
+}
+
+function InstagramIcon() {
+  return (
+    <span className="ugc-social-icon instagram-icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none"><rect x="3.3" y="3.3" width="17.4" height="17.4" rx="5" stroke="currentColor" strokeWidth="2.2" /><circle cx="12" cy="12" r="4" stroke="currentColor" strokeWidth="2.2" /><circle cx="17.65" cy="6.45" r="1.25" fill="currentColor" /></svg>
+      <i />
+    </span>
+  );
+}
+
 function VYROMascot() {
   const nextVoiceRef = useRef(0);
   const activeAudioRef = useRef<HTMLAudioElement | null>(null);
@@ -136,16 +155,32 @@ function VYROMascot() {
 function DemoVideoCard({ caption, src, poster, number }: { caption: string; src: string; poster: string; number: string }) {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [showFullOverlay, setShowFullOverlay] = useState(false);
 
-  async function togglePlayback() {
+  async function startPreview() {
     const video = videoRef.current;
     if (!video) return;
 
-    if (video.paused) {
-      await video.play();
-    } else {
-      video.pause();
-    }
+    setShowFullOverlay(false);
+    video.pause();
+    video.currentTime = 0;
+    video.defaultMuted = false;
+    video.muted = false;
+    video.volume = 1;
+    await video.play();
+  }
+
+  function pausePreview() {
+    videoRef.current?.pause();
+  }
+
+  function handleTimeUpdate() {
+    const video = videoRef.current;
+    if (!video || video.currentTime < 5) return;
+
+    video.pause();
+    video.currentTime = 5;
+    setShowFullOverlay(true);
   }
 
   return (
@@ -155,17 +190,33 @@ function DemoVideoCard({ caption, src, poster, number }: { caption: string; src:
           ref={videoRef}
           src={src}
           poster={poster}
-          muted
+          controls={isPlaying && !showFullOverlay}
           playsInline
           preload="none"
-          onClick={togglePlayback}
+          onTimeUpdate={handleTimeUpdate}
           onPlay={() => setIsPlaying(true)}
           onPause={() => setIsPlaying(false)}
-          onEnded={() => setIsPlaying(false)}
+          onEnded={() => setShowFullOverlay(true)}
         />
-        <button className={`ugc-play-button${isPlaying ? " is-playing" : ""}`} type="button" onClick={() => void togglePlayback()} aria-label={`${isPlaying ? "Pause" : "Play"} ${caption}`}>
-          {isPlaying ? <Pause fill="currentColor" size={22} /> : <Play fill="currentColor" size={24} />}
-        </button>
+        {!showFullOverlay && (
+          <button className={`ugc-play-button${isPlaying ? " is-playing" : ""}`} type="button" onClick={() => void (isPlaying ? pausePreview() : startPreview())} aria-label={`${isPlaying ? "Pause" : "Play with sound"} ${caption}`}>
+            {isPlaying ? <Pause fill="currentColor" size={22} /> : <Play fill="currentColor" size={28} />}
+          </button>
+        )}
+        <AnimatePresence>
+          {showFullOverlay && (
+            <motion.div className="ugc-full-overlay" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: .25, ease: "easeOut" }}>
+              <span>5 second preview</span>
+              <h4><span aria-hidden="true">🎬</span> It gets even better...</h4>
+              <p>See the full VYRO reaction and discover what happens next.</p>
+              <motion.div className="ugc-social-actions" initial={{ opacity: 0, scale: .95 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: .25, ease: "easeOut" }}>
+                <a className="ugc-social-link tiktok" href={TIKTOK_URL} target="_blank" rel="noopener noreferrer"><TikTokIcon /><b>Watch on TikTok</b><ArrowUpRight size={15} /></a>
+                <a className="ugc-social-link instagram" href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer"><InstagramIcon /><b>Watch on Instagram</b><ArrowUpRight size={15} /></a>
+              </motion.div>
+              <button className="ugc-replay-button" type="button" onClick={() => void startPreview()}>↺ Watch preview again</button>
+            </motion.div>
+          )}
+        </AnimatePresence>
         <span className="ugc-video-number">{number}</span>
       </div>
       <div className="ugc-video-caption"><span>WATCH</span><h3>{caption}</h3></div>
