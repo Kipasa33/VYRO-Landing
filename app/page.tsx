@@ -224,40 +224,44 @@ function DemoVideoCard({ caption, src, poster, number }: { caption: string; src:
   );
 }
 
-function PriceCard() {
-  return (
-    <motion.article className="price-card accent" whileHover={{ y: -8 }}>
-      <span className="popular">ONE-TIME</span>
-      <h3>VYRO</h3><p className="price">$19</p><p className="price-note">One-time purchase</p>
-      <ul>
-        <li><Check size={16} /> Voice Commands</li>
-        <li><Check size={16} /> Open Apps</li>
-        <li><Check size={16} /> Emotions &amp; Reactions</li>
-        <li><Check size={16} /> Floating Desktop Companion</li>
-        <li><Check size={16} /> Future Updates</li>
-      </ul>
-      <button onClick={() => startPolarCheckout()}>Get VYRO <ArrowUpRight size={17} /></button>
-    </motion.article>
-  );
-}
-
 function FoundersEditionCard() {
   return (
     <motion.article className="price-card accent founder-card" whileHover={{ y: -8 }}>
       <span className="popular">Best Value</span>
-      <h3>🚀 Founder&apos;s Edition</h3>
+      <h3>Founder&apos;s Edition</h3>
       <p className="founder-intro">Be one of the first VYRO users.</p>
-      <p className="price">$19 <span>today</span></p>
-      <p className="price-note">$49+ after launch</p>
+      <p className="price">$19</p>
+      <p className="price-note">today only for early users</p>
+      <p className="launch-price"><span>$49 after launch</span></p>
       <ul>
-        <li><Check size={16} /> Lifetime License</li>
-        <li><Check size={16} /> All Future Updates</li>
-        <li><Check size={16} /> All Future AI Modules</li>
-        <li><Check size={16} /> No Subscription Ever</li>
-        <li><Check size={16} /> Priority Access to New Features</li>
+        <li><Check size={18} /> Lifetime License</li>
+        <li><Check size={18} /> All Future Updates</li>
+        <li><Check size={18} /> All Future AI Modules</li>
+        <li><Check size={18} /> No Subscription Ever</li>
+        <li><Check size={18} /> Priority Access to New Features</li>
       </ul>
       <button onClick={() => startPolarCheckout()}>Get VYRO <ArrowUpRight size={17} /></button>
       <small className="price-footer">Limited Early Adopter Offer</small>
+    </motion.article>
+  );
+}
+
+function RegularLicenseCard() {
+  return (
+    <motion.article className="price-card regular-card" whileHover={{ y: -8 }}>
+      <span className="popular">After Launch</span>
+      <h3>Regular License</h3>
+      <p className="founder-intro">Standard VYRO access after the founder offer ends.</p>
+      <p className="price">$49</p>
+      <p className="price-note">after public launch</p>
+      <ul>
+        <li><Check size={18} /> Voice Commands</li>
+        <li><Check size={18} /> Open Apps</li>
+        <li><Check size={18} /> Emotions &amp; Reactions</li>
+        <li><Check size={18} /> Floating Desktop Companion</li>
+        <li><Check size={18} /> Future Updates</li>
+      </ul>
+      <button onClick={() => startPolarCheckout()}>Get Founder Price <ArrowUpRight size={17} /></button>
     </motion.article>
   );
 }
@@ -337,8 +341,8 @@ export default function Home() {
       </section>
 
       <section className="section-shell pricing" id="pricing">
-        <div className="section-heading centered"><span>03 / ONE LITTLE ROBOT</span><h2>One price.<br /><em>VYRO forever.</em></h2></div>
-        <div className="price-grid"><PriceCard /><FoundersEditionCard /></div>
+        <div className="section-heading centered"><span>03 / EARLY ACCESS</span><h2>Founder price.<br /><em>VYRO forever.</em></h2></div>
+        <div className="price-grid"><FoundersEditionCard /><RegularLicenseCard /></div>
         <p className="purchased-link">Already purchased? <a href="/recover-key">Recover your license key</a></p>
         <motion.aside className="macos-coming-soon" initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: .65 }} whileHover={{ y: -5, rotate: -.35 }}>
           <div className="macos-icon" aria-hidden="true">🍎</div>
