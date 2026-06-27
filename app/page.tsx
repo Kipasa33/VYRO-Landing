@@ -227,12 +227,17 @@ function DemoVideoCard({ caption, src, poster, number }: { caption: string; src:
 function FoundersEditionCard() {
   return (
     <motion.article className="price-card accent founder-card" whileHover={{ y: -8 }}>
-      <span className="popular">Best Value</span>
+      <span className="popular">🔥 Founder Offer</span>
+      <span className="subscription-badge">No Monthly Subscription</span>
       <h3>Founder&apos;s Edition</h3>
       <p className="founder-intro">Be one of the first VYRO users.</p>
-      <p className="price">$19</p>
-      <p className="price-note">today only for early users</p>
-      <p className="launch-price"><span>$49 after launch</span></p>
+      <div className="price-stack" aria-label="Founder pricing">
+        <p><span>Regular Price:</span> <s>$49</s></p>
+        <strong>Today: $19</strong>
+      </div>
+      <p className="price-save">Save $30 Today</p>
+      <p className="price-note">Founder&apos;s Price Ends After Launch</p>
+      <p className="price-trust">Already includes every future update. Pay once. Never subscribe.</p>
       <ul>
         <li><Check size={18} /> Lifetime License</li>
         <li><Check size={18} /> All Future Updates</li>
@@ -241,6 +246,11 @@ function FoundersEditionCard() {
         <li><Check size={18} /> Priority Access to New Features</li>
       </ul>
       <button onClick={() => startPolarCheckout()}>Get VYRO <ArrowUpRight size={17} /></button>
+      <div className="checkout-trust" aria-label="Purchase trust points">
+        <span>✔ Instant Download</span>
+        <span>✔ Lifetime License</span>
+        <span>✔ Secure Checkout</span>
+      </div>
       <small className="price-footer">Limited Early Adopter Offer</small>
     </motion.article>
   );
@@ -251,9 +261,10 @@ function RegularLicenseCard() {
     <motion.article className="price-card regular-card" whileHover={{ y: -8 }}>
       <span className="popular">After Launch</span>
       <h3>Regular License</h3>
-      <p className="founder-intro">Standard VYRO access after the founder offer ends.</p>
+      <p className="founder-intro">This is the regular VYRO price after the founder offer ends.</p>
       <p className="price">$49</p>
       <p className="price-note">after public launch</p>
+      <p className="comparison-note">Shown for comparison. Founder pricing is the active offer right now.</p>
       <ul>
         <li><Check size={18} /> Voice Commands</li>
         <li><Check size={18} /> Open Apps</li>
@@ -261,8 +272,34 @@ function RegularLicenseCard() {
         <li><Check size={18} /> Floating Desktop Companion</li>
         <li><Check size={18} /> Future Updates</li>
       </ul>
-      <button onClick={() => startPolarCheckout()}>Get Founder Price <ArrowUpRight size={17} /></button>
+      <button className="disabled-price-button" type="button" disabled>Coming After Launch</button>
     </motion.article>
+  );
+}
+
+function WhatYouGetToday() {
+  const available = ["Voice Commands", "Open Apps", "Floating AI Companion", "Emotions & Reactions", "PC Hit / Slap Reaction"];
+  const coming = ["Memory Improvements", "Screen Awareness", "More AI Modules"];
+  return (
+    <section className="section-shell get-today" aria-labelledby="get-today-title">
+      <motion.div className="get-today-card" initial={{ opacity: 0, y: 22 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: .35 }}>
+        <div className="get-today-head">
+          <span>HONEST EARLY ACCESS</span>
+          <h2 id="get-today-title">What You Get Today</h2>
+          <p>Clear launch-stage features now, with future AI upgrades marked plainly.</p>
+        </div>
+        <div className="get-today-lists">
+          <div>
+            <h3>Included now</h3>
+            <ul>{available.map((item) => <li key={item}><Check size={18} /> {item}</li>)}</ul>
+          </div>
+          <div className="coming-list">
+            <h3>Coming later</h3>
+            <ul>{coming.map((item) => <li key={item}><span>{item}</span><b>Coming Soon</b></li>)}</ul>
+          </div>
+        </div>
+      </motion.div>
+    </section>
   );
 }
 
@@ -339,6 +376,8 @@ export default function Home() {
           <DemoVideoCard caption="VYRO in action" src="/videos/vyro-in-action.mp4" poster="/videos/vyro-in-action-poster.jpg" number="02" />
         </div>
       </section>
+
+      <WhatYouGetToday />
 
       <section className="section-shell pricing" id="pricing">
         <div className="section-heading centered"><span>03 / EARLY ACCESS</span><h2>Founder price.<br /><em>VYRO forever.</em></h2></div>
