@@ -316,7 +316,7 @@ export default function Home() {
       <SocialProofToast />
       <nav>
         <a className="ph-badge" href="#pricing"><span>🤖</span><b>THE AI THAT LIVES ON YOUR DESKTOP</b></a>
-        <div className="nav-links"><a href="/save-50">Save 50%</a><a href="#faq">FAQ</a><a href="/recover-key">Recover Key</a><button className="theme-toggle" onClick={() => setDark(!dark)} aria-label="Toggle theme">{dark ? <Sun size={18} /> : <Moon size={18} />}</button></div>
+        <div className="nav-links"><a href="/save-50">Save 50%</a><a href="#demo">Demo</a><a href="#faq">FAQ</a><a href="/recover-key">Recover Key</a><button className="theme-toggle" onClick={() => setDark(!dark)} aria-label="Toggle theme">{dark ? <Sun size={18} /> : <Moon size={18} />}</button></div>
       </nav>
 
       <section className="hero">
@@ -325,11 +325,43 @@ export default function Home() {
         <VYROMascot />
         <motion.div className="hero-copy" initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: .45 }}>
           <h2>Talk to your desktop.<br /><em>It talks back.</em></h2>
-          <a href="#pricing" className="main-cta">Download for Windows <ArrowDown size={20} /></a>
-          <small>VYRO AI for Windows 10 &amp; 11</small>
+          <p className="hero-subtitle">Your AI desktop companion for Windows — opens apps, answers questions, remembers, and helps you get things done.</p>
+          <div className="hero-actions" aria-label="Hero actions">
+            <a href="#pricing" className="main-cta">Get VYRO — $19 Lifetime <ArrowDown size={20} /></a>
+            <a href="#demo" className="secondary-cta"><Play size={18} /> Watch 30s Demo</a>
+          </div>
+          <div className="hero-trust" aria-label="VYRO purchase trust points">
+            <span><Check size={15} /> Lifetime License</span>
+            <span><Check size={15} /> No Monthly Subscription</span>
+            <span><Check size={15} /> Future Updates Included</span>
+          </div>
+          <small className="hero-proof">Built for Windows 10 &amp; 11 · Loved by early VYRO testers</small>
         </motion.div>
         <motion.div className="hero-chips" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: .65 }}>
-          <span>Listens</span><span>Talks</span><span>Opens apps</span><span>Gets bored</span>
+          <span>Listens</span><span>Talks</span><span>Opens apps</span><span>Remembers</span><span>AI Powered</span><span>Gets bored</span>
+        </motion.div>
+      </section>
+
+      <section className="hero-capabilities" aria-labelledby="hero-capabilities-title">
+        <motion.div className="hero-capabilities-inner" initial={{ opacity: 0, y: 22 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: .35 }}>
+          <div className="hero-capabilities-head">
+            <span>QUICK SCAN</span>
+            <h2 id="hero-capabilities-title">What can VYRO do?</h2>
+          </div>
+          <div className="hero-capability-grid">
+            {[
+              ["Voice Commands", "Control VYRO with natural speech."],
+              ["Open Apps", "Launch Chrome, YouTube, Notepad, and more."],
+              ["Chat Naturally", "Ask questions and get quick answers."],
+              ["Remember Conversations", "Keep useful context for later."],
+            ].map(([title, description], index) => (
+              <motion.article key={title} whileHover={{ y: -5, rotate: index % 2 ? .6 : -.6 }}>
+                <span>0{index + 1}</span>
+                <h3>{title}</h3>
+                <p>{description}</p>
+              </motion.article>
+            ))}
+          </div>
         </motion.div>
       </section>
 
