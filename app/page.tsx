@@ -155,32 +155,20 @@ function VYROMascot() {
 function DemoVideoCard({ caption, src, poster, number }: { caption: string; src: string; poster: string; number: string }) {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [showFullOverlay, setShowFullOverlay] = useState(false);
 
-  async function startPreview() {
+  async function startDemo() {
     const video = videoRef.current;
     if (!video) return;
 
-    setShowFullOverlay(false);
-    video.pause();
-    video.currentTime = 0;
+    if (video.ended) video.currentTime = 0;
     video.defaultMuted = false;
     video.muted = false;
     video.volume = 1;
     await video.play();
   }
 
-  function pausePreview() {
+  function pauseDemo() {
     videoRef.current?.pause();
-  }
-
-  function handleTimeUpdate() {
-    const video = videoRef.current;
-    if (!video || video.currentTime < 5) return;
-
-    video.pause();
-    video.currentTime = 5;
-    setShowFullOverlay(true);
   }
 
   return (
@@ -190,33 +178,16 @@ function DemoVideoCard({ caption, src, poster, number }: { caption: string; src:
           ref={videoRef}
           src={src}
           poster={poster}
-          controls={isPlaying && !showFullOverlay}
+          controls={isPlaying}
           playsInline
           preload="none"
-          onTimeUpdate={handleTimeUpdate}
           onPlay={() => setIsPlaying(true)}
           onPause={() => setIsPlaying(false)}
-          onEnded={() => setShowFullOverlay(true)}
+          onEnded={() => setIsPlaying(false)}
         />
-        {!showFullOverlay && (
-          <button className={`ugc-play-button${isPlaying ? " is-playing" : ""}`} type="button" onClick={() => void (isPlaying ? pausePreview() : startPreview())} aria-label={`${isPlaying ? "Pause" : "Play with sound"} ${caption}`}>
-            {isPlaying ? <Pause fill="currentColor" size={22} /> : <Play fill="currentColor" size={28} />}
-          </button>
-        )}
-        <AnimatePresence>
-          {showFullOverlay && (
-            <motion.div className="ugc-full-overlay" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: .25, ease: "easeOut" }}>
-              <span>5 second preview</span>
-              <h4><span aria-hidden="true">🎬</span> It gets even better...</h4>
-              <p>See the full VYRO reaction and discover what happens next.</p>
-              <motion.div className="ugc-social-actions" initial={{ opacity: 0, scale: .95 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: .25, ease: "easeOut" }}>
-                <a className="ugc-social-link tiktok" href={TIKTOK_URL} target="_blank" rel="noopener noreferrer"><TikTokIcon /><b>Watch on TikTok</b><ArrowUpRight size={15} /></a>
-                <a className="ugc-social-link instagram" href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer"><InstagramIcon /><b>Watch on Instagram</b><ArrowUpRight size={15} /></a>
-              </motion.div>
-              <button className="ugc-replay-button" type="button" onClick={() => void startPreview()}>↺ Watch preview again</button>
-            </motion.div>
-          )}
-        </AnimatePresence>
+        <button className={`ugc-play-button${isPlaying ? " is-playing" : ""}`} type="button" onClick={() => void (isPlaying ? pauseDemo() : startDemo())} aria-label={`${isPlaying ? "Pause" : "Play with sound"} ${caption}`}>
+          {isPlaying ? <Pause fill="currentColor" size={22} /> : <Play fill="currentColor" size={28} />}
+        </button>
         <span className="ugc-video-number">{number}</span>
       </div>
       <div className="ugc-video-caption"><span>WATCH</span><h3>{caption}</h3></div>
@@ -315,7 +286,7 @@ export default function Home() {
       <div className="noise" />
       <SocialProofToast />
       <nav>
-        <a className="ph-badge" href="#pricing"><span>🤖</span><b>THE AI THAT LIVES ON YOUR DESKTOP</b></a>
+        <a className="brand-mark" href="/" aria-label="VYRO home"><img src="/icon-32x32.png" alt="" /><span>VYRO</span></a>
         <div className="nav-links"><a href="/save-50">Save 50%</a><a href="#demo">Demo</a><a href="#faq">FAQ</a><a href="/recover-key">Recover Key</a><button className="theme-toggle" onClick={() => setDark(!dark)} aria-label="Toggle theme">{dark ? <Sun size={18} /> : <Moon size={18} />}</button></div>
       </nav>
 
@@ -406,6 +377,11 @@ export default function Home() {
         <div className="ugc-video-grid">
           <DemoVideoCard caption="The idea" src="/videos/vyro-the-idea.mp4" poster="/videos/vyro-the-idea-poster.jpg" number="01" />
           <DemoVideoCard caption="VYRO in action" src="/videos/vyro-in-action.mp4" poster="/videos/vyro-in-action-poster.jpg" number="02" />
+        </div>
+        <div className="demo-follow-links" aria-label="Optional VYRO social links">
+          <span>Follow VYRO for more clips:</span>
+          <a href={TIKTOK_URL} target="_blank" rel="noopener noreferrer"><TikTokIcon /> TikTok</a>
+          <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer"><InstagramIcon /> Instagram</a>
         </div>
       </section>
 
