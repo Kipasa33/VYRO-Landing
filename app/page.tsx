@@ -221,36 +221,12 @@ function BuiltForTrust() {
             </motion.article>
           ))}
         </div>
+        <a className="trust-policy-link" href="/privacy">Read the full Privacy Policy <ArrowUpRight size={15} /></a>
       </motion.div>
     </section>
   );
 }
 
-function PrivacyControlNote() {
-  const privacyPoints = [
-    "Microphone access is used for voice commands when enabled.",
-    "Desktop actions stay visible.",
-    "Sensitive actions require user control/confirmation.",
-    "You can disable features in settings.",
-  ];
-
-  return (
-    <section className="privacy-note" aria-labelledby="privacy-note-title">
-      <motion.div className="privacy-note-card" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: .4 }}>
-        <div>
-          <span>PRIVACY, PLAINLY</span>
-          <h2 id="privacy-note-title">Privacy and control, explained</h2>
-        </div>
-        <ul className="privacy-note-list">
-          {privacyPoints.map((point) => (
-            <li key={point}><Check size={16} /> {point}</li>
-          ))}
-        </ul>
-        <a className="privacy-note-link" href="/privacy">Read the full Privacy Policy <ArrowUpRight size={15} /></a>
-      </motion.div>
-    </section>
-  );
-}
 function WhatYouGetToday() {
   const available = ["Voice Commands", "Open Apps", "Floating AI Companion", "Emotions & Reactions", "PC Hit / Slap Reaction"];
   const coming = ["Memory Improvements", "Screen Awareness", "More AI Modules"];
@@ -340,7 +316,6 @@ export default function Home() {
       </section>
 
       <BuiltForTrust />
-      <PrivacyControlNote />
 
       <section className="social-proof-section">
         <motion.div className="social-proof-card" initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: .45 }} transition={{ duration: .48, ease: "easeOut" }}>
