@@ -186,6 +186,46 @@ function RegularLicenseCard() {
   );
 }
 
+function BuiltForTrust() {
+  const trustCards = [
+    {
+      title: "What VYRO can control",
+      items: ["Open apps you request", "Respond to voice commands", "Help with desktop actions", "React with emotions"],
+    },
+    {
+      title: "What VYRO cannot do",
+      items: ["No hidden purchases", "No deleting files by itself", "No sensitive actions without confirmation", "No background control you cannot see"],
+    },
+    {
+      title: "Permission clarity",
+      items: ["Microphone access is used for voice commands", "You can disable features in settings", "Desktop actions stay visible", "You remain in control"],
+    },
+  ];
+
+  return (
+    <section className="trust-section" aria-labelledby="trust-title">
+      <motion.div className="trust-inner" initial={{ opacity: 0, y: 22 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: .28 }}>
+        <div className="trust-head">
+          <span>PERMISSIONS, CLEARLY</span>
+          <h2 id="trust-title">Built for trust</h2>
+          <p>You stay in control. VYRO only acts when you ask.</p>
+        </div>
+        <div className="trust-grid">
+          {trustCards.map((card, index) => (
+            <motion.article key={card.title} whileHover={{ y: -5, rotate: index === 1 ? .35 : -.35 }}>
+              <span>0{index + 1}</span>
+              <h3>{card.title}</h3>
+              <ul>
+                {card.items.map((item) => <li key={item}><Check size={16} /> {item}</li>)}
+              </ul>
+            </motion.article>
+          ))}
+        </div>
+      </motion.div>
+    </section>
+  );
+}
+
 function WhatYouGetToday() {
   const available = ["Voice Commands", "Open Apps", "Floating AI Companion", "Emotions & Reactions", "PC Hit / Slap Reaction"];
   const coming = ["Memory Improvements", "Screen Awareness", "More AI Modules"];
@@ -234,7 +274,7 @@ export default function Home() {
         <VYROMascot />
         <motion.div className="hero-copy" initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: .45 }}>
           <h2>Talk to your desktop.<br /><em>It talks back.</em></h2>
-          <p className="hero-subtitle">Your AI desktop companion for Windows — opens apps, answers questions, remembers, and helps you get things done.</p>
+          <p className="hero-subtitle">Control your Windows desktop with one voice command. VYRO opens apps, answers questions, and helps you get things done faster.</p>
           <div className="hero-actions" aria-label="Hero actions">
             <a href="#pricing" className="main-cta">Get VYRO — $19 Lifetime <ArrowDown size={20} /></a>
             <a href="#demo" className="secondary-cta"><Play size={18} /> Watch 30s Demo</a>
@@ -273,6 +313,8 @@ export default function Home() {
           </div>
         </motion.div>
       </section>
+
+      <BuiltForTrust />
 
       <section className="social-proof-section">
         <motion.div className="social-proof-card" initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: .45 }} transition={{ duration: .48, ease: "easeOut" }}>
