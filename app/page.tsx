@@ -411,19 +411,28 @@ export default function Home() {
           ))}
         </div>
       </section>
-
-      <footer id="footer">
-        <div className="footer-robot">V</div>
-        <h2>Your desktop is lonely.</h2>
-        <button type="button" className="main-cta" onClick={() => startPolarCheckout()}>Give it VYRO <ArrowUpRight size={20} /></button>
-        <p>Made by a human who wanted a robot on his desktop.</p>
-        <nav className="footer-links" aria-label="Footer links">
+      <footer className="site-footer" id="footer">
+        <div className="site-footer-brand">
+          <a className="site-footer-logo" href="/">VYRO</a>
+          <p>AI desktop companion for Windows.</p>
+          <button type="button" className="site-footer-cta" onClick={() => startPolarCheckout()}>Get VYRO <ArrowUpRight size={16} /></button>
+        </div>
+        <div className="site-footer-column">
+          <h3>Company</h3>
+          <a href="/">Home</a>
+          <a href="#demo">Demo</a>
+          <a href="#pricing">Pricing</a>
+          <a href="#faq">FAQ</a>
           <a href="/privacy">Privacy Policy</a>
           <a href="/recover-key">Recover Key</a>
-          <a href="mailto:support@vyrodesk.com">Contact</a>
-        </nav>
-        <small>Secure payments powered by Polar</small>
-        <small>&copy; 2026 VYRO / PLEASE DON&apos;T TEACH IT TAXES</small>
+        </div>
+        <div className="site-footer-column">
+          <h3>Support</h3>
+          <a href="mailto:support@vyrodesk.com">support@vyrodesk.com</a>
+          <a href="/recover-key">Recover your license key</a>
+          <a href="/privacy">Read our Privacy Policy</a>
+          <span>Secure payments powered by Polar</span>
+        </div>
       </footer>
     </main>
   );
