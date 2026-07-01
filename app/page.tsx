@@ -226,6 +226,31 @@ function BuiltForTrust() {
   );
 }
 
+function PrivacyControlNote() {
+  const privacyPoints = [
+    "Microphone access is used for voice commands when enabled.",
+    "Desktop actions stay visible.",
+    "Sensitive actions require user control/confirmation.",
+    "You can disable features in settings.",
+  ];
+
+  return (
+    <section className="privacy-note" aria-labelledby="privacy-note-title">
+      <motion.div className="privacy-note-card" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: .4 }}>
+        <div>
+          <span>PRIVACY, PLAINLY</span>
+          <h2 id="privacy-note-title">Privacy and control, explained</h2>
+        </div>
+        <ul className="privacy-note-list">
+          {privacyPoints.map((point) => (
+            <li key={point}><Check size={16} /> {point}</li>
+          ))}
+        </ul>
+        <a className="privacy-note-link" href="/privacy">Read the full Privacy Policy <ArrowUpRight size={15} /></a>
+      </motion.div>
+    </section>
+  );
+}
 function WhatYouGetToday() {
   const available = ["Voice Commands", "Open Apps", "Floating AI Companion", "Emotions & Reactions", "PC Hit / Slap Reaction"];
   const coming = ["Memory Improvements", "Screen Awareness", "More AI Modules"];
@@ -315,6 +340,7 @@ export default function Home() {
       </section>
 
       <BuiltForTrust />
+      <PrivacyControlNote />
 
       <section className="social-proof-section">
         <motion.div className="social-proof-card" initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: .45 }} transition={{ duration: .48, ease: "easeOut" }}>
@@ -373,6 +399,7 @@ export default function Home() {
         <div className="section-heading centered"><span>03 / EARLY ACCESS</span><h2>Founder price.<br /><em>VYRO forever.</em></h2></div>
         <div className="price-grid"><FoundersEditionCard /><RegularLicenseCard /></div>
         <p className="purchased-link">Already purchased? <a href="/recover-key">Recover your license key</a></p>
+        <p className="privacy-policy-link"><a href="/privacy">Read our Privacy Policy</a></p>
         <motion.aside className="macos-coming-soon" initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: .65 }} whileHover={{ y: -5, rotate: -.35 }}>
           <div className="macos-icon" aria-hidden="true">🍎</div>
           <div className="macos-copy">
@@ -410,7 +437,19 @@ export default function Home() {
         </div>
       </section>
 
-      <footer id="footer"><div className="footer-robot">V</div><h2>Your desktop is lonely.</h2><button type="button" className="main-cta" onClick={() => startPolarCheckout()}>Give it VYRO <ArrowUpRight size={20} /></button><p>Made by a human who wanted a robot on his desktop.</p><small>Secure payments powered by Polar</small><small>© 2026 VYRO / PLEASE DON’T TEACH IT TAXES</small></footer>
+      <footer id="footer">
+        <div className="footer-robot">V</div>
+        <h2>Your desktop is lonely.</h2>
+        <button type="button" className="main-cta" onClick={() => startPolarCheckout()}>Give it VYRO <ArrowUpRight size={20} /></button>
+        <p>Made by a human who wanted a robot on his desktop.</p>
+        <nav className="footer-links" aria-label="Footer links">
+          <a href="/privacy">Privacy Policy</a>
+          <a href="/recover-key">Recover Key</a>
+          <a href="mailto:support@vyrodesk.com">Contact</a>
+        </nav>
+        <small>Secure payments powered by Polar</small>
+        <small>&copy; 2026 VYRO / PLEASE DON&apos;T TEACH IT TAXES</small>
+      </footer>
     </main>
   );
 }
