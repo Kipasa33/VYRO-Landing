@@ -190,15 +190,15 @@ function BuiltForTrust() {
   const trustCards = [
     {
       title: "What VYRO can control",
-      items: ["Open apps you request", "Respond to voice commands", "Help with desktop actions", "React with emotions"],
+      items: ["Open apps you request", "Respond to voice commands", "Help with visible desktop actions"],
     },
     {
       title: "What VYRO cannot do",
-      items: ["No hidden purchases", "No deleting files by itself", "No sensitive actions without confirmation", "No background control you cannot see"],
+      items: ["No hidden purchases", "No deleting files by itself", "No invisible background control"],
     },
     {
       title: "Permission clarity",
-      items: ["Microphone access is used for voice commands", "You can disable features in settings", "Desktop actions stay visible", "You remain in control"],
+      items: ["Microphone is used for voice commands", "Features can be disabled in settings", "You remain in control"],
     },
   ];
 
@@ -208,11 +208,11 @@ function BuiltForTrust() {
         <div className="trust-head">
           <span>PERMISSIONS, CLEARLY</span>
           <h2 id="trust-title">Built for trust</h2>
-          <p>You stay in control. VYRO only acts when you ask.</p>
+          <p>Clear controls, visible actions, and no surprises.</p>
         </div>
         <div className="trust-grid">
           {trustCards.map((card, index) => (
-            <motion.article key={card.title} whileHover={{ y: -5, rotate: index === 1 ? .35 : -.35 }}>
+            <motion.article key={card.title} whileHover={{ y: -4 }}>
               <span>0{index + 1}</span>
               <h3>{card.title}</h3>
               <ul>
