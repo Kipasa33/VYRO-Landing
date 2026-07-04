@@ -4,6 +4,10 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://vyrodesk.com/success",
   },
+  robots: {
+    index: false,
+    follow: true,
+  },
   openGraph: {
     url: "https://vyrodesk.com/success",
   },

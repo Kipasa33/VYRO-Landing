@@ -4,6 +4,10 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://vyrodesk.com/recover-key",
   },
+  robots: {
+    index: false,
+    follow: true,
+  },
   openGraph: {
     url: "https://vyrodesk.com/recover-key",
   },
