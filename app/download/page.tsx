@@ -1,7 +1,16 @@
+import type { Metadata } from "next";
 import { CheckCircle2, Download, Home, KeyRound, LockKeyhole, Mic, Play, ShieldCheck } from "lucide-react";
 import Link from "next/link";
 import { POLAR_CHECKOUT_URL } from "../lib/polar-checkout";
 
+export const metadata: Metadata = {
+  alternates: {
+    canonical: "https://vyrodesk.com/download",
+  },
+  openGraph: {
+    url: "https://vyrodesk.com/download",
+  },
+};
 const steps = [
   { icon: Download, title: "Download VYRO" },
   { icon: Play, title: "Run the installer" },

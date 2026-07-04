@@ -1,4 +1,14 @@
+import type { Metadata } from "next";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  alternates: {
+    canonical: "https://vyrodesk.com/privacy",
+  },
+  openGraph: {
+    url: "https://vyrodesk.com/privacy",
+  },
+};
 
 const lastUpdated = "July 1, 2026";
 

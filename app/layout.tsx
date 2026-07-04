@@ -7,6 +7,7 @@ const display = Bricolage_Grotesque({ subsets: ["latin"], variable: "--font-disp
 const mono = Space_Mono({ subsets: ["latin"], weight: ["400", "700"], variable: "--font-sans" });
 
 const siteUrl = "https://vyrodesk.com";
+const homeUrl = `${siteUrl}/`;
 const title = "VYRO - AI Desktop Companion for Windows";
 const description =
   "Talk to your desktop. It talks back. VYRO AI is an AI desktop companion and Windows AI companion with voice commands, focus mode, emotions, and productivity tools.";
@@ -29,7 +30,7 @@ const softwareApplicationJsonLd = {
     "@type": "Offer",
     price: "19",
     priceCurrency: "USD",
-    url: siteUrl,
+    url: homeUrl,
   },
 };
 
@@ -59,7 +60,7 @@ export const metadata: Metadata = {
     "Windows AI Assistant",
   ],
   alternates: {
-    canonical: siteUrl,
+    canonical: homeUrl,
   },
   manifest: "/manifest.webmanifest",
   icons: {
@@ -76,7 +77,7 @@ export const metadata: Metadata = {
   openGraph: {
     title,
     description: socialDescription,
-    url: siteUrl,
+    url: homeUrl,
     siteName: "VYRO",
     type: "website",
     locale: "en_US",
