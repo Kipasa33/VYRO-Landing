@@ -374,7 +374,7 @@ export default function Home() {
         <div className="section-heading centered"><span>03 / EARLY ACCESS</span><h2>Founder price.<br /><em>VYRO forever.</em></h2></div>
         <div className="price-grid"><FoundersEditionCard /><RegularLicenseCard /></div>
         <p className="purchased-link">Already purchased? <a href="/recover-key">Recover your license key</a></p>
-        <p className="privacy-policy-link"><a href="/privacy">Read our Privacy Policy</a></p>
+        <p className="privacy-policy-link"><a href="/security">Read about VYRO security</a> | <a href="/privacy">Read our Privacy Policy</a></p>
         <motion.aside className="macos-coming-soon" initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: .65 }} whileHover={{ y: -5, rotate: -.35 }}>
           <div className="macos-icon" aria-hidden="true">🍎</div>
           <div className="macos-copy">
@@ -430,6 +430,7 @@ export default function Home() {
           <h3>Support</h3>
           <a href="mailto:support@vyrodesk.com">support@vyrodesk.com</a>
           <a href="/recover-key">Recover your license key</a>
+          <a href="/security">Read about VYRO security</a>
           <a href="/privacy">Read our Privacy Policy</a>
           <span>Secure payments powered by Polar</span>
         </div>

@@ -143,6 +143,7 @@ export default function PrivacyPage() {
           <Link href="/#demo">Demo</Link>
           <Link href="/#pricing">Pricing</Link>
           <Link href="/#faq">FAQ</Link>
+          <Link href="/security">Security</Link>
           <Link href="/privacy">Privacy Policy</Link>
           <Link href="/recover-key">Recover Key</Link>
         </div>
