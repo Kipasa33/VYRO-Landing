@@ -20,17 +20,25 @@ const softwareApplicationJsonLd = {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
   name: "VYRO",
-  url: siteUrl,
-  category: "AI Desktop Assistant",
-  operatingSystem: "Windows",
   applicationCategory: "ProductivityApplication",
-  description,
+  operatingSystem: "Windows 10, Windows 11",
+  description: "VYRO is an AI desktop companion for Windows that talks, reacts, opens apps, and helps users control their PC with voice commands.",
+  url: homeUrl,
   image: socialImage,
   offers: {
     "@type": "Offer",
-    price: "19",
+    price: 19,
     priceCurrency: "USD",
+    availability: "https://schema.org/InStock",
     url: homeUrl,
+  },
+  publisher: {
+    "@type": "Organization",
+    name: "VYRO",
+  },
+  author: {
+    "@type": "Organization",
+    name: "VYRO",
   },
 };
 
@@ -116,3 +124,5 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     </html>
   );
 }
+
+

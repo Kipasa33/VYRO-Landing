@@ -15,14 +15,27 @@ const features = [
 ];
 
 const faqs = [
-  ["Is VYRO for Windows?", "Yep. VYRO lives happily on Windows 10 and 11."],
-  ["Does it use voice?", "Yes. Talk naturally and VYRO talks back, sometimes with opinions."],
-  ["Can it open apps?", "Absolutely. Ask it to open apps, files, websites, and more."],
-  ["Do I need an internet connection?", "Some features work offline. Advanced AI and cloud features may require an internet connection."],
-  ["Does VYRO have emotions?", "Kind of. VYRO can get happy, bored, sleepy, excited, shocked, and occasionally dramatic."],
-  ["Does VYRO sleep?", "Yes. If you ignore VYRO for too long, it may get bored, complain, and fall asleep until you come back."],
-  ["What makes VYRO different?", "Most assistants live inside a chat window. VYRO Desktop Assistant lives on your desktop as a playful Desktop AI Robot with a personality."],
+  { question: "Is VYRO for Windows?", answer: "Yep. VYRO lives happily on Windows 10 and 11." },
+  { question: "Does it use voice?", answer: "Yes. Talk naturally and VYRO talks back, sometimes with opinions." },
+  { question: "Can it open apps?", answer: "Absolutely. Ask it to open apps, files, websites, and more." },
+  { question: "Do I need an internet connection?", answer: "Some features work offline. Advanced AI and cloud features may require an internet connection." },
+  { question: "Does VYRO have emotions?", answer: "Kind of. VYRO can get happy, bored, sleepy, excited, shocked, and occasionally dramatic." },
+  { question: "Does VYRO sleep?", answer: "Yes. If you ignore VYRO for too long, it may get bored, complain, and fall asleep until you come back." },
+  { question: "What makes VYRO different?", answer: "Most assistants live inside a chat window. VYRO Desktop Assistant lives on your desktop as a playful Desktop AI Robot with a personality." },
 ];
+
+const faqPageJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((faq) => ({
+    "@type": "Question",
+    name: faq.question,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: faq.answer,
+    },
+  })),
+};
 
 const socialProofMessages = [
   "Someone just downloaded VYRO 🤖",
@@ -262,6 +275,10 @@ export default function Home() {
 
   return (
     <main>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqPageJsonLd) }}
+      />
       <div className="noise" />
       <SocialProofToast />
       <nav>
@@ -388,7 +405,20 @@ export default function Home() {
 
       <section className="section-shell faq" id="faq">
         <div className="section-heading"><span>04 / QUESTIONS</span><h2>Frequently<br /><em>asked stuff.</em></h2><p>Still confused? Perfect.<br />You’re ready.</p></div>
-        <div className="faq-list">{faqs.map(([question, answer], i) => <article key={question}><button onClick={() => setOpenFaq(openFaq === i ? -1 : i)}><span>0{i + 1}</span>{question}<ChevronDown className={openFaq === i ? "up" : ""} /></button><AnimatePresence>{openFaq === i && <motion.p initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }}>{answer}</motion.p>}</AnimatePresence></article>)}</div>
+        <div className="faq-list">{faqs.map((faq, i) => {
+          const isOpen = openFaq === i;
+          const panelId = `faq-answer-${i + 1}`;
+          return (
+            <article key={faq.question}>
+              <button onClick={() => setOpenFaq(isOpen ? -1 : i)} aria-expanded={isOpen} aria-controls={panelId}>
+                <span>0{i + 1}</span>{faq.question}<ChevronDown className={isOpen ? "up" : ""} />
+              </button>
+              <motion.p id={panelId} initial={false} animate={{ height: isOpen ? "auto" : 0, opacity: isOpen ? 1 : 0 }} aria-hidden={!isOpen}>
+                {faq.answer}
+              </motion.p>
+            </article>
+          );
+        })}</div>
       </section>
 
       <section className="section-shell roadmap" id="roadmap">
@@ -438,3 +468,5 @@ export default function Home() {
     </main>
   );
 }
+
+
