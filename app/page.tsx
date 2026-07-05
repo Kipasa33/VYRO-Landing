@@ -453,6 +453,7 @@ export default function Home() {
           <a href="#demo">Demo</a>
           <a href="#pricing">Pricing</a>
           <a href="/features">Features</a>
+          <a href="/blog">Blog</a>
           <a href="#faq">FAQ</a>
           <a href="/privacy">Privacy Policy</a>
           <a href="/recover-key">Recover Key</a>
