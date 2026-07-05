@@ -413,7 +413,7 @@ export default function Home() {
               <button onClick={() => setOpenFaq(isOpen ? -1 : i)} aria-expanded={isOpen} aria-controls={panelId}>
                 <span>0{i + 1}</span>{faq.question}<ChevronDown className={isOpen ? "up" : ""} />
               </button>
-              <motion.p id={panelId} initial={false} animate={{ height: isOpen ? "auto" : 0, opacity: isOpen ? 1 : 0 }} aria-hidden={!isOpen}>
+              <motion.p id={panelId} initial={false} animate={{ height: isOpen ? "auto" : 0, opacity: isOpen ? 1 : 0 }}>
                 {faq.answer}
               </motion.p>
             </article>
@@ -468,5 +468,3 @@ export default function Home() {
     </main>
   );
 }
-
-
