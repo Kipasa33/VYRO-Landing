@@ -1,0 +1,35 @@
+# VYRO
+
+Website: https://vyrodesk.com/
+
+VYRO is an AI desktop companion for Windows.
+
+## Key features
+
+- Voice commands
+- Open apps
+- Focus mode
+- AI emotions/reactions
+- Desktop assistance
+
+## Operating systems
+
+- Windows 10
+- Windows 11
+
+## Price
+
+- $19 one-time lifetime license
+
+## Important public pages
+
+- https://vyrodesk.com/
+- https://vyrodesk.com/security
+- https://vyrodesk.com/privacy
+
+## Privacy and security summary
+
+- VYRO is designed to be user-controlled.
+- Microphone access is used for voice commands.
+- Users remain in control of permissions.
+- Full privacy details are available at https://vyrodesk.com/privacy.
