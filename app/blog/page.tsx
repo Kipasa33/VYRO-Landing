@@ -20,6 +20,11 @@ export const metadata: Metadata = {
 
 const posts = [
   {
+    href: "/blog/vyro-ai-security",
+    title: "Is VYRO AI Safe? Security and Privacy Explained",
+    description: "A clear guide to VYRO AI security, privacy, voice commands, desktop actions, permissions, and user control.",
+  },
+  {
     href: "/blog/best-ai-desktop-assistant-windows",
     title: "Best AI Desktop Assistant for Windows",
     description: "What to look for in a Windows AI desktop assistant, including voice commands, app launching, focus mode, desktop actions, and user control.",
