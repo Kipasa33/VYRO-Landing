@@ -11,6 +11,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1,
     },
     {
+      url: "https://vyrodesk.com/features",
+      lastModified,
+      changeFrequency: "monthly",
+      priority: 0.85,
+    },
+    {
       url: "https://vyrodesk.com/security",
       lastModified,
       changeFrequency: "monthly",
