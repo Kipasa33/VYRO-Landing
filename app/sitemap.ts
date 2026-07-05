@@ -29,6 +29,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.72,
     },
     {
+      url: "https://vyrodesk.com/blog/best-ai-desktop-assistant-windows",
+      lastModified,
+      changeFrequency: "monthly",
+      priority: 0.72,
+    },
+    {
       url: "https://vyrodesk.com/security",
       lastModified,
       changeFrequency: "monthly",

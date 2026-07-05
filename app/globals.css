@@ -437,3 +437,8 @@ footer{padding:6rem 1rem 2rem;text-align:center;background:#17171b;color:#f7f2e5
 .article-cta a:first-child { background: rgba(255,255,255,.12); color: #fff; border: 1px solid rgba(255,255,255,.2); }
 @media (min-width:640px){.blog-list-card,.article-shell{padding:1.65rem}.article-feature-card ul{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (min-width:1024px){.blog-list-card,.article-shell{padding:2rem}}
+.blog-list-stack { display: grid; gap: 1rem; }
+.article-card-grid { display: grid; gap: .9rem; margin-top: .9rem; }
+.article-card-grid .security-card h3 { margin: .9rem 0 .55rem; font-family: var(--font-sans); font-size: 1.15rem; line-height: 1.18; letter-spacing: -.025em; font-weight: 900; color: #101217; }
+@media (min-width:640px){.article-card-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (min-width:1024px){.article-card-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}

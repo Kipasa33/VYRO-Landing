@@ -18,6 +18,19 @@ export const metadata: Metadata = {
   },
 };
 
+const posts = [
+  {
+    href: "/blog/best-ai-desktop-assistant-windows",
+    title: "Best AI Desktop Assistant for Windows",
+    description: "What to look for in a Windows AI desktop assistant, including voice commands, app launching, focus mode, desktop actions, and user control.",
+  },
+  {
+    href: "/blog/ai-desktop-companion",
+    title: "What Is an AI Desktop Companion?",
+    description: "A simple explanation of how desktop AI assistants are moving beyond browser chatbots, and where VYRO fits for Windows users.",
+  },
+];
+
 export default function BlogIndexPage() {
   return (
     <main className="privacy-page security-page blog-page">
@@ -40,13 +53,15 @@ export default function BlogIndexPage() {
         <p>Guides and updates about desktop AI assistants, voice commands, Windows companions, and VYRO.</p>
       </section>
 
-      <section className="security-shell" aria-label="VYRO blog articles">
-        <article className="blog-list-card">
-          <p className="policy-kicker">Guide</p>
-          <h2><Link href="/blog/ai-desktop-companion">What Is an AI Desktop Companion?</Link></h2>
-          <p>A simple explanation of how desktop AI assistants are moving beyond browser chatbots, and where VYRO fits for Windows users.</p>
-          <Link className="blog-read-link" href="/blog/ai-desktop-companion">Read the guide</Link>
-        </article>
+      <section className="security-shell blog-list-stack" aria-label="VYRO blog articles">
+        {posts.map((post) => (
+          <article className="blog-list-card" key={post.href}>
+            <p className="policy-kicker">Guide</p>
+            <h2><Link href={post.href}>{post.title}</Link></h2>
+            <p>{post.description}</p>
+            <Link className="blog-read-link" href={post.href}>Read the guide</Link>
+          </article>
+        ))}
       </section>
 
       <footer className="site-footer professional-footer">
