@@ -3,6 +3,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowDown, ArrowUpRight, Check, ChevronDown, Moon, Play, Sun } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
+import PixelDrift from "./components/PixelDrift";
 import { startPolarCheckout } from "./lib/polar-checkout";
 
 const voiceReactions = ["/audio/robot_click_01.mp3", "/audio/robot_click_02.mp3"];
@@ -292,7 +293,20 @@ export default function Home() {
 
       <section className="hero">
         <motion.div className="eyebrow" initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }}><i /> Windows finally has a personality</motion.div>
-        <motion.h1 initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: .1 }}>VYRO<span>&reg;</span></motion.h1>
+        <div className="hero-pixel-drift" aria-hidden="true">
+          <PixelDrift
+            text="VYRO"
+            colors={["#7DD3FC", "#22D3EE", "#8B5CF6", "#FFFFFF"]}
+            particleSize={11}
+            particleCount={46}
+            fontSize={260}
+            autoFit
+            mouseEnabled={false}
+            mode="onEnter"
+            replay={false}
+            transition={{ type: "tween", duration: 1.2, ease: "easeOut" }}
+          />
+        </div>
         <VYROMascot />
         <motion.div className="hero-copy" initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: .45 }}>
           <h2>Talk to your desktop.<br /><em>It talks back.</em></h2>
