@@ -296,15 +296,19 @@ export default function Home() {
         <div className="hero-pixel-drift" aria-hidden="true">
           <PixelDrift
             text="VYRO"
-            colors={["#7DD3FC", "#22D3EE", "#8B5CF6", "#FFFFFF"]}
-            particleSize={11}
-            particleCount={46}
-            fontSize={260}
-            autoFit
-            mouseEnabled={false}
+            colors={["#7DD3FC", "#22D3EE", "#8B5CF6", "#FFFFFF", "#38BDF8"]}
+            particleSize={14}
+            particleCount={50}
+            fontSize={430}
+            autoFit={true}
+            mouseEnabled={true}
+            mouseRadius={150}
+            mouseForce={18}
             mode="onEnter"
             replay={false}
-            transition={{ type: "tween", duration: 1.2, ease: "easeOut" }}
+            position="middle"
+            trackPointerOnWindow={true}
+            transition={{ type: "tween", duration: 1.1, ease: "easeOut" }}
           />
         </div>
         <VYROMascot />
