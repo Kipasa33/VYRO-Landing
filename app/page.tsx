@@ -8,10 +8,10 @@ import { startPolarCheckout } from "./lib/polar-checkout";
 const voiceReactions = ["/audio/robot_click_01.mp3", "/audio/robot_click_02.mp3"];
 
 const features = [
-  { icon: "◉", title: "Listens", text: "Say it out loud. Typing is very 2025.", color: "var(--pink)" },
-  { icon: "↗", title: "Talks", text: "Useful answers. Questionable attitude.", color: "var(--blue)" },
-  { icon: "⌘", title: "Opens apps", text: "Chrome, Spotify, and your 47th tab.", color: "var(--yellow)" },
-  { icon: "✦", title: "Remembers you", text: "Your habits. Your apps. Your crimes.", color: "var(--green)" },
+  { icon: "â—‰", title: "Listens", text: "Say it out loud. Typing is very 2025.", color: "var(--pink)" },
+  { icon: "â†—", title: "Talks", text: "Useful answers. Questionable attitude.", color: "var(--blue)" },
+  { icon: "âŒ˜", title: "Opens apps", text: "Chrome, Spotify, and your 47th tab.", color: "var(--yellow)" },
+  { icon: "âœ¦", title: "Remembers you", text: "Your habits. Your apps. Your crimes.", color: "var(--green)" },
 ];
 
 const faqs = [
@@ -38,19 +38,19 @@ const faqPageJsonLd = {
 };
 
 const socialProofMessages = [
-  "Someone just downloaded VYRO 🤖",
-  "Another desktop gained a personality ✨",
-  "VYRO moved into a new PC 🏠",
-  "A new user adopted VYRO 💜",
-  "Someone just unlocked Pro 🚀",
+  "Someone just downloaded VYRO ðŸ¤–",
+  "Another desktop gained a personality âœ¨",
+  "VYRO moved into a new PC ðŸ ",
+  "A new user adopted VYRO ðŸ’œ",
+  "Someone just unlocked Pro ðŸš€",
 ];
 
 const roadmapItems = [
-  { badge: "current", icon: "✅", title: "Desktop Companion", description: "Voice commands, app launching, emotions, sleep mode, focus mode, quiet mode, and funny reactions.", tone: "current" },
-  { badge: "coming soon", icon: "🎙️", title: "Custom Voice Packs", description: "Add new VYRO voices, robot sounds, funny reactions, and custom personality packs.", tone: "soon" },
-  { badge: "coming soon", icon: "🧠", title: "Smart Memory", description: "VYRO will remember your name, favorite mode, habits, and small personal preferences.", tone: "soon" },
-  { badge: "future", icon: "👁️", title: "Screen Awareness", description: "VYRO will understand broad desktop context without reading private data.", tone: "future" },
-  { badge: "future", icon: "🤖", title: "Agent Mode", description: "Let VYRO help with tasks, research, reminders, and workflow automation.", tone: "future" },
+  { badge: "current", icon: "âœ…", title: "Desktop Companion", description: "Voice commands, app launching, emotions, sleep mode, focus mode, quiet mode, and funny reactions.", tone: "current" },
+  { badge: "coming soon", icon: "ðŸŽ™ï¸", title: "Custom Voice Packs", description: "Add new VYRO voices, robot sounds, funny reactions, and custom personality packs.", tone: "soon" },
+  { badge: "coming soon", icon: "ðŸ§ ", title: "Smart Memory", description: "VYRO will remember your name, favorite mode, habits, and small personal preferences.", tone: "soon" },
+  { badge: "future", icon: "ðŸ‘ï¸", title: "Screen Awareness", description: "VYRO will understand broad desktop context without reading private data.", tone: "future" },
+  { badge: "future", icon: "ðŸ¤–", title: "Agent Mode", description: "Let VYRO help with tasks, research, reminders, and workflow automation.", tone: "future" },
 ];
 
 function SocialProofToast() {
@@ -149,7 +149,7 @@ function VYROMascot() {
 function FoundersEditionCard() {
   return (
     <motion.article className="price-card accent founder-card" whileHover={{ y: -8 }}>
-      <span className="popular">🔥 Founder Offer</span>
+      <span className="popular">ðŸ”¥ Founder Offer</span>
       <span className="subscription-badge">No Monthly Subscription</span>
       <h3>Founder&apos;s Edition</h3>
       <p className="founder-intro">Be one of the first VYRO users.</p>
@@ -169,9 +169,9 @@ function FoundersEditionCard() {
       </ul>
       <button onClick={() => startPolarCheckout()}>Get VYRO <ArrowUpRight size={17} /></button>
       <div className="checkout-trust" aria-label="Purchase trust points">
-        <span>✔ Instant Download</span>
-        <span>✔ Lifetime License</span>
-        <span>✔ Secure Checkout</span>
+        <span>âœ” Instant Download</span>
+        <span>âœ” Lifetime License</span>
+        <span>âœ” Secure Checkout</span>
       </div>
       <small className="price-footer">Limited Early Adopter Offer</small>
     </motion.article>
@@ -283,18 +283,18 @@ export default function Home() {
       <SocialProofToast />
       <nav>
         <a className="brand-mark" href="/" aria-label="VYRO home"><img src="/icon-32x32.png" alt="" /><span>VYRO</span></a>
-        <div className="nav-links"><a href="/save-50">Save 50%</a><a href="#demo">Demo</a><a href="#faq">FAQ</a><a href="/recover-key">Recover Key</a><button className="theme-toggle" onClick={() => setDark(!dark)} aria-label="Toggle theme">{dark ? <Sun size={18} /> : <Moon size={18} />}</button></div>
+        <div className="nav-links"><a href="/save-50">Save 50%</a><a href="#demo">Demo</a><a href="/about">About</a><a href="#faq">FAQ</a><a href="/recover-key">Recover Key</a><button className="theme-toggle" onClick={() => setDark(!dark)} aria-label="Toggle theme">{dark ? <Sun size={18} /> : <Moon size={18} />}</button></div>
       </nav>
 
       <section className="hero">
         <motion.div className="eyebrow" initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }}><i /> Windows finally has a personality</motion.div>
-        <motion.h1 initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: .1 }}>VYRO<span>®</span></motion.h1>
+        <motion.h1 initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: .1 }}>VYRO<span>Â®</span></motion.h1>
         <VYROMascot />
         <motion.div className="hero-copy" initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: .45 }}>
           <h2>Talk to your desktop.<br /><em>It talks back.</em></h2>
           <p className="hero-subtitle">Control your Windows desktop with one voice command. VYRO opens apps, answers questions, and helps you get things done faster.</p>
           <div className="hero-actions" aria-label="Hero actions">
-            <a href="#pricing" className="main-cta">Get VYRO — $19 Lifetime <ArrowDown size={20} /></a>
+            <a href="#pricing" className="main-cta">Get VYRO â€” $19 Lifetime <ArrowDown size={20} /></a>
             <a href="#demo" className="secondary-cta"><Play size={18} /> Watch 30s Demo</a>
           </div>
           <div className="hero-trust" aria-label="VYRO purchase trust points">
@@ -302,7 +302,7 @@ export default function Home() {
             <span><Check size={15} /> No Monthly Subscription</span>
             <span><Check size={15} /> Future Updates Included</span>
           </div>
-          <small className="hero-proof">Built for Windows 10 &amp; 11 · Loved by early VYRO testers</small>
+          <small className="hero-proof">Built for Windows 10 &amp; 11 Â· Loved by early VYRO testers</small>
         </motion.div>
         <motion.div className="hero-chips" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: .65 }}>
           <span>Listens</span><span>Talks</span><span>Opens apps</span><span>Remembers</span><span>AI Powered</span><span>Gets bored</span>
@@ -337,9 +337,9 @@ export default function Home() {
       <section className="social-proof-section">
         <motion.div className="social-proof-card" initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: .45 }} transition={{ duration: .48, ease: "easeOut" }}>
           <motion.div className="social-proof-float" animate={{ y: [0, -4, 0] }} transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}>
-            <span className="social-proof-label">🤖 Trusted by early VYRO testers</span>
+            <span className="social-proof-label">ðŸ¤– Trusted by early VYRO testers</span>
             <div className="social-proof-stars" aria-label="Five stars">
-              {[0, 1, 2, 3, 4].map((star) => <motion.span key={star} whileHover={{ y: -4, scale: 1.14, rotate: star % 2 ? 8 : -8 }}>★</motion.span>)}
+              {[0, 1, 2, 3, 4].map((star) => <motion.span key={star} whileHover={{ y: -4, scale: 1.14, rotate: star % 2 ? 8 : -8 }}>â˜…</motion.span>)}
             </div>
             <blockquote>&quot;Your desktop finally has a personality.&quot;</blockquote>
             <p>Early users are already talking, laughing, and working with VYRO, an AI Assistant for Windows, every day.</p>
@@ -349,21 +349,21 @@ export default function Home() {
 
       <section className="promo-banner-shell">
         <motion.article className="promo-banner" initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: .35 }} whileHover={{ y: -5, rotate: -.25 }}>
-          <div className="promo-icon" aria-hidden="true">🎬</div>
+          <div className="promo-icon" aria-hidden="true">ðŸŽ¬</div>
           <div className="promo-copy">
             <span>CREATOR REFUND PROGRAM</span>
             <h2>Make a Reel, Get 50% Back</h2>
             <p>Create a short TikTok, Instagram Reel, YouTube Short, or Facebook Reel about VYRO.</p>
             <div className="promo-rewards">
-              <strong>2,000 views <b>→ Get 50% refunded</b></strong>
-              <strong>20,000 views <b>→ Get 100% refunded</b></strong>
+              <strong>2,000 views <b>â†’ Get 50% refunded</b></strong>
+              <strong>20,000 views <b>â†’ Get 100% refunded</b></strong>
             </div>
           </div>
           <a href="/save-50" className="promo-button">See How It Works <ArrowUpRight size={17} /></a>
         </motion.article>
       </section>
 
-      <section className="marquee"><div>LISTENS ✦ TALKS ✦ OPENS APPS ✦ DANCES BADLY ✦ HAS FEELINGS ✦ LISTENS ✦ TALKS ✦ OPENS APPS ✦ DANCES BADLY ✦ HAS FEELINGS ✦</div></section>
+      <section className="marquee"><div>LISTENS âœ¦ TALKS âœ¦ OPENS APPS âœ¦ DANCES BADLY âœ¦ HAS FEELINGS âœ¦ LISTENS âœ¦ TALKS âœ¦ OPENS APPS âœ¦ DANCES BADLY âœ¦ HAS FEELINGS âœ¦</div></section>
 
       <section className="section-shell features" id="features">
         <div className="section-heading"><span>01 / SKILLS</span><h2>What does it do?</h2><p>Mostly useful things.<br />Occasionally this.</p></div>
@@ -376,7 +376,7 @@ export default function Home() {
           <video className="final-demo-video" src="/videos/vyro-demo.mp4" controls playsInline preload="metadata" />
         </motion.div>
         <div className="demo-conversion">
-          <a href="#pricing" className="main-cta">Get VYRO — $19 Lifetime <ArrowDown size={20} /></a>
+          <a href="#pricing" className="main-cta">Get VYRO â€” $19 Lifetime <ArrowDown size={20} /></a>
           <div className="demo-trust" aria-label="VYRO purchase trust points">
             <span><Check size={15} /> Lifetime License</span>
             <span><Check size={15} /> No Monthly Subscription</span>
@@ -393,7 +393,7 @@ export default function Home() {
         <p className="purchased-link">Already purchased? <a href="/recover-key">Recover your license key</a></p>
         <p className="privacy-policy-link"><a href="/security">Read about VYRO security</a> | <a href="/privacy">Read our Privacy Policy</a></p>
         <motion.aside className="macos-coming-soon" initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: .65 }} whileHover={{ y: -5, rotate: -.35 }}>
-          <div className="macos-icon" aria-hidden="true">🍎</div>
+          <div className="macos-icon" aria-hidden="true">ðŸŽ</div>
           <div className="macos-copy">
             <span>COMING SOON</span>
             <h3>macOS Coming Soon</h3>
@@ -404,7 +404,7 @@ export default function Home() {
       </section>
 
       <section className="section-shell faq" id="faq">
-        <div className="section-heading"><span>04 / QUESTIONS</span><h2>Frequently<br /><em>asked stuff.</em></h2><p>Still confused? Perfect.<br />You’re ready.</p></div>
+        <div className="section-heading"><span>04 / QUESTIONS</span><h2>Frequently<br /><em>asked stuff.</em></h2><p>Still confused? Perfect.<br />Youâ€™re ready.</p></div>
         <div className="faq-list">{faqs.map((faq, i) => {
           const isOpen = openFaq === i;
           const panelId = `faq-answer-${i + 1}`;
@@ -423,7 +423,7 @@ export default function Home() {
 
       <section className="section-shell roadmap" id="roadmap">
         <motion.div className="roadmap-head" initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: .5 }}>
-          <span>05 / WHAT’S NEXT</span>
+          <span>05 / WHATâ€™S NEXT</span>
           <h2>Roadmap</h2>
           <p>VYRO is just getting started.</p>
         </motion.div>
@@ -450,6 +450,7 @@ export default function Home() {
         <div className="site-footer-column">
           <h3>Company</h3>
           <a href="/">Home</a>
+          <a href="/about">About</a>
           <a href="#demo">Demo</a>
           <a href="#pricing">Pricing</a>
           <a href="/features">Features</a>
@@ -470,3 +471,4 @@ export default function Home() {
     </main>
   );
 }
+

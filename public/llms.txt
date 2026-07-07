@@ -24,6 +24,7 @@ VYRO is an AI desktop companion for Windows.
 ## Important public pages
 
 - https://vyrodesk.com/
+- https://vyrodesk.com/about
 - https://vyrodesk.com/features
 - https://vyrodesk.com/blog
 - https://vyrodesk.com/blog/ai-desktop-companion
@@ -38,3 +39,4 @@ VYRO is an AI desktop companion for Windows.
 - Microphone access is used for voice commands.
 - Users remain in control of permissions.
 - Full privacy details are available at https://vyrodesk.com/privacy.
+
