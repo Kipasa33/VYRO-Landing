@@ -150,27 +150,31 @@ function FoundersEditionCard() {
   return (
     <motion.article className="price-card accent founder-card" whileHover={{ y: -8 }}>
       <span className="popular">{`\u{1F525} Founder Offer`}</span>
-      <span className="subscription-badge">No Monthly Subscription</span>
-      <h3>Founder&apos;s Edition</h3>
-      <p className="founder-intro">Be one of the first VYRO users.</p>
+      <span className="subscription-badge">Core App Lifetime</span>
+      <h3>Founder Edition</h3>
+      <p className="founder-intro">Early founder price for the VYRO core desktop app.</p>
       <div className="price-stack" aria-label="Founder pricing">
         <p><span>Regular Price:</span> <s>$49</s></p>
         <strong>Today: $19</strong>
       </div>
       <p className="price-save">Save $30 Today</p>
       <p className="price-note">Founder&apos;s Price Ends After Launch</p>
-      <p className="price-trust">Already includes every future update. Pay once. Never subscribe.</p>
+      <p className="price-trust">No subscription required for the core desktop app.</p>
       <ul>
-        <li><Check size={18} /> Lifetime License</li>
-        <li><Check size={18} /> All Future Updates</li>
-        <li><Check size={18} /> All Future AI Modules</li>
-        <li><Check size={18} /> No Subscription Ever</li>
-        <li><Check size={18} /> Priority Access to New Features</li>
+        <li><Check size={18} /> Lifetime access to the VYRO core desktop app</li>
+        <li><Check size={18} /> Voice commands</li>
+        <li><Check size={18} /> Open apps</li>
+        <li><Check size={18} /> Floating desktop companion</li>
+        <li><Check size={18} /> Emotions &amp; reactions</li>
+        <li><Check size={18} /> Founder core updates included</li>
+        <li><Check size={18} /> Early access to new features</li>
+        <li><Check size={18} /> Priority feedback</li>
       </ul>
+      <p className="advanced-ai-note">Advanced cloud AI modules may require a Pro plan later.</p>
       <button onClick={() => startPolarCheckout()}>Get VYRO <ArrowUpRight size={17} /></button>
       <div className="checkout-trust" aria-label="Purchase trust points">
         <span>&#10003; Instant Download</span>
-        <span>&#10003; Lifetime License</span>
+        <span>&#10003; Core app lifetime</span>
         <span>&#10003; Secure Checkout</span>
       </div>
       <small className="price-footer">Limited Early Adopter Offer</small>
@@ -183,7 +187,7 @@ function RegularLicenseCard() {
     <motion.article className="price-card regular-card" whileHover={{ y: -8 }}>
       <span className="popular">After Launch</span>
       <h3>Regular License</h3>
-      <p className="founder-intro">This is the regular VYRO price after the founder offer ends.</p>
+      <p className="founder-intro">This is the regular core desktop app price after the founder offer ends.</p>
       <p className="price">$49</p>
       <p className="price-note">after public launch</p>
       <p className="comparison-note">Shown for comparison. Founder pricing is the active offer right now.</p>
@@ -192,7 +196,7 @@ function RegularLicenseCard() {
         <li><Check size={18} /> Open Apps</li>
         <li><Check size={18} /> Emotions &amp; Reactions</li>
         <li><Check size={18} /> Floating Desktop Companion</li>
-        <li><Check size={18} /> Future Updates</li>
+        <li><Check size={18} /> Core app updates</li>
       </ul>
       <button className="disabled-price-button" type="button" disabled>Coming After Launch</button>
     </motion.article>
@@ -299,8 +303,8 @@ export default function Home() {
           </div>
           <div className="hero-trust" aria-label="VYRO purchase trust points">
             <span><Check size={15} /> Lifetime License</span>
-            <span><Check size={15} /> No Monthly Subscription</span>
-            <span><Check size={15} /> Future Updates Included</span>
+            <span><Check size={15} /> Core app, one-time license</span>
+            <span><Check size={15} /> Core updates included</span>
           </div>
           <small className="hero-proof">Built for Windows 10 &amp; 11 &middot; Loved by early VYRO testers</small>
         </motion.div>
@@ -379,8 +383,8 @@ export default function Home() {
           <a href="#pricing" className="main-cta">Get VYRO &mdash; $19 Lifetime <ArrowDown size={20} /></a>
           <div className="demo-trust" aria-label="VYRO purchase trust points">
             <span><Check size={15} /> Lifetime License</span>
-            <span><Check size={15} /> No Monthly Subscription</span>
-            <span><Check size={15} /> Future Updates Included</span>
+            <span><Check size={15} /> Core app, one-time license</span>
+            <span><Check size={15} /> Core updates included</span>
           </div>
         </div>
       </section>
@@ -388,7 +392,7 @@ export default function Home() {
       <WhatYouGetToday />
 
       <section className="section-shell pricing" id="pricing">
-        <div className="section-heading centered"><span>03 / EARLY ACCESS</span><h2>Founder price.<br /><em>VYRO forever.</em></h2></div>
+        <div className="section-heading centered"><span>03 / EARLY ACCESS</span><h2>Founder price.<br /><em>Core app lifetime.</em></h2></div>
         <div className="price-grid"><FoundersEditionCard /><RegularLicenseCard /></div>
         <p className="purchased-link">Already purchased? <a href="/recover-key">Recover your license key</a></p>
         <p className="privacy-policy-link"><a href="/security">Read about VYRO security</a> | <a href="/privacy">Read our Privacy Policy</a></p>
