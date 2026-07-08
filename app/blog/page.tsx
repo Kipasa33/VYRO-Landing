@@ -20,6 +20,11 @@ export const metadata: Metadata = {
 
 const posts = [
   {
+    href: "/blog/ai-voice-assistant-for-pc",
+    title: "Best AI Voice Assistant for PC: Control Your Windows Desktop With AI",
+    description: "Learn how VYRO helps users talk to a Windows desktop, open apps, and interact with their computer using voice commands.",
+  },
+  {
     href: "/blog/vyro-ai-security",
     title: "Is VYRO AI Safe? Security and Privacy Explained",
     description: "A clear guide to VYRO AI security, privacy, voice commands, desktop actions, permissions, and user control.",

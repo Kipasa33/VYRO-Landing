@@ -41,6 +41,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.72,
     },
     {
+      url: "https://vyrodesk.com/blog/ai-voice-assistant-for-pc",
+      lastModified,
+      changeFrequency: "monthly",
+      priority: 0.72,
+    },
+    {
       url: "https://vyrodesk.com/blog/vyro-ai-security",
       lastModified,
       changeFrequency: "monthly",
