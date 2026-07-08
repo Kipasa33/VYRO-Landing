@@ -20,6 +20,11 @@ export const metadata: Metadata = {
 
 const posts = [
   {
+    href: "/blog/windows-copilot-alternative",
+    title: "Windows Copilot Alternative: Why Desktop AI Companions Are Different",
+    description: "Learn how VYRO offers a desktop AI companion with voice commands, personality, app launching, and emotional reactions.",
+  },
+  {
     href: "/blog/ai-voice-assistant-for-pc",
     title: "Best AI Voice Assistant for PC: Control Your Windows Desktop With AI",
     description: "Learn how VYRO helps users talk to a Windows desktop, open apps, and interact with their computer using voice commands.",

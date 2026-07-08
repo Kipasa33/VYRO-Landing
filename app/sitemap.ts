@@ -47,6 +47,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.72,
     },
     {
+      url: "https://vyrodesk.com/blog/windows-copilot-alternative",
+      lastModified,
+      changeFrequency: "monthly",
+      priority: 0.72,
+    },
+    {
       url: "https://vyrodesk.com/blog/vyro-ai-security",
       lastModified,
       changeFrequency: "monthly",
