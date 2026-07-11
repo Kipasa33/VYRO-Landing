@@ -1,6 +1,6 @@
 "use client";
 
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import { ArrowDown, ArrowUpRight, Check, ChevronDown, Moon, Play, Sun } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import PixelDrift from "./components/PixelDrift";
@@ -9,20 +9,20 @@ import { startPolarCheckout } from "./lib/polar-checkout";
 const voiceReactions = ["/audio/robot_click_01.mp3", "/audio/robot_click_02.mp3"];
 
 const features = [
-  { icon: "LISTEN", title: "Listens", text: "Say it out loud. Typing is very 2025.", color: "var(--pink)" },
-  { icon: "TALK", title: "Talks", text: "Useful answers. Questionable attitude.", color: "var(--blue)" },
-  { icon: "APPS", title: "Opens apps", text: "Chrome, Spotify, and your 47th tab.", color: "var(--yellow)" },
-  { icon: "MEM", title: "Remembers you", text: "Your habits. Your apps. Your crimes.", color: "var(--green)" },
+  { icon: "VOICE", title: "Voice commands", text: "Speak naturally to control supported desktop actions.", color: "var(--pink)" },
+  { icon: "TALK", title: "Talks back", text: "Ask questions and get helpful responses on your desktop.", color: "var(--blue)" },
+  { icon: "APPS", title: "Open apps", text: "Launch supported apps without breaking your flow.", color: "var(--yellow)" },
+  { icon: "MOOD", title: "Shows personality", text: "A companion that reacts, rests, and feels present.", color: "var(--green)" },
 ];
 
 const faqs = [
-  { question: "Is VYRO for Windows?", answer: "Yep. VYRO lives happily on Windows 10 and 11." },
-  { question: "Does it use voice?", answer: "Yes. Talk naturally and VYRO talks back, sometimes with opinions." },
-  { question: "Can it open apps?", answer: "Absolutely. Ask it to open apps, files, websites, and more." },
+  { question: "Is VYRO for Windows?", answer: "Yes. VYRO is designed for Windows 10 and Windows 11." },
+  { question: "Does it use voice?", answer: "Yes. When voice features are enabled, you can speak naturally to VYRO and it can respond." },
+  { question: "Can it open apps?", answer: "VYRO can open supported apps and help with simple desktop actions you request." },
   { question: "Do I need an internet connection?", answer: "Some features work offline. Advanced AI and cloud features may require an internet connection." },
-  { question: "Does VYRO have emotions?", answer: "Kind of. VYRO can get happy, bored, sleepy, excited, shocked, and occasionally dramatic." },
-  { question: "Does VYRO sleep?", answer: "Yes. If you ignore VYRO for too long, it may get bored, complain, and fall asleep until you come back." },
-  { question: "What makes VYRO different?", answer: "Most assistants live inside a chat window. VYRO Desktop Assistant lives on your desktop as a playful Desktop AI Robot with a personality." },
+  { question: "Does VYRO have emotions?", answer: "VYRO can react with expressions such as happy, bored, sleepy, excited, and surprised." },
+  { question: "Does VYRO sleep?", answer: "Yes. VYRO can enter a quiet or resting state until you are ready to use it again." },
+  { question: "What makes VYRO different?", answer: "Most assistants live inside a chat window. VYRO lives on your desktop and is designed to feel like a visible, helpful companion." },
 ];
 
 const faqPageJsonLd = {
@@ -38,61 +38,13 @@ const faqPageJsonLd = {
   })),
 };
 
-const socialProofMessages = [
-  "Someone just downloaded VYRO \u{1F916}",
-  "Another desktop gained a personality \u{2728}",
-  "VYRO moved into a new PC \u{1F3E0}",
-  "A new user adopted VYRO \u{1F49C}",
-  "Someone just unlocked Pro \u{1F680}",
-];
-
 const roadmapItems = [
   { badge: "current", icon: "\u{2705}", title: "Desktop Companion", description: "Voice commands, app launching, emotions, sleep mode, focus mode, quiet mode, and funny reactions.", tone: "current" },
   { badge: "coming soon", icon: "\u{1F399}\u{FE0F}", title: "Custom Voice Packs", description: "Add new VYRO voices, robot sounds, funny reactions, and custom personality packs.", tone: "soon" },
   { badge: "coming soon", icon: "\u{1F9E0}", title: "Smart Memory", description: "VYRO will remember your name, favorite mode, habits, and small personal preferences.", tone: "soon" },
-  { badge: "future", icon: "\u{1F441}\u{FE0F}", title: "Screen Awareness", description: "VYRO will understand broad desktop context without reading private data.", tone: "future" },
+  { badge: "future", icon: "\u{1F441}\u{FE0F}", title: "Screen Awareness", description: "Explore optional, user-controlled desktop context for more helpful assistance.", tone: "future" },
   { badge: "future", icon: "\u{1F916}", title: "Agent Mode", description: "Let VYRO help with tasks, research, reminders, and workflow automation.", tone: "future" },
 ];
-
-function SocialProofToast() {
-  const [message, setMessage] = useState<string | null>(null);
-  const lastMessageRef = useRef(-1);
-
-  useEffect(() => {
-    let showTimer: ReturnType<typeof setTimeout>;
-    let hideTimer: ReturnType<typeof setTimeout>;
-
-    const scheduleNext = () => {
-      showTimer = setTimeout(() => {
-        let nextIndex = Math.floor(Math.random() * socialProofMessages.length);
-        if (nextIndex === lastMessageRef.current) nextIndex = (nextIndex + 1) % socialProofMessages.length;
-        lastMessageRef.current = nextIndex;
-        setMessage(socialProofMessages[nextIndex]);
-        hideTimer = setTimeout(() => {
-          setMessage(null);
-          scheduleNext();
-        }, 4000);
-      }, 30000 + Math.random() * 30000);
-    };
-
-    scheduleNext();
-    return () => {
-      clearTimeout(showTimer);
-      clearTimeout(hideTimer);
-    };
-  }, []);
-
-  return (
-    <AnimatePresence>
-      {message && (
-        <motion.aside className="social-proof-toast" initial={{ opacity: 0, x: -24, y: 8 }} animate={{ opacity: 1, x: 0, y: 0 }} exit={{ opacity: 0, x: -14, y: 8 }} transition={{ duration: .35, ease: "easeOut" }} aria-live="polite">
-          <span className="social-proof-dot" />
-          <p><b>VYRO UPDATE</b>{message}</p>
-        </motion.aside>
-      )}
-    </AnimatePresence>
-  );
-}
 
 function VYROMascot() {
   const nextVoiceRef = useRef(0);
@@ -149,17 +101,17 @@ function VYROMascot() {
 
 function FoundersEditionCard() {
   return (
-    <motion.article className="price-card accent founder-card" whileHover={{ y: -8 }}>
-      <span className="popular">{`\u{1F525} Founder Offer`}</span>
+    <motion.article className="price-card accent founder-card" whileHover={{ y: -6 }}>
+      <span className="popular">Founder offer</span>
       <span className="subscription-badge">Core App Lifetime</span>
       <h3>Founder Edition</h3>
       <p className="founder-intro">Early founder price for the VYRO core desktop app.</p>
       <div className="price-stack" aria-label="Founder pricing">
-        <p><span>Regular Price:</span> <s>$49</s></p>
-        <strong>Today: $19</strong>
+        <strong>$19</strong>
+        <p>One-time license for the core desktop app.</p>
       </div>
-      <p className="price-save">Save $30 Today</p>
-      <p className="price-note">Founder&apos;s Price Ends After Launch</p>
+      <p className="price-save">Early access pricing</p>
+      <p className="price-note">Founder pricing ends after launch.</p>
       <p className="price-trust">No subscription required for the core desktop app.</p>
       <ul>
         <li><Check size={18} /> Lifetime access to the VYRO core desktop app</li>
@@ -172,34 +124,13 @@ function FoundersEditionCard() {
         <li><Check size={18} /> Priority feedback</li>
       </ul>
       <p className="advanced-ai-note">Advanced cloud AI modules may require a Pro plan later.</p>
-      <button onClick={() => startPolarCheckout()}>Get VYRO <ArrowUpRight size={17} /></button>
+      <button onClick={() => startPolarCheckout()}>Get Founder Edition <ArrowUpRight size={17} /></button>
       <div className="checkout-trust" aria-label="Purchase trust points">
         <span>&#10003; Instant Download</span>
-        <span>&#10003; Core app lifetime</span>
+        <span>&#10003; Lifetime core app license</span>
         <span>&#10003; Secure Checkout</span>
       </div>
-      <small className="price-footer">Limited Early Adopter Offer</small>
-    </motion.article>
-  );
-}
-
-function RegularLicenseCard() {
-  return (
-    <motion.article className="price-card regular-card" whileHover={{ y: -8 }}>
-      <span className="popular">After Launch</span>
-      <h3>Regular License</h3>
-      <p className="founder-intro">This is the regular core desktop app price after the founder offer ends.</p>
-      <p className="price">$49</p>
-      <p className="price-note">after public launch</p>
-      <p className="comparison-note">Shown for comparison. Founder pricing is the active offer right now.</p>
-      <ul>
-        <li><Check size={18} /> Voice Commands</li>
-        <li><Check size={18} /> Open Apps</li>
-        <li><Check size={18} /> Emotions &amp; Reactions</li>
-        <li><Check size={18} /> Floating Desktop Companion</li>
-        <li><Check size={18} /> Core app updates</li>
-      </ul>
-      <button className="disabled-price-button" type="button" disabled>Coming After Launch</button>
+      <small className="price-footer">Built for early Windows users</small>
     </motion.article>
   );
 }
@@ -246,23 +177,23 @@ function BuiltForTrust() {
 }
 
 function WhatYouGetToday() {
-  const available = ["Voice Commands", "Open Apps", "Floating AI Companion", "Emotions & Reactions", "PC Hit / Slap Reaction"];
-  const coming = ["Memory Improvements", "Screen Awareness", "More AI Modules"];
+  const available = ["Voice commands", "Open supported apps", "Floating desktop companion", "Emotion reactions"];
+  const coming = ["Memory improvements", "Screen awareness", "Additional AI modules"];
   return (
     <section className="section-shell get-today" aria-labelledby="get-today-title">
       <motion.div className="get-today-card" initial={{ opacity: 0, y: 22 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: .35 }}>
         <div className="get-today-head">
-          <span>HONEST EARLY ACCESS</span>
+          <span>PRODUCT CLARITY</span>
           <h2 id="get-today-title">What You Get Today</h2>
-          <p>Clear launch-stage features now, with future AI upgrades marked plainly.</p>
+          <p>Core desktop features available today, with future capabilities clearly marked.</p>
         </div>
         <div className="get-today-lists">
           <div>
-            <h3>Included now</h3>
+            <h3>Available now</h3>
             <ul>{available.map((item) => <li key={item}><Check size={18} /> {item}</li>)}</ul>
           </div>
           <div className="coming-list">
-            <h3>Coming later</h3>
+            <h3>In development</h3>
             <ul>{coming.map((item) => <li key={item}><span>{item}</span><b>Coming Soon</b></li>)}</ul>
           </div>
         </div>
@@ -285,7 +216,6 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqPageJsonLd) }}
       />
       <div className="noise" />
-      <SocialProofToast />
       <nav>
         <a className="brand-mark" href="/" aria-label="VYRO home"><img src="/icon-32x32.png" alt="" /><span>VYRO</span></a>
         <div className="nav-links"><a href="/save-50">Save 50%</a><a href="#demo">Demo</a><a href="/about">About</a><a href="#faq">FAQ</a><a href="/recover-key">Recover Key</a><button className="theme-toggle" onClick={() => setDark(!dark)} aria-label="Toggle theme">{dark ? <Sun size={18} /> : <Moon size={18} />}</button></div>
@@ -297,52 +227,53 @@ export default function Home() {
           <PixelDrift
             text="VYRO"
             colors={["#7DD3FC", "#22D3EE", "#8B5CF6", "#FFFFFF", "#38BDF8"]}
-            particleSize={14}
-            particleCount={50}
-            fontSize={430}
+            particleSize={10}
+            particleCount={44}
+            fontSize={360}
             autoFit={true}
             mouseEnabled={true}
-            mouseRadius={150}
-            mouseForce={18}
-            mode="onEnter"
+            mouseRadius={132}
+            mouseForce={13}
+            mode="loop"
             replay={false}
             position="middle"
             trackPointerOnWindow={true}
+            opacity={.48}
             transition={{ type: "tween", duration: 1.1, ease: "easeOut" }}
           />
         </div>
         <VYROMascot />
         <motion.div className="hero-copy" initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: .45 }}>
-          <h2>Talk to your desktop.<br /><em>It talks back.</em></h2>
-          <p className="hero-subtitle">Control your Windows desktop with one voice command. VYRO opens apps, answers questions, and helps you get things done faster.</p>
+          <h1>Meet VYRO.<br /><em>Your AI desktop companion.</em></h1>
+          <p className="hero-subtitle">VYRO lives on your Windows desktop, listens to your voice, reacts with emotion, and helps you get things done faster.</p>
           <div className="hero-actions" aria-label="Hero actions">
-            <a href="#pricing" className="main-cta">Get VYRO &mdash; $19 Lifetime <ArrowDown size={20} /></a>
-            <a href="#demo" className="secondary-cta"><Play size={18} /> Watch 30s Demo</a>
+            <a href="#pricing" className="main-cta">Get VYRO <ArrowDown size={20} /></a>
+            <a href="#demo" className="secondary-cta"><Play size={18} /> Watch demo</a>
           </div>
           <div className="hero-trust" aria-label="VYRO purchase trust points">
-            <span><Check size={15} /> Lifetime License</span>
-            <span><Check size={15} /> Core app, one-time license</span>
-            <span><Check size={15} /> Core updates included</span>
+            <span><Check size={15} /> Lifetime core app license</span>
+            <span><Check size={15} /> Founder updates included</span>
+            <span><Check size={15} /> Designed for Windows</span>
           </div>
-          <small className="hero-proof">Built for Windows 10 &amp; 11 &middot; Loved by early VYRO testers</small>
+          <small className="hero-proof">Founder Edition available for early users.</small>
         </motion.div>
         <motion.div className="hero-chips" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: .65 }}>
-          <span>Listens</span><span>Talks</span><span>Opens apps</span><span>Remembers</span><span>AI Powered</span><span>Gets bored</span>
+          <span>Listens</span><span>Talks back</span><span>Opens apps</span><span>Helps you focus</span><span>Shows emotion</span>
         </motion.div>
       </section>
 
       <section className="hero-capabilities" aria-labelledby="hero-capabilities-title">
         <motion.div className="hero-capabilities-inner" initial={{ opacity: 0, y: 22 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: .35 }}>
           <div className="hero-capabilities-head">
-            <span>QUICK SCAN</span>
-            <h2 id="hero-capabilities-title">What can VYRO do?</h2>
+            <span>THE CORE EXPERIENCE</span>
+            <h2 id="hero-capabilities-title">What VYRO does</h2>
           </div>
           <div className="hero-capability-grid">
             {[
-              ["Voice Commands", "Control VYRO with natural speech."],
-              ["Open Apps", "Launch Chrome, YouTube, Notepad, and more."],
-              ["Chat Naturally", "Ask questions and get quick answers."],
-              ["Remember Conversations", "Keep useful context for later."],
+              ["Voice commands", "Control supported actions with natural speech."],
+              ["Open apps", "Launch the tools you use without extra clicking."],
+              ["Talk naturally", "Ask a question and get a useful response."],
+              ["Stay focused", "Start a calmer, more intentional desktop session."],
             ].map(([title, description], index) => (
               <motion.article key={title} whileHover={{ y: -5, rotate: index % 2 ? .6 : -.6 }}>
                 <span>0{index + 1}</span>
@@ -356,49 +287,18 @@ export default function Home() {
 
       <BuiltForTrust />
 
-      <section className="social-proof-section">
-        <motion.div className="social-proof-card" initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: .45 }} transition={{ duration: .48, ease: "easeOut" }}>
-          <motion.div className="social-proof-float" animate={{ y: [0, -4, 0] }} transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}>
-            <span className="social-proof-label">{`\u{1F916} Trusted by early VYRO testers`}</span>
-            <div className="social-proof-stars" aria-label="Five stars">
-              {[0, 1, 2, 3, 4].map((star) => <motion.span key={star} whileHover={{ y: -4, scale: 1.14, rotate: star % 2 ? 8 : -8 }}>&#9733;</motion.span>)}
-            </div>
-            <blockquote>&quot;Your desktop finally has a personality.&quot;</blockquote>
-            <p>Early users are already talking, laughing, and working with VYRO, an AI Assistant for Windows, every day.</p>
-          </motion.div>
-        </motion.div>
-      </section>
-
-      <section className="promo-banner-shell">
-        <motion.article className="promo-banner" initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: .35 }} whileHover={{ y: -5, rotate: -.25 }}>
-          <div className="promo-icon" aria-hidden="true">{`\u{1F3AC}`}</div>
-          <div className="promo-copy">
-            <span>CREATOR REFUND PROGRAM</span>
-            <h2>Make a Reel, Get 50% Back</h2>
-            <p>Create a short TikTok, Instagram Reel, YouTube Short, or Facebook Reel about VYRO.</p>
-            <div className="promo-rewards">
-              <strong>2,000 views <b>&rarr; Get 50% refunded</b></strong>
-              <strong>20,000 views <b>&rarr; Get 100% refunded</b></strong>
-            </div>
-          </div>
-          <a href="/save-50" className="promo-button">See How It Works <ArrowUpRight size={17} /></a>
-        </motion.article>
-      </section>
-
-      <section className="marquee"><div>LISTENS &#10022; TALKS &#10022; OPENS APPS &#10022; DANCES BADLY &#10022; HAS FEELINGS &#10022; LISTENS &#10022; TALKS &#10022; OPENS APPS &#10022; DANCES BADLY &#10022; HAS FEELINGS &#10022;</div></section>
-
       <section className="section-shell features" id="features">
-        <div className="section-heading"><span>01 / SKILLS</span><h2>What does it do?</h2><p>Mostly useful things.<br />Occasionally this.</p></div>
+        <div className="section-heading"><span>01 / CAPABILITIES</span><h2>Made for the moments<br /><em>between your work.</em></h2><p>Voice control, helpful desktop actions, and a little more personality.</p></div>
         <div className="feature-grid">{features.map((feature, i) => <motion.article key={feature.title} style={{ "--card-color": feature.color } as React.CSSProperties} whileHover={{ y: -7, rotate: i % 2 ? 1 : -1 }}><span className="feature-icon">{feature.icon}</span><small>0{i + 1}</small><h3>{feature.title}</h3><p>{feature.text}</p></motion.article>)}</div>
       </section>
 
       <section className="section-shell ugc-demo" id="demo">
-        <div className="demo-head"><span>02 / FINAL DEMO</span><h2>Watch VYRO<br /><em>in action.</em></h2><p>A quick on-site walkthrough of the AI desktop companion experience.</p></div>
+        <div className="demo-head"><span>02 / PRODUCT DEMO</span><h2>See VYRO<br /><em>in action.</em></h2><p>A quick look at how VYRO fits into your Windows desktop.</p></div>
         <motion.div className="final-demo-card" initial={{ opacity: 0, y: 28 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: .25 }} transition={{ duration: .45, ease: "easeOut" }}>
           <video className="final-demo-video" src="/videos/vyro-demo.mp4" controls playsInline preload="metadata" />
         </motion.div>
         <div className="demo-conversion">
-          <a href="#pricing" className="main-cta">Get VYRO &mdash; $19 Lifetime <ArrowDown size={20} /></a>
+          <a href="#pricing" className="main-cta">Get VYRO <ArrowDown size={20} /></a>
           <div className="demo-trust" aria-label="VYRO purchase trust points">
             <span><Check size={15} /> Lifetime License</span>
             <span><Check size={15} /> Core app, one-time license</span>
@@ -410,8 +310,8 @@ export default function Home() {
       <WhatYouGetToday />
 
       <section className="section-shell pricing" id="pricing">
-        <div className="section-heading centered"><span>03 / EARLY ACCESS</span><h2>Founder price.<br /><em>Core app lifetime.</em></h2></div>
-        <div className="price-grid"><FoundersEditionCard /><RegularLicenseCard /></div>
+        <div className="section-heading centered"><span>03 / FOUNDER EDITION</span><h2>A clear, simple<br /><em>way to get started.</em></h2><p>One purchase for the VYRO core desktop app. Future cloud features are always clearly labeled.</p></div>
+        <div className="price-grid"><FoundersEditionCard /></div>
         <p className="purchased-link">Already purchased? <a href="/recover-key">Recover your license key</a></p>
         <p className="privacy-policy-link"><a href="/security">Read about VYRO security</a> | <a href="/privacy">Read our Privacy Policy</a></p>
         <motion.aside className="macos-coming-soon" initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: .65 }} whileHover={{ y: -5, rotate: -.35 }}>
@@ -426,7 +326,7 @@ export default function Home() {
       </section>
 
       <section className="section-shell faq" id="faq">
-        <div className="section-heading"><span>04 / QUESTIONS</span><h2>Frequently<br /><em>asked stuff.</em></h2><p>Still confused? Perfect.<br />You&rsquo;re ready.</p></div>
+        <div className="section-heading"><span>04 / QUESTIONS</span><h2>Common<br /><em>questions.</em></h2><p>Everything you need to know before inviting VYRO onto your desktop.</p></div>
         <div className="faq-list">{faqs.map((faq, i) => {
           const isOpen = openFaq === i;
           const panelId = `faq-answer-${i + 1}`;
@@ -493,4 +393,3 @@ export default function Home() {
     </main>
   );
 }
-
