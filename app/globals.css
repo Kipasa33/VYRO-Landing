@@ -600,3 +600,60 @@ footer{padding:6rem 1rem 2rem;text-align:center;background:#17171b;color:#f7f2e5
 @keyframes about-robot-float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-.55rem); } }
 @media (min-width:768px){.about-hero{grid-template-columns:minmax(0,1.05fr) minmax(16rem,.75fr);gap:2rem}.about-robot-wrap{width:min(100%,24rem)}.about-robot-video{width:min(100%,23rem)}}
 @media (prefers-reduced-motion: reduce){.about-robot-video{animation:none}}
+
+/* Commercial AI assistant for PC page */
+.ai-pc-page { background: radial-gradient(circle at 78% 8%, rgba(125,211,252,.2), transparent 25rem), linear-gradient(180deg, #fbf8ef 0%, #f2f7fa 48%, #f6f1e6 100%); }
+.ai-pc-hero { width: min(100%, 76rem); margin: 0 auto; padding: 4.4rem 1rem 3.2rem; text-align: center; }
+.ai-pc-hero h1 { max-width: 15ch; margin: .85rem auto 0; font-family: var(--font-sans); font-size: clamp(2.7rem, 9vw, 5.9rem); line-height: .94; letter-spacing: -.075em; color: #101217; }
+.ai-pc-hero>p:not(.policy-kicker) { max-width: 46rem; margin: 1rem auto 0; font-size: clamp(1rem, 2.3vw, 1.25rem); line-height: 1.6; font-weight: 570; color: rgba(29,36,48,.68); }
+.ai-pc-actions { display: flex; flex-direction: column; justify-content: center; gap: .65rem; width: min(100%, 20rem); margin: 1.5rem auto 0; }
+.ai-pc-actions a,.ai-pc-cta>div a { display: inline-flex; align-items: center; justify-content: center; min-height: 3rem; padding: .75rem 1rem; border-radius: 999px; background: #101217; color: #fff; font-size: .92rem; line-height: 1; font-weight: 850; box-shadow: 0 .8rem 2rem rgba(16,18,23,.14); transition: transform .2s ease, box-shadow .2s ease, background .2s ease; }
+.ai-pc-actions a:last-child,.ai-pc-cta>div a:last-child { background: rgba(255,255,255,.7); color: #101217; border: 1px solid rgba(16,18,23,.12); box-shadow: none; }
+.ai-pc-actions a:hover,.ai-pc-cta>div a:hover { transform: translateY(-2px); box-shadow: 0 1rem 2.3rem rgba(16,18,23,.18); }
+.ai-pc-hero small { display: block; margin-top: 1rem; font-size: .82rem; line-height: 1.4; font-weight: 680; color: rgba(29,36,48,.55); }
+.ai-pc-shell { width: min(100%, 76rem); display: grid; gap: 1rem; margin: 0 auto; padding: 0 1rem 3rem; }
+.ai-pc-demo,.ai-pc-problem,.ai-pc-comparison,.ai-pc-use-cases,.ai-pc-why,.ai-pc-faq,.ai-pc-cta { padding: 1.25rem; border: 1px solid rgba(29,36,48,.1); border-radius: 1.25rem; background: rgba(255,255,255,.78); box-shadow: 0 1.15rem 3rem rgba(29,36,48,.06); }
+.ai-pc-section-head { max-width: 40rem; }
+.ai-pc-section-head h2,.ai-pc-problem h2,.ai-pc-split h2,.ai-pc-comparison h2,.ai-pc-why h2,.ai-pc-faq h2,.ai-pc-cta h2 { margin: .4rem 0 .65rem; font-family: var(--font-sans); font-size: clamp(1.75rem, 5.5vw, 3.4rem); line-height: 1.02; letter-spacing: -.055em; color: #101217; }
+.ai-pc-section-head>p:last-child,.ai-pc-problem>p:last-child,.ai-pc-split article>p:last-child,.ai-pc-why>p:not(.policy-kicker),.ai-pc-cta>p:not(.policy-kicker) { margin: 0; font-size: 1rem; line-height: 1.7; font-weight: 520; color: rgba(29,36,48,.72); }
+.ai-pc-demo { background: linear-gradient(135deg, rgba(255,255,255,.9), rgba(225,246,255,.82) 55%, rgba(239,234,255,.78)); }
+.ai-pc-demo-grid,.ai-pc-feature-grid,.ai-pc-comparison-grid { display: grid; gap: .75rem; margin-top: 1.2rem; }
+.ai-pc-demo-grid article { padding: 1rem; border: 1px solid rgba(29,36,48,.1); border-radius: 1rem; background: rgba(16,18,23,.95); color: #f7f2e5; box-shadow: 0 .8rem 1.8rem rgba(16,18,23,.12); }
+.ai-pc-demo-grid span,.ai-pc-feature-grid article>span,.ai-pc-comparison-grid span { display: inline-flex; padding: .27rem .48rem; border-radius: 999px; background: rgba(125,211,252,.2); color: #7dd3fc; font-size: .69rem; line-height: 1; font-weight: 800; }
+.ai-pc-command { margin: 1rem 0 .55rem; font-size: 1rem; line-height: 1.4; font-weight: 720; }
+.ai-pc-response { width: max-content; max-width: 100%; margin: 0; padding: .48rem .65rem; border-radius: .7rem; background: rgba(255,255,255,.1); color: rgba(247,242,229,.82); font-size: .88rem; line-height: 1.4; font-weight: 600; }
+.ai-pc-problem { background: #101217; color: #fff; }
+.ai-pc-problem h2 { color: #fff; }
+.ai-pc-problem>p:last-child { color: rgba(247,242,229,.74); }
+.ai-pc-problem .policy-kicker { background: rgba(255,255,255,.1); color: #fff; }
+.ai-pc-feature-grid article { min-height: 12rem; padding: 1rem; border: 1px solid rgba(29,36,48,.1); border-radius: 1rem; background: rgba(255,255,255,.72); box-shadow: 0 .8rem 2rem rgba(29,36,48,.05); }
+.ai-pc-feature-grid article>span { background: rgba(16,18,23,.08); color: rgba(29,36,48,.62); }
+.ai-pc-feature-grid h3 { margin: 1.1rem 0 .45rem; font-family: var(--font-sans); font-size: 1.12rem; line-height: 1.2; letter-spacing: -.02em; color: #101217; }
+.ai-pc-feature-grid p { margin: 0; font-size: .94rem; line-height: 1.6; font-weight: 520; color: rgba(29,36,48,.7); }
+.ai-pc-split { display: grid; gap: .75rem; }
+.ai-pc-split article { padding: 1.2rem; border: 1px solid rgba(29,36,48,.1); border-radius: 1.15rem; background: linear-gradient(145deg, rgba(255,255,255,.88), rgba(232,244,255,.68)); }
+.ai-pc-split article:last-child { background: linear-gradient(145deg, rgba(255,255,255,.88), rgba(244,232,255,.7)); }
+.ai-pc-split h2 { font-size: clamp(1.55rem, 5vw, 2.3rem); }
+.ai-pc-comparison-grid article { min-height: 9rem; padding: 1rem; border: 1px solid rgba(29,36,48,.1); border-radius: 1rem; background: rgba(255,255,255,.62); }
+.ai-pc-comparison-grid span { background: rgba(16,18,23,.08); color: #101217; }
+.ai-pc-comparison-grid p { margin: .85rem 0 0; font-size: .94rem; line-height: 1.6; font-weight: 520; color: rgba(29,36,48,.7); }
+.ai-pc-comparison-grid .ai-pc-comparison-accent { background: linear-gradient(145deg, rgba(219,248,255,.88), rgba(237,231,255,.86)); }
+.ai-pc-use-cases { display: grid; gap: 1rem; background: linear-gradient(135deg, rgba(255,255,255,.82), rgba(243,251,245,.82)); }
+.ai-pc-use-cases ul { display: grid; gap: .55rem; margin: 0; padding: 0; list-style: none; }
+.ai-pc-use-cases li { position: relative; padding: .72rem .8rem .72rem 2rem; border: 1px solid rgba(29,36,48,.09); border-radius: .75rem; background: rgba(255,255,255,.62); font-size: .94rem; line-height: 1.4; font-weight: 680; color: rgba(29,36,48,.78); }
+.ai-pc-use-cases li::before { content: ""; position: absolute; top: 1.1rem; left: .8rem; width: .5rem; height: .5rem; border-radius: 50%; background: #22d3ee; box-shadow: 0 0 .8rem rgba(34,211,238,.55); }
+.ai-pc-why a,.ai-pc-related a { color: #4f38c8; font-weight: 780; text-decoration: underline; text-underline-offset: .18rem; }
+.ai-pc-faq>div { display: grid; gap: 0; margin-top: 1rem; border-top: 1px solid rgba(29,36,48,.1); }
+.ai-pc-faq article { padding: 1rem 0; border-bottom: 1px solid rgba(29,36,48,.1); }
+.ai-pc-faq h3 { margin: 0 0 .35rem; font-family: var(--font-sans); font-size: 1rem; line-height: 1.35; color: #101217; }
+.ai-pc-faq article p { margin: 0; font-size: .95rem; line-height: 1.65; font-weight: 520; color: rgba(29,36,48,.72); }
+.ai-pc-cta { text-align: center; background: radial-gradient(circle at 50% 0%, rgba(125,211,252,.22), transparent 42%), #101217; color: #fff; }
+.ai-pc-cta h2,.ai-pc-cta>p:not(.policy-kicker) { color: #fff; }
+.ai-pc-cta>p:not(.policy-kicker) { max-width: 46rem; margin-inline: auto; color: rgba(247,242,229,.76); }
+.ai-pc-cta .policy-kicker { background: rgba(255,255,255,.12); color: #fff; }
+.ai-pc-cta>div { display: flex; flex-direction: column; justify-content: center; gap: .65rem; width: min(100%, 21rem); margin: 1.2rem auto 0; }
+.ai-pc-cta>div a:first-child { background: #f7f2e5; color: #101217; }
+.ai-pc-related { margin-top: 1.4rem !important; font-size: .86rem !important; }
+.ai-pc-related a { color: #d9d2ff; }
+@media (min-width:640px){.ai-pc-hero{padding:5.5rem 1.5rem 3.7rem}.ai-pc-actions,.ai-pc-cta>div{flex-direction:row;width:auto}.ai-pc-actions a,.ai-pc-cta>div a{min-width:9.5rem}.ai-pc-shell{padding:0 1.5rem 4rem}.ai-pc-demo,.ai-pc-problem,.ai-pc-comparison,.ai-pc-use-cases,.ai-pc-why,.ai-pc-faq,.ai-pc-cta{padding:1.55rem}.ai-pc-demo-grid,.ai-pc-comparison-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.ai-pc-feature-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.ai-pc-split{grid-template-columns:repeat(2,minmax(0,1fr))}.ai-pc-use-cases{grid-template-columns:.9fr 1.2fr;align-items:center}.ai-pc-use-cases ul{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (min-width:1024px){.ai-pc-hero{padding-top:6.5rem}.ai-pc-shell{gap:1.25rem}.ai-pc-demo,.ai-pc-problem,.ai-pc-comparison,.ai-pc-use-cases,.ai-pc-why,.ai-pc-faq,.ai-pc-cta{padding:1.9rem}.ai-pc-feature-grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
