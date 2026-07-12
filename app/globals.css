@@ -411,8 +411,6 @@ footer{padding:6rem 1rem 2rem;text-align:center;background:#17171b;color:#f7f2e5
 .download-step b { font-size: .62rem; line-height: 1.4; }
 @keyframes downloadFloat { 0%,100%{transform:translateY(0) scale(1)} 50%{transform:translateY(-.35rem) scale(1.035)} }
 @media (min-width:640px){.download-nav{padding:1.2rem 1.5rem}.download-card{padding:2rem}.download-steps{grid-template-columns:repeat(2,1fr)}}
-.privacy-policy-link { margin: .75rem 0 0; text-align: center; font-size: .58rem; font-weight: 800; }
-.privacy-policy-link a { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: .18rem; }
 .footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: .55rem; margin: 1.5rem auto 0; }
 .footer-links a { display: inline-flex; align-items: center; min-height: 2.4rem; padding: .55rem .75rem; border: 1px solid rgba(247,242,229,.42); border-radius: 999px; background: rgba(255,255,255,.06); font-size: .52rem; font-weight: 800; opacity: .86; transition: transform .2s ease, background .2s ease, opacity .2s ease; }
 .footer-links a:hover { transform: translateY(-2px); background: rgba(255,255,255,.12); opacity: 1; }
@@ -673,8 +671,7 @@ footer{padding:6rem 1rem 2rem;text-align:center;background:#17171b;color:#f7f2e5
 .pricing-card-cta:hover { transform: translateY(-2px); box-shadow: 0 1rem 2.2rem rgba(23,44,77,.25); }
 .pricing-card-cta-disabled,.pricing-card-cta-disabled:hover { margin-top: auto; border-color: rgba(21,34,52,.1); background: rgba(21,34,52,.07); color: rgba(21,34,52,.46); box-shadow: none; cursor: not-allowed; transform: none; }
 .pricing-comparison-note { max-width: 50rem; margin: 1.25rem auto 0; padding: .75rem 1rem; border: 1px solid rgba(29,36,48,.1); border-radius: .85rem; background: rgba(255,255,255,.52); text-align: center; font-family: var(--font-sans); font-size: .82rem; line-height: 1.55; font-weight: 560; color: color-mix(in srgb, var(--ink) 62%, transparent); }
-.pricing .purchased-link { margin-top: 1.25rem; font-family: var(--font-sans); font-size: .78rem; font-weight: 620; }
-.pricing .privacy-policy-link { font-family: var(--font-sans); font-size: .72rem; }
+.pricing .purchased-link { margin: 1rem 0 0; font-family: var(--font-sans); font-size: .78rem; font-weight: 620; }
 [data-theme="dark"] .pricing-heading>span,[data-theme="dark"] .pricing-comparison-note { border-color: rgba(255,255,255,.12); background: rgba(255,255,255,.06); }
 @media (min-width:768px){.pricing{padding:6.5rem 2rem}.pricing-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:1.25rem;align-items:stretch}.pricing-card{height:100%;padding:1.6rem}.pricing-description{min-height:3.25rem}.pricing-card-pro .pricing-card-cta{margin-top:auto}}
 @media (prefers-reduced-motion:reduce){.pricing-card,.pricing-card-cta{transition:none!important;transform:none!important}}

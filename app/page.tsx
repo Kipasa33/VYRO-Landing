@@ -299,7 +299,6 @@ export default function Home() {
         <div className="pricing-grid"><FoundersEditionCard /><ProCard /></div>
         <p className="pricing-comparison-note">Founder Edition covers the core desktop app. Pro may be introduced later for advanced cloud AI usage.</p>
         <p className="purchased-link">Already purchased? <a href="/recover-key">Recover your license key</a></p>
-        <p className="privacy-policy-link"><a href="/security">Read about VYRO security</a> | <a href="/privacy">Read our Privacy Policy</a></p>
       </section>
 
       <section className="section-shell faq" id="faq">
