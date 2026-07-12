@@ -101,19 +101,19 @@ function VYROMascot() {
 
 function FoundersEditionCard() {
   return (
-    <motion.article className="price-card accent founder-card" whileHover={{ y: -6 }}>
-      <span className="popular">Founder offer</span>
-      <span className="subscription-badge">Core App Lifetime</span>
-      <h3>Founder Edition</h3>
-      <p className="founder-intro">Early founder price for the VYRO core desktop app.</p>
-      <div className="price-stack" aria-label="Founder pricing">
-        <strong>$19</strong>
-        <p>One-time license for the core desktop app.</p>
+    <motion.article className="pricing-card pricing-card-founder" whileHover={{ y: -5 }}>
+      <div className="pricing-card-topline">
+        <span className="pricing-availability">Available now</span>
+        <span className="pricing-recommended">Founder offer</span>
       </div>
-      <p className="price-save">Early access pricing</p>
-      <p className="price-note">Founder pricing ends after launch.</p>
-      <p className="price-trust">No subscription required for the core desktop app.</p>
-      <ul>
+      <h3>Founder Edition</h3>
+      <div className="pricing-price" aria-label="Founder Edition costs 19 dollars">
+        <strong>$19</strong>
+        <span>one-time</span>
+      </div>
+      <p className="pricing-helper">One-time license for the core desktop app.</p>
+      <p className="pricing-description">For early users who want lifetime access to the VYRO core desktop companion.</p>
+      <ul className="pricing-features">
         <li><Check size={18} /> Lifetime access to the VYRO core desktop app</li>
         <li><Check size={18} /> Voice commands</li>
         <li><Check size={18} /> Open apps</li>
@@ -123,14 +123,38 @@ function FoundersEditionCard() {
         <li><Check size={18} /> Early access to new features</li>
         <li><Check size={18} /> Priority feedback</li>
       </ul>
-      <p className="advanced-ai-note">Advanced cloud AI modules may require a Pro plan later.</p>
-      <button onClick={() => startPolarCheckout()}>Get Founder Edition <ArrowUpRight size={17} /></button>
-      <div className="checkout-trust" aria-label="Purchase trust points">
-        <span>&#10003; Instant Download</span>
-        <span>&#10003; Lifetime core app license</span>
-        <span>&#10003; Secure Checkout</span>
+      <p className="pricing-note">Advanced cloud AI modules may require a Pro plan later.</p>
+      <button className="pricing-card-cta" onClick={() => startPolarCheckout()}>Get Founder Edition <ArrowUpRight size={17} /></button>
+    </motion.article>
+  );
+}
+
+function ProCard() {
+  const features = [
+    "Advanced cloud AI modules",
+    "More automation workflows",
+    "Browser and file intelligence",
+    "AI receptionist style modules",
+    "CRM and follow-up agents",
+    "Higher usage limits",
+    "Priority cloud features",
+  ];
+
+  return (
+    <motion.article className="pricing-card pricing-card-pro" whileHover={{ y: -3 }}>
+      <div className="pricing-card-topline">
+        <span className="pricing-availability">Coming later</span>
       </div>
-      <small className="price-footer">Built for early Windows users</small>
+      <h3>Pro</h3>
+      <div className="pricing-price pricing-price-later" aria-label="Pro pricing is coming later">
+        <strong>Coming later</strong>
+      </div>
+      <p className="pricing-helper">For advanced cloud AI and automation modules.</p>
+      <p className="pricing-description">Built for heavier AI workflows, cloud features, and future advanced assistants.</p>
+      <ul className="pricing-features">
+        {features.map((feature) => <li key={feature}><Check size={18} /> {feature}</li>)}
+      </ul>
+      <button className="pricing-card-cta pricing-card-cta-disabled" type="button" disabled>Coming later</button>
     </motion.article>
   );
 }
@@ -310,19 +334,15 @@ export default function Home() {
       <WhatYouGetToday />
 
       <section className="section-shell pricing" id="pricing">
-        <div className="section-heading centered"><span>03 / FOUNDER EDITION</span><h2>A clear, simple<br /><em>way to get started.</em></h2><p>One purchase for the VYRO core desktop app. Future cloud features are always clearly labeled.</p></div>
-        <div className="price-grid"><FoundersEditionCard /></div>
+        <div className="pricing-heading">
+          <span>Pricing</span>
+          <h2>Start with the VYRO core desktop app.</h2>
+          <p>Founder Edition is a one-time license for the VYRO Windows desktop companion. Advanced cloud AI modules may require Pro later.</p>
+        </div>
+        <div className="pricing-grid"><FoundersEditionCard /><ProCard /></div>
+        <p className="pricing-comparison-note">Founder Edition covers the core desktop app. Pro may be introduced later for advanced cloud AI usage.</p>
         <p className="purchased-link">Already purchased? <a href="/recover-key">Recover your license key</a></p>
         <p className="privacy-policy-link"><a href="/security">Read about VYRO security</a> | <a href="/privacy">Read our Privacy Policy</a></p>
-        <motion.aside className="macos-coming-soon" initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: .65 }} whileHover={{ y: -5, rotate: -.35 }}>
-          <div className="macos-icon" aria-hidden="true">{`\u{1F34E}`}</div>
-          <div className="macos-copy">
-            <span>COMING SOON</span>
-            <h3>macOS Coming Soon</h3>
-            <p>Currently building and optimizing VYRO for macOS.</p>
-          </div>
-          <small>Windows available now</small>
-        </motion.aside>
       </section>
 
       <section className="section-shell faq" id="faq">
