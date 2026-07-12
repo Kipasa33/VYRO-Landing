@@ -159,47 +159,6 @@ function ProCard() {
   );
 }
 
-function BuiltForTrust() {
-  const trustCards = [
-    {
-      title: "What VYRO can control",
-      items: ["Open apps you request", "Respond to voice commands", "Help with visible desktop actions"],
-    },
-    {
-      title: "What VYRO cannot do",
-      items: ["No hidden purchases", "No deleting files by itself", "No invisible background control"],
-    },
-    {
-      title: "Permission clarity",
-      items: ["Microphone is used for voice commands", "Features can be disabled in settings", "You remain in control"],
-    },
-  ];
-
-  return (
-    <section className="trust-section" aria-labelledby="trust-title">
-      <motion.div className="trust-inner" initial={{ opacity: 0, y: 22 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: .28 }}>
-        <div className="trust-head">
-          <span>PERMISSIONS, CLEARLY</span>
-          <h2 id="trust-title">Built for trust</h2>
-          <p>Clear controls, visible actions, and no surprises.</p>
-        </div>
-        <div className="trust-grid">
-          {trustCards.map((card, index) => (
-            <motion.article key={card.title} whileHover={{ y: -4 }}>
-              <span>0{index + 1}</span>
-              <h3>{card.title}</h3>
-              <ul>
-                {card.items.map((item) => <li key={item}><Check size={16} /> {item}</li>)}
-              </ul>
-            </motion.article>
-          ))}
-        </div>
-        <a className="trust-policy-link" href="/privacy">Read the full Privacy Policy <ArrowUpRight size={15} /></a>
-      </motion.div>
-    </section>
-  );
-}
-
 function WhatYouGetToday() {
   const available = ["Voice commands", "Open supported apps", "Floating desktop companion", "Emotion reactions"];
   const coming = ["Memory improvements", "Screen awareness", "Additional AI modules"];
@@ -308,8 +267,6 @@ export default function Home() {
           </div>
         </motion.div>
       </section>
-
-      <BuiltForTrust />
 
       <section className="section-shell features" id="features">
         <div className="section-heading"><span>01 / CAPABILITIES</span><h2>Made for the moments<br /><em>between your work.</em></h2><p>Voice control, helpful desktop actions, and a little more personality.</p></div>
