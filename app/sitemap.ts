@@ -29,6 +29,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     {
+      url: "https://vyrodesk.com/ai-desktop-assistant",
+      lastModified,
+      changeFrequency: "monthly",
+      priority: 0.9,
+    },
+    {
       url: "https://vyrodesk.com/blog",
       lastModified,
       changeFrequency: "monthly",
