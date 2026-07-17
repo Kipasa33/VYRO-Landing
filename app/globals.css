@@ -279,13 +279,13 @@ footer{padding:6rem 1rem 2rem;text-align:center;background:#17171b;color:#f7f2e5
 .showcase-heading h2 { max-width: 11ch; margin: .9rem auto .65rem; color: #15283f; font-family: var(--font-sans); font-size: clamp(2.15rem, 9vw, 5.1rem); line-height: .96; letter-spacing: -.065em; text-wrap: balance; }
 .showcase-heading p { max-width: 42rem; margin: 0 auto; color: rgba(25,47,68,.68); font-family: var(--font-sans); font-size: clamp(.92rem, 2vw, 1.05rem); font-weight: 560; line-height: 1.65; }
 .showcase-marquee { position: relative; width: 100%; padding: 1rem 0 1.6rem; overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 8%, #000 92%, transparent 100%); mask-image: linear-gradient(90deg, transparent 0%, #000 8%, #000 92%, transparent 100%); }
-.showcase-track { display: flex; width: max-content; will-change: transform; animation: showcase-scroll 52s linear infinite; }
+.showcase-track { display: flex; width: max-content; will-change: transform; backface-visibility: hidden; animation: showcase-scroll 30s linear infinite; }
 .showcase-group { display: flex; flex: none; gap: clamp(1rem, 1.7vw, 1.5rem); padding-right: clamp(1rem, 1.7vw, 1.5rem); }
 .showcase-marquee:hover .showcase-track { animation-play-state: paused; }
 .showcase-card { flex: 0 0 clamp(20rem, 42vw, 35rem); overflow: hidden; border: 1px solid rgba(27,52,74,.14); border-radius: clamp(1.1rem, 2vw, 1.75rem); background: #fff; box-shadow: 0 1.5rem 4.4rem rgba(28,48,77,.14), inset 0 1px rgba(255,255,255,.85); transition: transform .28s ease, box-shadow .28s ease, border-color .28s ease; }
 .showcase-card:hover { transform: translateY(-.35rem); border-color: rgba(34,211,238,.34); box-shadow: 0 1.7rem 3.6rem rgba(28,48,77,.18), 0 0 2.4rem rgba(34,211,238,.1); }
 .showcase-image { display: block; width: 100%; height: auto; object-fit: contain; }
-@keyframes showcase-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@keyframes showcase-scroll { from { transform: translate3d(0,0,0); } to { transform: translate3d(-50%,0,0); } }
 
 @media (min-width:768px) {
   .showcase-section { padding: 6.5rem 0 7rem; }
