@@ -5,6 +5,7 @@ import { ArrowDown, ArrowUpRight, Check, ChevronDown, Moon, Play, Sun } from "lu
 import { useEffect, useRef, useState } from "react";
 import PixelDrift from "./components/PixelDrift";
 import ShowcaseMarquee from "./components/ShowcaseMarquee";
+import VyroFeatureSpotlight from "./components/VyroFeatureSpotlight";
 import { startPolarCheckout } from "./lib/polar-checkout";
 
 const voiceReactions = ["/audio/robot_click_01.mp3", "/audio/robot_click_02.mp3"];
@@ -270,6 +271,8 @@ export default function Home() {
         </div>
         <ShowcaseMarquee />
       </section>
+
+      <VyroFeatureSpotlight />
 
       <section className="section-shell ugc-demo" id="demo">
         <div className="demo-head"><span>02 / PRODUCT DEMO</span><h2>See VYRO<br /><em>in action.</em></h2><p>A quick look at how VYRO fits into your Windows desktop.</p></div>
