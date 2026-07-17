@@ -4,16 +4,10 @@ import { motion } from "framer-motion";
 import { ArrowDown, ArrowUpRight, Check, ChevronDown, Moon, Play, Sun } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import PixelDrift from "./components/PixelDrift";
+import ShowcaseMarquee from "./components/ShowcaseMarquee";
 import { startPolarCheckout } from "./lib/polar-checkout";
 
 const voiceReactions = ["/audio/robot_click_01.mp3", "/audio/robot_click_02.mp3"];
-
-const features = [
-  { icon: "VOICE", title: "Voice commands", text: "Speak naturally to control supported desktop actions.", color: "var(--pink)" },
-  { icon: "TALK", title: "Talks back", text: "Ask questions and get helpful responses on your desktop.", color: "var(--blue)" },
-  { icon: "APPS", title: "Open apps", text: "Launch supported apps without breaking your flow.", color: "var(--yellow)" },
-  { icon: "MOOD", title: "Shows personality", text: "A companion that reacts, rests, and feels present.", color: "var(--green)" },
-];
 
 const faqs = [
   { question: "Is VYRO for Windows?", answer: "Yes. VYRO is designed for Windows 10 and Windows 11." },
@@ -268,9 +262,13 @@ export default function Home() {
         </motion.div>
       </section>
 
-      <section className="section-shell features" id="features">
-        <div className="section-heading"><span>01 / CAPABILITIES</span><h2>Made for the moments<br /><em>between your work.</em></h2><p>Voice control, helpful desktop actions, and a little more personality.</p></div>
-        <div className="feature-grid">{features.map((feature, i) => <motion.article key={feature.title} style={{ "--card-color": feature.color } as React.CSSProperties} whileHover={{ y: -7, rotate: i % 2 ? 1 : -1 }}><span className="feature-icon">{feature.icon}</span><small>0{i + 1}</small><h3>{feature.title}</h3><p>{feature.text}</p></motion.article>)}</div>
+      <section className="showcase-section" id="features" aria-labelledby="showcase-title">
+        <div className="showcase-heading">
+          <span>Product preview</span>
+          <h2 id="showcase-title">See VYRO in action.</h2>
+          <p>A quick look at the desktop companion, voice commands, emotions, focus mode, and Windows actions.</p>
+        </div>
+        <ShowcaseMarquee />
       </section>
 
       <section className="section-shell ugc-demo" id="demo">
