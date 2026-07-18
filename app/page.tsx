@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import { ArrowDown, ArrowUpRight, Check, ChevronDown, Moon, Play, Sun } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import PixelDrift from "./components/PixelDrift";
-import ShowcaseMarquee from "./components/ShowcaseMarquee";
 import VyroFeatureSpotlight from "./components/VyroFeatureSpotlight";
 import { startPolarCheckout } from "./lib/polar-checkout";
 
@@ -263,19 +262,10 @@ export default function Home() {
         </motion.div>
       </section>
 
-      <section className="showcase-section" id="features" aria-labelledby="showcase-title">
-        <div className="showcase-heading">
-          <span>Product preview</span>
-          <h2 id="showcase-title">See VYRO in action.</h2>
-          <p>A quick look at the desktop companion, voice commands, emotions, focus mode, and Windows actions.</p>
-        </div>
-        <ShowcaseMarquee />
-      </section>
-
       <VyroFeatureSpotlight />
 
       <section className="section-shell ugc-demo" id="demo">
-        <div className="demo-head"><span>02 / PRODUCT DEMO</span><h2>See VYRO<br /><em>in action.</em></h2><p>A quick look at how VYRO fits into your Windows desktop.</p></div>
+        <div className="demo-head"><span>02 / PRODUCT DEMO</span><h2>Watch VYRO<br /><em>at work.</em></h2><p>A quick look at how VYRO fits into your Windows desktop.</p></div>
         <motion.div className="final-demo-card" initial={{ opacity: 0, y: 28 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: .25 }} transition={{ duration: .45, ease: "easeOut" }}>
           <video className="final-demo-video" src="/videos/vyro-demo.mp4" controls playsInline preload="metadata" />
         </motion.div>
