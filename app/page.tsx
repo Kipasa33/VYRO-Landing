@@ -2,7 +2,6 @@
 
 import { motion, type Variants } from "framer-motion";
 import { ArrowDown, ArrowUpRight, Check, ChevronDown, Moon, Play, Sun } from "lucide-react";
-import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import PixelDrift from "./components/PixelDrift";
 import VyroFeatureSpotlight from "./components/VyroFeatureSpotlight";
@@ -165,23 +164,9 @@ function ProCard() {
       <div className="pricing-card-topline">
         <span className="pricing-availability">Coming later</span>
       </div>
-      <div className="pricing-pro-hero">
-        <div>
-          <h3>Pro</h3>
-          <div className="pricing-price" aria-label="Pro is planned at 49 dollars">
-            <strong>$49</strong>
-          </div>
-        </div>
-        <div className="pricing-pro-robot" aria-hidden="true">
-          <Image
-            src="/vyro-mascot-clean.png"
-            alt=""
-            width={190}
-            height={190}
-            sizes="(max-width: 767px) 88px, 116px"
-            className="pricing-pro-robot-image"
-          />
-        </div>
+      <h3>Pro</h3>
+      <div className="pricing-price" aria-label="Pro is planned at 49 dollars">
+        <strong>$49</strong>
       </div>
       <p className="pricing-helper">For advanced cloud AI and automation modules.</p>
       <p className="pricing-description">Built for heavier AI workflows, cloud features, and future advanced assistants.</p>
