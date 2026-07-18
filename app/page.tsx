@@ -1,13 +1,31 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 import { ArrowDown, ArrowUpRight, Check, ChevronDown, Moon, Play, Sun } from "lucide-react";
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import PixelDrift from "./components/PixelDrift";
 import VyroFeatureSpotlight from "./components/VyroFeatureSpotlight";
 import { startPolarCheckout } from "./lib/polar-checkout";
 
 const voiceReactions = ["/audio/robot_click_01.mp3", "/audio/robot_click_02.mp3"];
+
+const pricingGridVariants: Variants = {
+  hidden: {},
+  visible: {
+    transition: { staggerChildren: 0.14, delayChildren: 0.08 },
+  },
+};
+
+const pricingCardVariants: Variants = {
+  hidden: { opacity: 0, y: 28, scale: 0.985 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: { duration: 0.55, ease: "easeOut" },
+  },
+};
 
 const faqs = [
   { question: "Is VYRO for Windows?", answer: "Yes. VYRO is designed for Windows 10 and Windows 11." },
@@ -95,7 +113,11 @@ function VYROMascot() {
 
 function FoundersEditionCard() {
   return (
-    <motion.article className="pricing-card pricing-card-founder" whileHover={{ y: -5 }}>
+    <motion.article
+      className="pricing-card pricing-card-founder"
+      variants={pricingCardVariants}
+      whileHover={{ y: -8, scale: 1.008 }}
+    >
       <div className="pricing-card-topline">
         <span className="pricing-availability">Available now</span>
         <span className="pricing-recommended">Founder offer</span>
@@ -135,13 +157,31 @@ function ProCard() {
   ];
 
   return (
-    <motion.article className="pricing-card pricing-card-pro" whileHover={{ y: -3 }}>
+    <motion.article
+      className="pricing-card pricing-card-pro"
+      variants={pricingCardVariants}
+      whileHover={{ y: -8, scale: 1.008 }}
+    >
       <div className="pricing-card-topline">
         <span className="pricing-availability">Coming later</span>
       </div>
-      <h3>Pro</h3>
-      <div className="pricing-price pricing-price-later" aria-label="Pro pricing is coming later">
-        <strong>Coming later</strong>
+      <div className="pricing-pro-hero">
+        <div>
+          <h3>Pro</h3>
+          <div className="pricing-price" aria-label="Pro is planned at 49 dollars">
+            <strong>$49</strong>
+          </div>
+        </div>
+        <div className="pricing-pro-robot" aria-hidden="true">
+          <Image
+            src="/vyro-mascot-clean.png"
+            alt=""
+            width={190}
+            height={190}
+            sizes="(max-width: 767px) 88px, 116px"
+            className="pricing-pro-robot-image"
+          />
+        </div>
       </div>
       <p className="pricing-helper">For advanced cloud AI and automation modules.</p>
       <p className="pricing-description">Built for heavier AI workflows, cloud features, and future advanced assistants.</p>
@@ -282,12 +322,34 @@ export default function Home() {
       <WhatYouGetToday />
 
       <section className="section-shell pricing" id="pricing">
-        <div className="pricing-heading">
-          <span>Pricing</span>
-          <h2>Start with the VYRO core desktop app.</h2>
-          <p>Founder Edition is a one-time license for the VYRO Windows desktop companion. Advanced cloud AI modules may require Pro later.</p>
+        <div className="pricing-atmosphere" aria-hidden="true">
+          <i className="pricing-orb pricing-orb-founder" />
+          <i className="pricing-orb pricing-orb-pro" />
+          <i className="pricing-particle pricing-particle-one" />
+          <i className="pricing-particle pricing-particle-two" />
+          <i className="pricing-particle pricing-particle-three" />
         </div>
-        <div className="pricing-grid"><FoundersEditionCard /><ProCard /></div>
+        <motion.div
+          className="pricing-heading"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.6 }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
+        >
+          <span>Pricing</span>
+          <h2>Choose your <em>VYRO</em> plan.</h2>
+          <p>Start with the core desktop app today. Advanced cloud AI modules may require Pro later.</p>
+        </motion.div>
+        <motion.div
+          className="pricing-grid"
+          variants={pricingGridVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.16 }}
+        >
+          <FoundersEditionCard />
+          <ProCard />
+        </motion.div>
         <p className="pricing-comparison-note">Founder Edition covers the core desktop app. Pro may be introduced later for advanced cloud AI usage.</p>
         <p className="purchased-link">Already purchased? <a href="/recover-key">Recover your license key</a></p>
       </section>
