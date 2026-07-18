@@ -61,14 +61,6 @@ em { color: #765cf3; font-style: normal; } [data-theme="dark"] em { color: #a99b
 .secondary-cta { background: rgba(255,255,255,.58); color: #161616; box-shadow: 4px 4px 0 rgba(34,211,238,.62); backdrop-filter: blur(.75rem); }
 .secondary-cta:hover { transform: translate(-2px,-2px); box-shadow: 7px 7px 0 rgba(34,211,238,.7); background: rgba(255,255,255,.76); }
 [data-theme="dark"] .secondary-cta { color: #f2efe4; background: rgba(35,35,43,.7); }
-.hero-trust { display: flex; flex-wrap: wrap; justify-content: center; gap: .45rem; max-width: 44rem; margin-top: .05rem; }
-.hero-trust span { display: inline-flex; align-items: center; gap: .35rem; min-height: 2.1rem; padding: .42rem .62rem; background: rgba(255,255,255,.46); border: 1px solid rgba(22,22,22,.36); border-radius: 2rem; backdrop-filter: blur(.6rem); font-size: .68rem; font-weight: 900; }
-.hero-trust svg { color: #0f9fba; stroke-width: 3; }
-[data-theme="dark"] .hero-trust span { background: rgba(31,31,42,.55); border-color: rgba(255,255,255,.28); }
-.hero-proof { margin-top: -.15rem; font-size: .68rem; line-height: 1.45; font-weight: 800; opacity: .76; }
-.hero-chips { z-index: 3; display: flex; flex-wrap: wrap; justify-content: center; gap: .4rem; margin-top: .15rem; }
-.hero-chips span { padding: .42rem .68rem; background: rgba(255,255,255,.5); border: 1px solid rgba(22,22,22,.46); border-radius: 2rem; backdrop-filter: blur(.5rem); font-size: .58rem; font-weight: 900; }
-[data-theme="dark"] .hero-chips span { background: rgba(31,31,42,.55); border-color: rgba(255,255,255,.35); }
 .hero-capabilities { position: relative; z-index: 4; max-width: 72rem; margin: -1.1rem auto 0; padding: 0 1rem 2rem; }
 .hero-capabilities-inner { display: grid; gap: 1rem; padding: 1rem; background: rgba(249,245,232,.62); border: var(--line); border-radius: 1.25rem; box-shadow: 6px 6px 0 rgba(22,22,22,.86), 0 1.5rem 3rem rgba(22,22,22,.08); backdrop-filter: blur(.8rem); }
 [data-theme="dark"] .hero-capabilities-inner { background: rgba(35,35,43,.68); }
@@ -245,11 +237,6 @@ footer{padding:6rem 1rem 2rem;text-align:center;background:#17171b;color:#f7f2e5
 .main-cta:hover { transform: translateY(-2px); box-shadow: 0 1rem 2rem rgba(26,45,78,.25), 0 0 0 1px rgba(255,255,255,.18) inset; }
 .secondary-cta { background: rgba(255,255,255,.72); box-shadow: 0 .55rem 1.5rem rgba(22,47,69,.09); }
 .secondary-cta:hover { transform: translateY(-2px); box-shadow: 0 .9rem 1.8rem rgba(22,47,69,.14); }
-.hero-trust { gap: .4rem; }
-.hero-trust span { min-height: 1.9rem; padding: .36rem .56rem; border-color: rgba(25,50,70,.15); background: rgba(255,255,255,.58); font-size: .61rem; font-weight: 720; }
-.hero-proof { margin-top: .05rem; color: rgba(24,49,70,.68); font-size: .67rem; font-weight: 680; }
-.hero-chips { margin-top: .3rem; }
-.hero-chips span { border-color: rgba(27,52,74,.14); background: rgba(255,255,255,.48); color: rgba(24,49,70,.77); font-size: .55rem; font-weight: 760; }
 
 .hero-capabilities { max-width: 70rem; margin: -1rem auto 0; padding-bottom: 2.25rem; }
 .hero-capabilities-inner { gap: 1.4rem; padding: 1.35rem; border: 1px solid rgba(27,52,74,.14); border-radius: 1.25rem; box-shadow: 0 1rem 3rem rgba(22,47,69,.08); background: rgba(255,255,255,.6); }

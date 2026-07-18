@@ -252,15 +252,6 @@ export default function Home() {
             <a href="#pricing" className="main-cta">Get VYRO <ArrowDown size={20} /></a>
             <a href="#demo" className="secondary-cta"><Play size={18} /> Watch demo</a>
           </div>
-          <div className="hero-trust" aria-label="VYRO purchase trust points">
-            <span><Check size={15} /> Lifetime core app license</span>
-            <span><Check size={15} /> Founder updates included</span>
-            <span><Check size={15} /> Designed for Windows</span>
-          </div>
-          <small className="hero-proof">Founder Edition available for early users.</small>
-        </motion.div>
-        <motion.div className="hero-chips" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: .65 }}>
-          <span>Listens</span><span>Talks back</span><span>Opens apps</span><span>Helps you focus</span><span>Shows emotion</span>
         </motion.div>
       </section>
 
