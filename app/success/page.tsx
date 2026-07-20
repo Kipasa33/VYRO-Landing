@@ -3,12 +3,14 @@
 import { motion } from "framer-motion";
 import { ArrowLeft, Download, KeyRound, MessageCircle } from "lucide-react";
 import Link from "next/link";
+import VerifiedPurchaseTracker from "../components/VerifiedPurchaseTracker";
 import { trackEvent } from "../lib/analytics";
 import { startPolarCheckout } from "../lib/polar-checkout";
 
 export default function SuccessPage() {
   return (
     <main className="success-page">
+      <VerifiedPurchaseTracker />
       <div className="noise" />
       <div className="success-glow success-glow-one" />
       <div className="success-glow success-glow-two" />
