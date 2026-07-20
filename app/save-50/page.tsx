@@ -113,7 +113,7 @@ export default function SaveFiftyPage() {
       <section className="reward-cta">
         <span>YOUR MOVE</span>
         <h2>Give the algorithm<br /><em>something cute.</em></h2>
-        <button type="button" className="main-cta" onClick={() => startPolarCheckout()}>Download VYRO <Download size={19} /></button>
+        <button type="button" className="main-cta" onClick={() => startPolarCheckout("landing_page", "save_50")}>Download VYRO <Download size={19} /></button>
         <small>Windows 10 &amp; 11 · Mild internet fame not guaranteed</small>
       </section>
     </main>

@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { ArrowLeft, Download, KeyRound, MessageCircle } from "lucide-react";
 import Link from "next/link";
+import { trackEvent } from "../lib/analytics";
 import { startPolarCheckout } from "../lib/polar-checkout";
 
 export default function SuccessPage() {
@@ -19,7 +20,15 @@ export default function SuccessPage() {
         <h1>Purchase successful</h1>
         <p>Welcome to VYRO</p>
         <div className="success-actions">
-          <button type="button" onClick={() => startPolarCheckout()}><Download size={18} /> Download VYRO</button>
+          <button
+            type="button"
+            onClick={() => {
+              trackEvent("download_click", { cta_location: "success" });
+              startPolarCheckout("landing_page", "success");
+            }}
+          >
+            <Download size={18} /> Download VYRO
+          </button>
           <a href="#" onClick={(event) => event.preventDefault()}><MessageCircle size={18} /> Join Discord</a>
           <Link href="/recover-key"><KeyRound size={18} /> Recover License Key</Link>
         </div>

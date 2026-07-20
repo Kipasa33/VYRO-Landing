@@ -139,7 +139,7 @@ function FoundersEditionCard() {
         <li><Check size={18} /> Priority feedback</li>
       </ul>
       <p className="pricing-note">Advanced cloud AI modules may require a Pro plan later.</p>
-      <button className="pricing-card-cta" onClick={() => startPolarCheckout()}>Get Founder Edition <ArrowUpRight size={17} /></button>
+      <button className="pricing-card-cta" onClick={() => startPolarCheckout("landing_page", "pricing")}>Get Founder Edition <ArrowUpRight size={17} /></button>
     </motion.article>
   );
 }
@@ -249,7 +249,7 @@ export default function Home() {
           <h1>Meet VYRO.<br /><em>Your AI desktop companion.</em></h1>
           <p className="hero-subtitle">VYRO lives on your Windows desktop, listens to your voice, reacts with emotion, and helps you get things done faster.</p>
           <div className="hero-actions" aria-label="Hero actions">
-            <a href="#pricing" className="main-cta">Get VYRO <ArrowDown size={20} /></a>
+            <a href="#pricing" className="main-cta" data-analytics-event="primary_cta_click" data-cta-location="hero">Get VYRO <ArrowDown size={20} /></a>
             <a href="#demo" className="secondary-cta"><Play size={18} /> Watch demo</a>
           </div>
         </motion.div>
@@ -283,10 +283,10 @@ export default function Home() {
       <section className="section-shell ugc-demo" id="demo">
         <div className="demo-head"><span>02 / PRODUCT DEMO</span><h2>Watch VYRO<br /><em>at work.</em></h2><p>A quick look at how VYRO fits into your Windows desktop.</p></div>
         <motion.div className="final-demo-card" initial={{ opacity: 0, y: 28 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: .25 }} transition={{ duration: .45, ease: "easeOut" }}>
-          <video className="final-demo-video" src="/videos/vyro-demo.mp4" controls playsInline preload="metadata" />
+          <video className="final-demo-video" src="/videos/vyro-demo.mp4" controls playsInline preload="metadata" data-analytics-video="demo" />
         </motion.div>
         <div className="demo-conversion">
-          <a href="#pricing" className="main-cta">Get VYRO <ArrowDown size={20} /></a>
+          <a href="#pricing" className="main-cta" data-analytics-event="primary_cta_click" data-cta-location="demo">Get VYRO <ArrowDown size={20} /></a>
           <div className="demo-trust" aria-label="VYRO purchase trust points">
             <span><Check size={15} /> Lifetime License</span>
             <span><Check size={15} /> Core app, one-time license</span>
@@ -372,7 +372,7 @@ export default function Home() {
         <div className="site-footer-brand">
           <a className="site-footer-logo" href="/">VYRO</a>
           <p>AI desktop companion for Windows.</p>
-          <button type="button" className="site-footer-cta" onClick={() => startPolarCheckout()}>Get VYRO <ArrowUpRight size={16} /></button>
+          <button type="button" className="site-footer-cta" onClick={() => startPolarCheckout("landing_page", "footer")}>Get VYRO <ArrowUpRight size={16} /></button>
         </div>
         <div className="site-footer-column">
           <h3>Company</h3>

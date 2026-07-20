@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/next";
 import { Bricolage_Grotesque, Space_Mono } from "next/font/google";
+import ConversionTracking from "./components/ConversionTracking";
+import GoogleAnalytics from "./components/GoogleAnalytics";
 import "./globals.css";
 
 const display = Bricolage_Grotesque({ subsets: ["latin"], variable: "--font-display" });
@@ -119,6 +121,8 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
         />
         {children}
+        <GoogleAnalytics />
+        <ConversionTracking />
         <Analytics />
       </body>
     </html>

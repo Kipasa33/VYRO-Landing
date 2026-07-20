@@ -1,13 +1,11 @@
+import { trackEvent } from "./analytics";
+
 export const POLAR_CHECKOUT_URL =
   "https://buy.polar.sh/polar_cl_wimEWnugkl85wNdE9xIONWONxXSVe2EUlAOW34MdNv8";
 
-declare global {
-  interface Window {
-    dataLayer?: Array<Record<string, string>>;
-  }
-}
-
-export function startPolarCheckout(source = "landing_page") {
+export function startPolarCheckout(source = "landing_page", ctaLocation = source) {
+  trackEvent("founder_checkout_click", { source, cta_location: ctaLocation });
+  trackEvent("begin_checkout", { source, cta_location: ctaLocation, currency: "USD", value: 19 });
   const event = { event: "checkout_started", source };
   window.dataLayer?.push(event);
   window.dispatchEvent(new CustomEvent("checkout_started", { detail: { source } }));
