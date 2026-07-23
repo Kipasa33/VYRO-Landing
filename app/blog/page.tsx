@@ -20,6 +20,11 @@ export const metadata: Metadata = {
 
 const posts = [
   {
+    href: "/blog/how-to-open-apps-with-voice-on-windows",
+    title: "How to Open Apps With Voice Commands on Windows",
+    description: "Learn how voice-enabled desktop assistants launch supported Windows apps and see how the interaction works with VYRO.",
+  },
+  {
     href: "/blog/windows-copilot-alternative",
     title: "Windows Copilot Alternative: Why Desktop AI Companions Are Different",
     description: "Learn how VYRO offers a desktop AI companion with voice commands, personality, app launching, and emotional reactions.",
