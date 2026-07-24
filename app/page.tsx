@@ -244,38 +244,49 @@ export default function Home() {
             transition={{ type: "tween", duration: 1.1, ease: "easeOut" }}
           />
         </div>
-        <VYROMascot />
-        <motion.div className="hero-copy" initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: .45 }}>
-          <h1>Meet VYRO.<br /><em>Your AI desktop companion.</em></h1>
-          <p className="hero-subtitle">VYRO lives on your Windows desktop, listens to your voice, reacts with emotion, and helps you get things done faster.</p>
-          <div className="hero-actions" aria-label="Hero actions">
-            <a href="#pricing" className="main-cta" data-analytics-event="primary_cta_click" data-cta-location="hero">Get VYRO <ArrowDown size={20} /></a>
-            <a href="#demo" className="secondary-cta"><Play size={18} /> Watch demo</a>
-          </div>
-        </motion.div>
+        <div className="hero-main">
+          <motion.div className="hero-copy" initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: .2 }}>
+            <h1>An AI companion that lives on your <em>Windows desktop</em></h1>
+            <p className="hero-subtitle">VYRO talks back, opens apps with voice commands, helps you focus, and reacts with personality.</p>
+            <div className="hero-actions" aria-label="Hero actions">
+              <a href="#pricing" className="main-cta" data-analytics-event="primary_cta_click" data-cta-location="hero">Get VYRO for Windows <ArrowDown size={20} /></a>
+              <a href="#demo" className="secondary-cta" data-analytics-event="demo_play" data-cta-location="hero"><Play size={18} /> Watch Demo</a>
+            </div>
+          </motion.div>
+
+          <motion.div className="hero-product-demo" initial={{ opacity: 0, x: 24 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: .35, duration: .55 }} aria-label="VYRO opens Spotify from a voice command">
+            <div className="hero-demo-glow" aria-hidden="true" />
+            <div className="hero-demo-frame">
+              <div className="hero-demo-toolbar" aria-hidden="true"><span /><span /><span /><b>LIVE DESKTOP ACTION</b></div>
+              <div className="hero-demo-stage">
+                <VYROMascot />
+                <div className="hero-demo-sequence">
+                  <div className="hero-demo-step hero-demo-command">
+                    <small>Voice command</small>
+                    <strong>&ldquo;VYRO, open Spotify.&rdquo;</strong>
+                  </div>
+                  <span className="hero-demo-arrow" aria-hidden="true">&#8595;</span>
+                  <div className="hero-demo-step hero-demo-response">
+                    <small>VYRO responds</small>
+                    <strong>&ldquo;Opening Spotify.&rdquo;</strong>
+                  </div>
+                  <span className="hero-demo-arrow" aria-hidden="true">&#8595;</span>
+                  <div className="hero-demo-app">
+                    <span className="spotify-mark" aria-hidden="true"><i /><i /><i /></span>
+                    <span><small>Application opens</small><strong>Spotify is ready</strong></span>
+                    <b aria-hidden="true">OPEN</b>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
       </section>
 
-      <section className="hero-capabilities" aria-labelledby="hero-capabilities-title">
-        <motion.div className="hero-capabilities-inner" initial={{ opacity: 0, y: 22 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: .35 }}>
-          <div className="hero-capabilities-head">
-            <span>THE CORE EXPERIENCE</span>
-            <h2 id="hero-capabilities-title">What VYRO does</h2>
-          </div>
-          <div className="hero-capability-grid">
-            {[
-              ["Voice commands", "Control supported actions with natural speech."],
-              ["Open apps", "Launch the tools you use without extra clicking."],
-              ["Talk naturally", "Ask a question and get a useful response."],
-              ["Stay focused", "Start a calmer, more intentional desktop session."],
-            ].map(([title, description], index) => (
-              <motion.article key={title} whileHover={{ y: -5, rotate: index % 2 ? .6 : -.6 }}>
-                <span>0{index + 1}</span>
-                <h3>{title}</h3>
-                <p>{description}</p>
-              </motion.article>
-            ))}
-          </div>
-        </motion.div>
+      <section className="hero-feature-row" aria-label="VYRO core features">
+        {["Voice commands", "Opens apps", "Focus Mode", "Emotions & reactions"].map((feature) => (
+          <span key={feature}><Check size={16} aria-hidden="true" />{feature}</span>
+        ))}
       </section>
 
       <VyroFeatureSpotlight />
