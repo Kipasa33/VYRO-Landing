@@ -2,12 +2,15 @@
 
 import { motion, type Variants } from "framer-motion";
 import { ArrowDown, ArrowUpRight, Check, ChevronDown, Moon, Play, Sun } from "lucide-react";
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import PixelDrift from "./components/PixelDrift";
 import VyroFeatureSpotlight from "./components/VyroFeatureSpotlight";
+import { trackEventOnce } from "./lib/analytics";
 import { startPolarCheckout } from "./lib/polar-checkout";
 
 const voiceReactions = ["/audio/robot_click_01.mp3", "/audio/robot_click_02.mp3"];
+const heroDemoScenes = ["spotify_voice_command", "slap_mode", "character_switching"] as const;
 
 const pricingGridVariants: Variants = {
   hidden: {},
@@ -204,6 +207,112 @@ function WhatYouGetToday() {
   );
 }
 
+function HeroProductDemo() {
+  const [activeScene, setActiveScene] = useState(0);
+
+  useEffect(() => {
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reducedMotion) return;
+
+    const rotationTimer = window.setInterval(() => {
+      setActiveScene((currentScene) => (currentScene + 1) % heroDemoScenes.length);
+    }, 6000);
+
+    return () => window.clearInterval(rotationTimer);
+  }, []);
+
+  useEffect(() => {
+    const scene = heroDemoScenes[activeScene];
+    trackEventOnce(`home:hero_demo_scene_view:${scene}`, "hero_demo_scene_view", {
+      scene,
+      cta_location: "hero",
+    });
+  }, [activeScene]);
+
+  return (
+    <motion.div
+      className="hero-product-demo"
+      initial={{ opacity: 0, x: 24 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ delay: .35, duration: .55 }}
+      aria-label="VYRO voice command, Slap Mode, and character switching demonstration"
+    >
+      <div className="hero-demo-glow" aria-hidden="true" />
+      <div className="hero-demo-frame">
+        <div className="hero-demo-toolbar" aria-hidden="true"><span /><span /><span /><b>LIVE DESKTOP ACTION</b></div>
+        <div className={`hero-demo-stage hero-demo-stage-${activeScene}`}>
+          <VYROMascot />
+          <div className="hero-demo-scenes">
+            {activeScene === 0 && <div className="hero-demo-scene hero-demo-voice">
+              <div className="hero-demo-step hero-demo-command">
+                <small>Voice command</small>
+                <strong>&ldquo;VYRO, open Spotify.&rdquo;</strong>
+              </div>
+              <span className="hero-demo-arrow" aria-hidden="true">&#8595;</span>
+              <div className="hero-demo-step hero-demo-response">
+                <small>VYRO responds</small>
+                <strong>&ldquo;Opening Spotify.&rdquo;</strong>
+              </div>
+              <span className="hero-demo-arrow" aria-hidden="true">&#8595;</span>
+              <div className="hero-demo-app">
+                <span className="spotify-mark" aria-hidden="true"><i /><i /><i /></span>
+                <span><small>Application opens</small><strong>Spotify is ready</strong></span>
+                <b aria-hidden="true">OPEN</b>
+              </div>
+            </div>}
+
+            {activeScene === 1 && <div className="hero-demo-scene hero-demo-slap">
+              <div className="hero-slap-copy">
+                <span>SLAP MODE</span>
+                <strong>Slap annoying windows out of the way.</strong>
+              </div>
+              <div className="hero-slap-action" aria-label="VYRO slaps a Windows-style application window">
+                <div className="hero-slap-swoosh" aria-hidden="true"><i /><i /><i /></div>
+                <div className="hero-slap-impact" aria-hidden="true"><i /><i /><i /><b>!</b></div>
+                <div className="hero-slap-window">
+                  <div className="hero-slap-window-bar"><span /><span /><span /><b>Untitled app</b></div>
+                  <div className="hero-slap-window-body"><i /><i /><i /></div>
+                </div>
+              </div>
+              <div className="hero-slap-status"><Check size={14} aria-hidden="true" /> Slap Mode activated.</div>
+            </div>}
+
+            {activeScene === 2 && <div className="hero-demo-scene hero-demo-character">
+              <div className="hero-character-copy">
+                <span>CHOOSE YOUR COMPANION</span>
+                <strong>Choose your companion</strong>
+                <p>Switch characters anytime to match your vibe.</p>
+              </div>
+              <div className="hero-character-preview" aria-label="VYRO character preview switching from VYRO Robot to Cute Companion">
+                <div className="hero-character-image hero-character-image-robot">
+                  <Image src="/characters/vyro-robot.png" alt="VYRO Robot character" fill sizes="112px" />
+                </div>
+                <div className="hero-character-image hero-character-image-cute">
+                  <Image src="/characters/vyro-cute.png" alt="Cute Companion character" fill sizes="112px" />
+                </div>
+                <i aria-hidden="true" />
+              </div>
+              <div className="hero-character-options" aria-label="Available VYRO companions">
+                <div className="hero-character-option hero-character-option-robot">
+                  <span><Image src="/characters/vyro-robot.png" alt="" fill sizes="40px" /></span>
+                  <b>VYRO Robot</b>
+                  <Check size={13} aria-hidden="true" />
+                </div>
+                <div className="hero-character-option hero-character-option-cute">
+                  <span><Image src="/characters/vyro-cute.png" alt="" fill sizes="40px" /></span>
+                  <b>Cute Companion</b>
+                  <Check size={13} aria-hidden="true" />
+                </div>
+              </div>
+              <div className="hero-character-status"><Check size={14} aria-hidden="true" /> Companion switched.</div>
+            </div>}
+          </div>
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+
 export default function Home() {
   const [dark, setDark] = useState(false);
   const [openFaq, setOpenFaq] = useState(0);
@@ -254,32 +363,7 @@ export default function Home() {
             </div>
           </motion.div>
 
-          <motion.div className="hero-product-demo" initial={{ opacity: 0, x: 24 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: .35, duration: .55 }} aria-label="VYRO opens Spotify from a voice command">
-            <div className="hero-demo-glow" aria-hidden="true" />
-            <div className="hero-demo-frame">
-              <div className="hero-demo-toolbar" aria-hidden="true"><span /><span /><span /><b>LIVE DESKTOP ACTION</b></div>
-              <div className="hero-demo-stage">
-                <VYROMascot />
-                <div className="hero-demo-sequence">
-                  <div className="hero-demo-step hero-demo-command">
-                    <small>Voice command</small>
-                    <strong>&ldquo;VYRO, open Spotify.&rdquo;</strong>
-                  </div>
-                  <span className="hero-demo-arrow" aria-hidden="true">&#8595;</span>
-                  <div className="hero-demo-step hero-demo-response">
-                    <small>VYRO responds</small>
-                    <strong>&ldquo;Opening Spotify.&rdquo;</strong>
-                  </div>
-                  <span className="hero-demo-arrow" aria-hidden="true">&#8595;</span>
-                  <div className="hero-demo-app">
-                    <span className="spotify-mark" aria-hidden="true"><i /><i /><i /></span>
-                    <span><small>Application opens</small><strong>Spotify is ready</strong></span>
-                    <b aria-hidden="true">OPEN</b>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </motion.div>
+          <HeroProductDemo />
         </div>
       </section>
 

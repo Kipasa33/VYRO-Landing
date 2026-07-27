@@ -1,5 +1,6 @@
 export type AnalyticsEventName =
   | "demo_play"
+  | "hero_demo_scene_view"
   | "primary_cta_click"
   | "pricing_view"
   | "founder_checkout_click"
