@@ -809,3 +809,23 @@ footer{padding:6rem 1rem 2rem;text-align:center;background:#17171b;color:#f7f2e5
 @media (min-width:768px){.pricing{padding:6.5rem 2rem}.pricing-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:1.4rem;align-items:stretch}.pricing-card{height:100%;padding:1.7rem}.pricing-description{min-height:3.25rem}.pricing-card-pro .pricing-card-cta{margin-top:auto}}
 @media (max-width:767px){.pricing{border-radius:1.75rem}.pricing-particle{display:none}.pricing-heading h2{font-size:clamp(2.25rem,12vw,3.35rem)}}
 @media (prefers-reduced-motion:reduce){.pricing-card,.pricing-card-cta,.pricing-heading h2 em{transition:none!important;transform:none!important}.pricing-heading h2 em,.pricing-orb,.pricing-particle{animation:none!important}}
+
+/* Final homepage rhythm pass: one spacing scale, one quiet trust moment. */
+.hero-feature-row { margin-bottom: 0; }
+.section-shell, .trust-rail { scroll-margin-top: 4rem; }
+.ugc-demo, .pricing, .faq, .roadmap { margin-top: 0; }
+.ugc-demo { margin-top: 5rem; }
+.get-today { padding-top: 5rem; }
+.pricing, .faq, .roadmap { padding-top: 6rem; }
+.trust-rail { width: min(calc(100% - 2rem), 72rem); margin: 0 auto; display: grid; grid-template-columns: 1fr; gap: .75rem; padding: .8rem; border: 1px solid rgba(27,52,74,.14); border-radius: 1rem; background: rgba(255,255,255,.58); box-shadow: 0 .9rem 2.6rem rgba(22,47,69,.07); backdrop-filter: blur(.8rem); }
+.trust-rail-item, .trust-rail-link { min-width: 0; padding: .8rem .85rem; border-radius: .72rem; background: rgba(255,255,255,.5); }
+.trust-rail-item span { display: flex; align-items: center; gap: .38rem; color: #314a63; font-size: .63rem; font-weight: 850; letter-spacing: .07em; }
+.trust-rail-item span svg { color: #5d4ae6; stroke-width: 3; }
+.trust-rail-item p { margin: .38rem 0 0; color: rgba(25,47,68,.66); font-size: .78rem; line-height: 1.45; font-weight: 560; }
+.trust-rail-link { display: inline-flex; align-items: center; justify-content: center; gap: .35rem; min-height: 2.75rem; border: 1px solid rgba(93,74,230,.18); color: #5145cd; font-size: .78rem; font-weight: 800; transition: transform .2s ease, background .2s ease; }
+.trust-rail-link:hover { transform: translateY(-2px); background: rgba(231,228,255,.7); }
+[data-theme="dark"] .trust-rail { border-color: rgba(255,255,255,.12); background: rgba(23,25,37,.72); }
+[data-theme="dark"] .trust-rail-item, [data-theme="dark"] .trust-rail-link { background: rgba(12,20,31,.5); }
+[data-theme="dark"] .trust-rail-item span, [data-theme="dark"] .trust-rail-item p { color: #f2efe4; }
+@media (min-width: 640px) { .trust-rail { grid-template-columns: repeat(3, minmax(0, 1fr)) auto; align-items: stretch; gap: .55rem; } .trust-rail-link { padding-inline: 1rem; } }
+@media (min-width: 768px) { .ugc-demo { margin-top: 6rem; } .get-today { padding-top: 6rem; } .pricing, .faq, .roadmap { padding-top: 7rem; } }

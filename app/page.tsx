@@ -207,6 +207,26 @@ function WhatYouGetToday() {
   );
 }
 
+function TrustRail() {
+  const items = [
+    ["WINDOWS FIRST", "Built for Windows 10 and 11."],
+    ["PRIVATE BY DESIGN", "Your desktop companion stays under your control."],
+    ["ONE-TIME LICENSE", "Get the core app with lifetime access."],
+  ];
+
+  return (
+    <section className="trust-rail" aria-label="VYRO trust and product details">
+      {items.map(([label, copy]) => (
+        <div className="trust-rail-item" key={label}>
+          <span><Check size={15} aria-hidden="true" /> {label}</span>
+          <p>{copy}</p>
+        </div>
+      ))}
+      <a className="trust-rail-link" href="/security">Explore security <ArrowUpRight size={15} aria-hidden="true" /></a>
+    </section>
+  );
+}
+
 function HeroProductDemo() {
   const [activeScene, setActiveScene] = useState(0);
 
@@ -391,6 +411,8 @@ export default function Home() {
       </section>
 
       <WhatYouGetToday />
+
+      <TrustRail />
 
       <section className="section-shell pricing" id="pricing">
         <div className="pricing-atmosphere" aria-hidden="true">

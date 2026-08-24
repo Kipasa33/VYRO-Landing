@@ -63,13 +63,22 @@ function positionOffset(position: PixelPosition) {
   return 0;
 }
 
+function roundParticleValue(value: number) {
+  return Number(value.toFixed(4));
+}
+
 export default function PixelDrift(options: Partial<Props> = {}) {
   const props = { ...COMPONENT_DEFAULTS, ...options } satisfies Props;
   const prefersReducedMotion = useReducedMotion();
-  const shouldAnimate = !prefersReducedMotion && props.mode !== "static";
+  const [hydrated, setHydrated] = useState(false);
+  const shouldAnimate = hydrated && !prefersReducedMotion && props.mode !== "static";
   const rootRef = useRef<HTMLDivElement | null>(null);
   const frameRef = useRef<number | null>(null);
   const [pointer, setPointer] = useState({ x: -9999, y: -9999, width: 0, height: 0, active: false });
+
+  useEffect(() => {
+    setHydrated(true);
+  }, []);
 
   useEffect(() => {
     if (!props.mouseEnabled || prefersReducedMotion) return;
@@ -117,13 +126,13 @@ export default function PixelDrift(options: Partial<Props> = {}) {
       const rowBias = Math.sin(index * 1.73) * 10;
       return {
         id: `${props.text}-${index}`,
-        x: 7 + random() * 86,
-        y: 20 + random() * 60 + rowBias + yOffset,
-        driftX: (random() - 0.5) * 48,
-        driftY: (random() - 0.5) * 36,
+        x: roundParticleValue(7 + random() * 86),
+        y: roundParticleValue(20 + random() * 60 + rowBias + yOffset),
+        driftX: roundParticleValue((random() - 0.5) * 48),
+        driftY: roundParticleValue((random() - 0.5) * 36),
         color: props.colors[index % props.colors.length],
-        scale: 0.68 + random() * 1.28,
-        delay: random() * 0.22,
+        scale: roundParticleValue(0.68 + random() * 1.28),
+        delay: roundParticleValue(random() * 0.22),
         radius: random() > 0.72 ? "38%" : "22%",
       };
     });
