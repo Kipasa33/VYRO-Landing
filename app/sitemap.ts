@@ -35,6 +35,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     {
+      url: "https://vyrodesk.com/windows-ai-automation",
+      lastModified,
+      changeFrequency: "monthly",
+      priority: 0.85,
+    },
+    {
       url: "https://vyrodesk.com/blog",
       lastModified,
       changeFrequency: "monthly",
