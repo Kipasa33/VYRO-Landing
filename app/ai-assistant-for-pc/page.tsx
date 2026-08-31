@@ -49,6 +49,15 @@ const useCases = [
   "Get a more personal AI companion experience",
 ];
 
+const comparisonRows = [
+  ["Runs as a desktop companion", "Designed to stay visible on the Windows desktop", "May be centered on a browser, sidebar, or a different interface"],
+  ["Voice commands", "Supports voice-first interaction for supported commands", "Voice support and available commands can vary"],
+  ["Opens desktop apps", "Can open supported apps when you ask", "Desktop app actions can vary by assistant"],
+  ["Focus and productivity", "Includes Focus Mode for more intentional work sessions", "Productivity tools vary by product"],
+  ["Personality and reactions", "Talks back and includes visible reactions", "May focus primarily on utility or text responses"],
+  ["Windows integration", "Built for Windows 10 and Windows 11 users", "Windows integration varies by product and setup"],
+] as const;
+
 const faqs = [
   {
     question: "What is an AI assistant for PC?",
@@ -81,6 +90,22 @@ const faqs = [
   {
     question: "Does VYRO work on Windows?",
     answer: "Yes. VYRO is designed for Windows 10 and Windows 11 users.",
+  },
+  {
+    question: "What is the best AI assistant for PC?",
+    answer: "The best AI assistant for PC depends on how you work. VYRO is designed for people who want a visible Windows desktop companion with supported voice commands, app launching, Focus Mode, and personality.",
+  },
+  {
+    question: "Can I use an AI assistant on Windows?",
+    answer: "Yes. VYRO is designed as an AI assistant for Windows 10 and Windows 11, with voice-first interaction and supported desktop actions.",
+  },
+  {
+    question: "Does VYRO work on Windows 11?",
+    answer: "Yes. VYRO is designed for Windows 11 as well as Windows 10.",
+  },
+  {
+    question: "Is VYRO free?",
+    answer: "No. VYRO Founder Edition is currently a $19 one-time lifetime license for the core desktop app. Advanced cloud AI modules may require a Pro plan later.",
   },
 ];
 
@@ -178,14 +203,14 @@ export default function AiAssistantForPcPage() {
 
         <section className="ai-pc-problem" aria-labelledby="problem-title">
           <p className="policy-kicker">A different kind of assistant</p>
-          <h2 id="problem-title">Most AI tools live in a tab. VYRO lives with your work.</h2>
-          <p>Browser chatbots and sidebars are useful for answers. VYRO is designed to sit directly on the Windows desktop, where voice commands, quick actions, and personality can feel part of your everyday PC experience.</p>
+          <h2 id="problem-title">What is an AI assistant for PC?</h2>
+          <p>An AI assistant for PC helps you interact with your computer through conversation, voice commands, and supported desktop actions. Browser chatbots and sidebars are useful for answers; VYRO is designed to sit directly on the Windows desktop, where voice commands, quick actions, and personality can feel part of your everyday PC experience.</p>
         </section>
 
         <section aria-labelledby="features-title">
           <div className="ai-pc-section-head">
             <p className="policy-kicker">Core capabilities</p>
-            <h2 id="features-title">An AI desktop assistant with more presence.</h2>
+            <h2 id="features-title">What can VYRO do on Windows?</h2>
           </div>
           <div className="ai-pc-feature-grid">
             {features.map(([featureTitle, body], index) => (
@@ -213,11 +238,21 @@ export default function AiAssistantForPcPage() {
 
         <section className="ai-pc-comparison" aria-labelledby="comparison-title">
           <p className="policy-kicker">How it fits</p>
-          <h2 id="comparison-title">VYRO vs. traditional AI chatbots</h2>
+          <h2 id="comparison-title">VYRO vs. browser chatbots and traditional Windows assistants</h2>
           <div className="ai-pc-comparison-grid">
             <article><span>Browser chatbot</span><p>Useful for text answers, but separate from the desktop workflow.</p></article>
             <article><span>Sidebar assistant</span><p>Close at hand, but usually contained within a browser or app interface.</p></article>
             <article className="ai-pc-comparison-accent"><span>Desktop AI companion</span><p>Designed to be visible on Windows, voice-first, responsive, and a little more personal.</p></article>
+          </div>
+          <div className="ai-pc-comparison-table" role="table" aria-label="VYRO assistant comparison">
+            <div className="ai-pc-comparison-row ai-pc-comparison-heading" role="row">
+              <span role="columnheader">How it works</span><span role="columnheader">VYRO</span><span role="columnheader">Other assistant types</span>
+            </div>
+            {comparisonRows.map(([dimension, vyro, other]) => (
+              <div className="ai-pc-comparison-row" role="row" key={dimension}>
+                <strong role="rowheader">{dimension}</strong><span role="cell">{vyro}</span><span role="cell">{other}</span>
+              </div>
+            ))}
           </div>
         </section>
 
@@ -232,10 +267,10 @@ export default function AiAssistantForPcPage() {
         </section>
 
         <section className="ai-pc-why" aria-labelledby="why-title">
-          <p className="policy-kicker">Why VYRO</p>
-          <h2 id="why-title">A Windows companion built for early users.</h2>
-          <p>VYRO combines a visible desktop presence with voice-first interactions, Focus Mode, emotional reactions, and funny desktop moments. It is built for people who want their PC to feel a little more responsive and personal.</p>
-          <p>Learn more in the <Link href="/features">features overview</Link>, or read how VYRO approaches <Link href="/security">security</Link> and <Link href="/privacy">privacy</Link>.</p>
+          <p className="policy-kicker">Who it is for</p>
+          <h2 id="why-title">Who VYRO is useful for</h2>
+          <p>VYRO is for Windows users who want practical voice commands and app launching without giving up a more personal desktop experience. It combines a visible desktop presence with Focus Mode, emotional reactions, and funny desktop moments for people who want their PC to feel a little more responsive.</p>
+          <p>Learn more in the <Link href="/features">features overview</Link>, read how VYRO approaches <Link href="/security">security</Link> and <Link href="/privacy">privacy</Link>, or explore the dedicated <Link href="/ai-desktop-assistant">AI desktop assistant</Link> page.</p>
         </section>
 
         <section className="ai-pc-faq" aria-labelledby="faq-title">
@@ -259,7 +294,7 @@ export default function AiAssistantForPcPage() {
             <Link href="/#pricing">Get VYRO</Link>
             <Link href="/#demo">Watch Demo</Link>
           </div>
-          <p className="ai-pc-related">Related guides: <Link href="/blog/best-ai-desktop-assistant-windows">best AI assistant for PC</Link>, <Link href="/blog/ai-voice-assistant-for-pc">AI voice assistants for PC</Link>, <Link href="/blog/windows-copilot-alternative">Windows Copilot alternatives</Link>, and <Link href="/blog/ai-desktop-companion">AI desktop companions</Link>.</p>
+          <p className="ai-pc-related">Related guides: <Link href="/blog/best-ai-desktop-assistant-windows">best AI assistant for PC</Link>, <Link href="/blog/ai-voice-assistant-for-pc">AI voice assistants for PC</Link>, <Link href="/blog/how-to-open-apps-with-voice-on-windows">how to open apps with voice on Windows</Link>, <Link href="/blog/windows-copilot-alternative">Windows Copilot alternatives</Link>, and <Link href="/blog/ai-desktop-companion">AI desktop companions</Link>.</p>
         </section>
       </section>
 

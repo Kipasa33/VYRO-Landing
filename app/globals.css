@@ -723,6 +723,10 @@ footer{padding:6rem 1rem 2rem;text-align:center;background:#17171b;color:#f7f2e5
 .ai-pc-comparison-grid span { background: rgba(16,18,23,.08); color: #101217; }
 .ai-pc-comparison-grid p { margin: .85rem 0 0; font-size: .94rem; line-height: 1.6; font-weight: 520; color: rgba(29,36,48,.7); }
 .ai-pc-comparison-grid .ai-pc-comparison-accent { background: linear-gradient(145deg, rgba(219,248,255,.88), rgba(237,231,255,.86)); }
+.ai-pc-comparison-table { display: grid; gap: .55rem; margin-top: 1rem; }
+.ai-pc-comparison-row { display: grid; gap: .45rem; padding: .8rem; border: 1px solid rgba(29,36,48,.09); border-radius: .8rem; background: rgba(255,255,255,.56); color: rgba(29,36,48,.72); font-size: .88rem; line-height: 1.5; font-weight: 520; }
+.ai-pc-comparison-row strong { color: #101217; font-size: .9rem; font-weight: 800; }
+.ai-pc-comparison-heading { display: none; background: rgba(16,18,23,.06); color: rgba(29,36,48,.7); font-size: .72rem; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; }
 .ai-pc-use-cases { display: grid; gap: 1rem; background: linear-gradient(135deg, rgba(255,255,255,.82), rgba(243,251,245,.82)); }
 .ai-pc-use-cases ul { display: grid; gap: .55rem; margin: 0; padding: 0; list-style: none; }
 .ai-pc-use-cases li { position: relative; padding: .72rem .8rem .72rem 2rem; border: 1px solid rgba(29,36,48,.09); border-radius: .75rem; background: rgba(255,255,255,.62); font-size: .94rem; line-height: 1.4; font-weight: 680; color: rgba(29,36,48,.78); }
@@ -740,7 +744,7 @@ footer{padding:6rem 1rem 2rem;text-align:center;background:#17171b;color:#f7f2e5
 .ai-pc-cta>div a:first-child { background: #f7f2e5; color: #101217; }
 .ai-pc-related { margin-top: 1.4rem !important; font-size: .86rem !important; }
 .ai-pc-related a { color: #d9d2ff; }
-@media (min-width:640px){.ai-pc-hero{padding:5.5rem 1.5rem 3.7rem}.ai-pc-actions,.ai-pc-cta>div{flex-direction:row;width:auto}.ai-pc-actions a,.ai-pc-cta>div a{min-width:9.5rem}.ai-pc-shell{padding:0 1.5rem 4rem}.ai-pc-demo,.ai-pc-problem,.ai-pc-comparison,.ai-pc-use-cases,.ai-pc-why,.ai-pc-faq,.ai-pc-cta{padding:1.55rem}.ai-pc-demo-grid,.ai-pc-comparison-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.ai-pc-feature-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.ai-pc-split{grid-template-columns:repeat(2,minmax(0,1fr))}.ai-pc-use-cases{grid-template-columns:.9fr 1.2fr;align-items:center}.ai-pc-use-cases ul{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (min-width:640px){.ai-pc-hero{padding:5.5rem 1.5rem 3.7rem}.ai-pc-actions,.ai-pc-cta>div{flex-direction:row;width:auto}.ai-pc-actions a,.ai-pc-cta>div a{min-width:9.5rem}.ai-pc-shell{padding:0 1.5rem 4rem}.ai-pc-demo,.ai-pc-problem,.ai-pc-comparison,.ai-pc-use-cases,.ai-pc-why,.ai-pc-faq,.ai-pc-cta{padding:1.55rem}.ai-pc-demo-grid,.ai-pc-comparison-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.ai-pc-feature-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.ai-pc-split{grid-template-columns:repeat(2,minmax(0,1fr))}.ai-pc-comparison-row{grid-template-columns:minmax(9rem,.8fr) minmax(0,1fr) minmax(0,1fr);align-items:start}.ai-pc-comparison-heading{display:grid}.ai-pc-use-cases{grid-template-columns:.9fr 1.2fr;align-items:center}.ai-pc-use-cases ul{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (min-width:1024px){.ai-pc-hero{padding-top:6.5rem}.ai-pc-shell{gap:1.25rem}.ai-pc-demo,.ai-pc-problem,.ai-pc-comparison,.ai-pc-use-cases,.ai-pc-why,.ai-pc-faq,.ai-pc-cta{padding:1.9rem}.ai-pc-feature-grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
 
 /* Homepage pricing */
