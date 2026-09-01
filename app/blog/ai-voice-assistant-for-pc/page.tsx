@@ -99,38 +99,71 @@ const voiceAssistantFeatures = [
   },
 ];
 
+const comparisonRows = [
+  ["Voice Q&A", "Often basic command recognition or dictation", "Strong for conversational answers", "Availability varies by version and configuration", "Conversational desktop interaction for supported requests"],
+  ["Supported app launching", "May be limited to built-in controls", "Usually outside the core experience", "Varies by product and configuration", "Opens supported apps, websites, and common folders"],
+  ["Desktop presence", "Usually not a persistent companion", "Usually stays in a browser or app", "Varies by assistant", "Visible desktop companion with reactions"],
+  ["Productivity tools", "May include simple dictation or commands", "Can help plan and write", "Varies by product", "Focus Mode, timers, local reminders, and notifications"],
+  ["Custom routines", "May require separate automation tools", "Usually requires another tool", "Automation availability varies", "Current voice-triggered, multi-step routines using safe VYRO tools"],
+  ["Follow-up context", "Usually command-by-command", "Conversation context varies", "Varies by product", "Bounded recent-result context for supported follow-ups"],
+  ["Personality and reactions", "Typically utility-first", "Typically text-first", "Varies by product", "Personality, ambient comments, reactions, and Slap Mode"],
+] as const;
+
 const faqs = [
   {
-    question: "What is an AI voice assistant for PC?",
-    answer: "An AI voice assistant for PC is software that lets you interact with your computer through spoken commands, responses, and supported desktop actions.",
+    question: "What is the best AI voice assistant for PC?",
+    answer: "The best AI voice assistant for PC depends on whether you need general voice Q&A, supported Windows actions, productivity tools, routines, or a persistent desktop companion. VYRO is built for the desktop-companion approach.",
   },
   {
-    question: "Is VYRO a voice assistant for Windows?",
-    answer: "Yes. VYRO is built as an AI companion for Windows that supports voice commands, app launching, talking back, and visual reactions.",
+    question: "Can I control Windows with voice commands?",
+    answer: "You can use voice commands for supported actions. VYRO can open supported apps, websites, common folders, search the web, and start other supported actions; it does not claim unrestricted Windows control.",
   },
   {
-    question: "Can VYRO open apps on my PC?",
+    question: "Can VYRO open apps with voice commands?",
     answer: "VYRO is designed to open supported apps and help with simple desktop actions when you ask it to.",
   },
   {
-    question: "Does VYRO talk back?",
-    answer: "Yes. VYRO can respond conversationally and use funny or emotional reactions so it feels more like a desktop companion.",
+    question: "Can VYRO open websites and folders?",
+    answer: "Yes. VYRO can open websites and common Windows folders such as Downloads, Documents, Desktop, and Pictures for supported requests.",
   },
   {
-    question: "Is VYRO fully offline?",
-    answer: "Some features may work locally, but advanced AI features may require external AI processing depending on the selected mode. VYRO does not claim to be fully offline-only.",
+    question: "Do I need to repeat the wake word for every command?",
+    answer: "Not for every supported follow-up. VYRO has a follow-up conversation mode, so you can continue a supported interaction without repeating the wake phrase each time.",
   },
   {
-    question: "Where can I learn about VYRO security and privacy?",
-    answer: "Read the VYRO security page and Privacy Policy for details about permissions, voice features, AI processing, and user control.",
+    question: "Can I set timers and reminders with VYRO?",
+    answer: "Yes. VYRO supports timers, local reminders, and Windows notifications as part of its current productivity tools.",
+  },
+  {
+    question: "Can I run routines using voice commands?",
+    answer: "Yes. VYRO supports custom multi-step routines that can be started by voice using safe, supported VYRO tools.",
+  },
+  {
+    question: "Does VYRO work on Windows 11?",
+    answer: "Yes. VYRO is designed for Windows 11 as well as Windows 10.",
+  },
+  {
+    question: "Does VYRO always listen to the microphone?",
+    answer: "Voice features use microphone access when enabled. Sleep, Wake Up, and Quiet Mode let you control when VYRO is ready for voice interaction, and Windows controls microphone permission.",
+  },
+  {
+    question: "Is VYRO safe to use?",
+    answer: "VYRO is designed around clear permissions and user control. It uses safe predefined tools for supported actions; review the Security page for current details.",
   },
 ];
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((faq) => ({ "@type": "Question", name: faq.question, acceptedAnswer: { "@type": "Answer", text: faq.answer } })),
+};
 
 export default function AiVoiceAssistantForPcPage() {
   return (
     <main className="privacy-page security-page blog-page article-page">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
 
       <header className="policy-topbar">
         <Link className="policy-brand" href="/" aria-label="VYRO home">VYRO</Link>
@@ -155,13 +188,13 @@ export default function AiVoiceAssistantForPcPage() {
         <div className="article-shell">
           <section>
             <h2>What is an AI voice assistant for PC?</h2>
-            <p>An AI voice assistant for PC is a desktop assistant that responds to spoken commands and helps with supported computer actions. Instead of typing everything into a browser chatbot, you can talk to your Windows desktop and ask for simple tasks directly.</p>
-            <p>The best voice assistant for Windows should be useful without feeling intrusive. It should respond when you ask, keep actions visible, and make common PC workflows feel more natural.</p>
+            <p>An AI voice assistant for PC is software that responds to spoken commands and helps with supported computer actions. The best choice depends on whether you need general voice Q&A, hands-free Windows actions, productivity tools, voice-triggered routines, or a persistent desktop companion.</p>
+            <p>It differs from browser AI chat because it can connect supported requests to your PC workflow; from basic dictation because it can respond and take supported actions; and from traditional voice control because it can combine conversation with a visible desktop presence. The best voice assistant for Windows should be useful without feeling intrusive, keep actions visible, and make common PC workflows feel more natural.</p>
           </section>
 
           <section>
             <h2>How VYRO lets you talk to your Windows desktop</h2>
-            <p>VYRO is an AI desktop assistant and floating AI companion for Windows. It is designed to listen for supported voice commands, open apps, talk back, and react with personality.</p>
+            <p>VYRO is an AI desktop assistant and floating AI companion for Windows. It supports voice wake, voice commands, and follow-up conversation mode for supported requests, so you do not need to repeat the wake phrase every time.</p>
             <p>That means VYRO is not just another chat box. It is meant to sit closer to your desktop experience, so voice commands and lightweight reactions feel part of how you use your PC.</p>
           </section>
 
@@ -185,15 +218,61 @@ export default function AiVoiceAssistantForPcPage() {
           </section>
 
           <section>
+            <h2>What can a Windows voice assistant do?</h2>
+            <p>With VYRO, supported voice actions include opening Windows apps, opening websites, opening common folders, using Google or web search, and searching or opening YouTube. It can also provide basic system information such as CPU, RAM, and uptime.</p>
+            <p>These are supported, user-triggered actions. VYRO&apos;s current-app awareness is limited and safe, rather than unrestricted screen awareness.</p>
+          </section>
+
+          <section>
+            <h2>Voice commands for opening apps, websites, and folders</h2>
+            <p>Short, direct requests work best: “Open Spotify,” “Open Chrome,” “Open Downloads,” or “Search Google for…” VYRO can launch supported apps, open websites, and open common folders such as Downloads, Documents, Desktop, and Pictures.</p>
+            <p>See more grounded examples in the guide to <Link href="/blog/how-to-open-apps-with-voice-on-windows">opening apps with voice commands on Windows</Link>.</p>
+          </section>
+
+          <section>
+            <h2>Voice-controlled productivity: Focus Mode, timers, and reminders</h2>
+            <p>VYRO can combine voice interaction with Focus Mode, timers, local reminders, and Windows notifications. For example, you can say “Set a timer for 45 minutes” or “Remind me in 20 minutes to…” as part of a supported productivity workflow.</p>
+            <p>Sleep, Wake Up, and Quiet Mode help you control when the companion is ready for voice interaction.</p>
+          </section>
+
+          <section className="article-feature-card">
+            <h2>Run multi-step Windows routines with your voice</h2>
+            <p>VYRO currently supports custom routines made from safe VYRO tools. You can create a routine, rename it, add, remove, or reorder its steps, and start it by voice. Coding, Study, Morning, and Deep Work templates provide a starting point.</p>
+            <p><strong>“Run my Coding routine”</strong><br />Open Chrome → Open GitHub → Enable Focus Mode</p>
+            <p>Read more about current routines and planned automation on the <Link href="/windows-ai-automation">Windows AI automation page</Link>.</p>
+          </section>
+
+          <section>
+            <h2>Context-aware follow-up actions</h2>
+            <p>For supported interactions, VYRO can use bounded recent-result context for follow-ups such as “copy that,” “save that,” “search that,” “explain that,” or “remind me about that.” This is designed to make short follow-ups more useful without claiming unrestricted access to everything on screen.</p>
+          </section>
+
+          <section>
             <h2>How it differs from a normal chatbot</h2>
             <p>A chatbot usually lives inside a website or app window. A desktop assistant lives closer to your computer workflow and can help trigger supported PC actions.</p>
             <p>For a deeper explanation, read <Link href="/blog/ai-desktop-companion">What Is an AI Desktop Companion?</Link> and the guide to the <Link href="/blog/best-ai-desktop-assistant-windows">Best AI Desktop Assistant for Windows</Link>.</p>
           </section>
 
           <section>
+            <h2>How voice assistant types compare</h2>
+            <p>Voice assistants take different approaches. This comparison is a framework for choosing a category, not a claim that one named competitor always has or lacks a particular feature.</p>
+            <div className="article-voice-table" role="table" aria-label="Voice assistant category comparison">
+              <div className="article-voice-row article-voice-heading" role="row"><span role="columnheader">Dimension</span><span role="columnheader">Basic voice control</span><span role="columnheader">Browser AI assistant</span><span role="columnheader">Windows-integrated assistant</span><span role="columnheader">Desktop voice assistant / VYRO</span></div>
+              {comparisonRows.map(([dimension, basic, browser, windowsAssistant, vyro]) => <div className="article-voice-row" role="row" key={dimension}><strong role="rowheader">{dimension}</strong><span role="cell">{basic}</span><span role="cell">{browser}</span><span role="cell">{windowsAssistant}</span><span role="cell">{vyro}</span></div>)}
+            </div>
+          </section>
+
+          <section>
             <h2>Security, privacy, and user control</h2>
-            <p>Voice assistants for Windows can feel powerful, so permission clarity is important. VYRO uses microphone access for voice features when enabled, and advanced AI features may require processing depending on the selected mode.</p>
+            <p>Voice assistants for Windows can feel powerful, so permission clarity is important. VYRO uses microphone access for voice features when enabled, and Windows lets you manage that permission. VYRO uses safe predefined tools for supported actions; clipboard reading or writing is explicit, and reading .txt, .md, or .json files requires an explicit selection.</p>
+            <p>VYRO does not claim arbitrary shell or PowerShell execution from AI. If voice recognition is inconsistent, check your microphone selection, reduce background noise, and use a short supported request.</p>
             <p>Read <Link href="/blog/vyro-ai-security">Is VYRO AI Safe?</Link>, the <Link href="/security">VYRO AI Security page</Link>, and the <Link href="/privacy">Privacy Policy</Link> for more detail.</p>
+          </section>
+
+          <section>
+            <h2>Who a voice assistant for PC is useful for</h2>
+            <p>VYRO is useful for people who want hands-free supported Windows actions, students and developers who use Focus Mode and timers, and users who want a visible desktop companion with personality. It is not presented as a replacement for every kind of AI tool or every Windows workflow.</p>
+            <p>Explore the <Link href="/ai-assistant-for-pc">AI assistant for PC overview</Link>, the <Link href="/ai-desktop-assistant">desktop assistant page</Link>, or the current <Link href="/features">feature list</Link> to see whether the experience fits your needs.</p>
           </section>
 
           <section>
@@ -208,8 +287,8 @@ export default function AiVoiceAssistantForPcPage() {
                 <article key={faq.question}>
                   <h3>{faq.question}</h3>
                   <p>
-                    {faq.question === "Where can I learn about VYRO security and privacy?" ? (
-                      <>Read the <Link href="/security">VYRO security page</Link> and <Link href="/privacy">Privacy Policy</Link> for details about permissions, voice features, AI processing, and user control.</>
+                    {faq.question === "Is VYRO safe to use?" ? (
+                      <>VYRO is designed around clear permissions and user control. It uses safe predefined tools for supported actions; review the <Link href="/security">Security page</Link> for current details.</>
                     ) : (
                       faq.answer
                     )}
