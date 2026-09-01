@@ -91,34 +91,59 @@ const companionDifferences = [
   },
 ];
 
+const comparisonRows = [
+  ["Desktop companion presence", "Designed as a visible desktop companion with reactions", "Experience and placement vary by Windows version, account, and configuration"],
+  ["Voice-driven app launching", "Can open supported apps by voice", "Voice and app-action availability can vary by configuration"],
+  ["Focus and productivity", "Includes Focus Mode, timers, local reminders, and notifications", "Available features can vary by Microsoft product and configuration"],
+  ["Custom routines", "Supports voice-triggered, multi-step routines using safe VYRO tools", "Automation options and availability can vary"],
+  ["Personality and reactions", "Includes companion personality and visible reactions", "Interaction style and personalization vary by product"],
+  ["General AI chat", "Designed for conversational desktop interaction and supported actions", "Microsoft Copilot may be a better fit for users who prioritize Microsoft ecosystem features"],
+  ["Microsoft ecosystem integration", "Not positioned as a replacement for Microsoft ecosystem integration", "Integration varies by Windows version, account, and configuration"],
+] as const;
+
 const faqs = [
   {
-    question: "What is the best Windows Copilot alternative?",
+    question: "What is the best alternative to Microsoft Copilot on Windows?",
     answer: "The best Windows Copilot alternative depends on what you want. If you want a more personal desktop AI companion with voice commands, app launching, talking back, and reactions, VYRO is built for that style of experience.",
   },
   {
-    question: "Is VYRO an AI desktop assistant for Windows?",
-    answer: "Yes. VYRO is an AI desktop assistant for Windows designed to live closer to the desktop experience and help with supported voice and app actions.",
+    question: "Is VYRO a Microsoft Copilot replacement?",
+    answer: "Not completely. VYRO is a different type of Windows AI assistant, focused on a visible desktop companion, supported voice actions, routines, and personality rather than replacing every Microsoft Copilot feature.",
   },
   {
     question: "Can VYRO open apps with voice commands?",
-    answer: "VYRO is designed to open supported apps through voice commands, so users can ask for common tools instead of searching manually.",
+    answer: "Yes. VYRO can open supported Windows apps by voice, and can also open websites and common folders for supported requests.",
   },
   {
-    question: "Is VYRO a replacement for Microsoft Copilot?",
-    answer: "Not exactly. VYRO is not positioned as a full replacement for Microsoft Copilot. It is a different kind of desktop AI companion focused on voice commands, personality, app launching, and emotional reactions.",
+    question: "Does VYRO support custom routines?",
+    answer: "Yes. VYRO currently supports custom multi-step routines that can be started by voice and built from safe, supported VYRO actions.",
   },
   {
-    question: "Does VYRO run on Windows?",
-    answer: "Yes. VYRO is built as an AI companion for Windows PCs.",
+    question: "Does VYRO work on Windows 11?",
+    answer: "Yes. VYRO is designed for Windows 11 as well as Windows 10.",
+  },
+  {
+    question: "Is VYRO focused on privacy?",
+    answer: "VYRO is designed around user control and clear permissions. Voice features use microphone access when enabled, and users can manage permissions through Windows. Read the Security page for current details.",
+  },
+  {
+    question: "Can I use VYRO and Microsoft Copilot together?",
+    answer: "Yes. VYRO is not positioned as a full replacement for Microsoft Copilot, so users can choose the tools that fit different parts of their Windows workflow.",
   },
 ];
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((faq) => ({ "@type": "Question", name: faq.question, acceptedAnswer: { "@type": "Answer", text: faq.answer } })),
+};
 
 export default function WindowsCopilotAlternativePage() {
   return (
     <main className="privacy-page security-page blog-page article-page">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
 
       <header className="policy-topbar">
         <Link className="policy-brand" href="/" aria-label="VYRO home">VYRO</Link>
@@ -142,9 +167,9 @@ export default function WindowsCopilotAlternativePage() {
 
         <div className="article-shell">
           <section>
-            <h2>Introduction</h2>
-            <p>AI is becoming part of everyday PC use. Some people want a powerful assistant for search, writing, and answers. Others want something that feels closer to the desktop itself: a Windows AI assistant that can respond to voice commands, open apps, and feel more present.</p>
-            <p>That is where a desktop AI companion like VYRO fits. It is designed for users who want an assistant with personality, emotional reactions, and a floating desktop presence, not only a sidebar or browser-based chat experience.</p>
+            <h2>Quick answer: what are good alternatives to Microsoft Copilot on Windows?</h2>
+            <p>A good Windows Copilot alternative depends on the experience you want. Some users prioritize Microsoft ecosystem features, while others want a desktop-first AI assistant that can respond to voice commands, open supported apps, websites, and common folders, and stay present beside their work.</p>
+            <p>That is where VYRO fits. It is designed as a visible Windows AI companion with supported actions, custom routines, personality, and reactions—not as a full replacement for every Copilot feature.</p>
           </section>
 
           <section>
@@ -180,15 +205,47 @@ export default function WindowsCopilotAlternativePage() {
           </section>
 
           <section>
+            <h2>Voice-controlled Windows actions</h2>
+            <p>VYRO can use voice wake and follow-up conversation mode for supported requests, so you do not need to repeat the wake phrase for every follow-up. It can open supported apps, websites, and common folders such as Downloads, Documents, Desktop, and Pictures.</p>
+            <p>For examples of launching supported apps by voice, see the guide to <Link href="/blog/how-to-open-apps-with-voice-on-windows">opening apps with voice commands on Windows</Link>.</p>
+          </section>
+
+          <section>
+            <h2>Productivity tools: Focus Mode, timers, and reminders</h2>
+            <p>VYRO can pair voice-controlled actions with Focus Mode, timers, local reminders, and Windows notifications. Those tools are intended to help you start or stay with a work session without suggesting that VYRO has unrestricted control of Windows.</p>
+          </section>
+
+          <section className="article-feature-card">
+            <h2>Custom routines and Windows AI automation</h2>
+            <p>VYRO currently supports custom multi-step routines made from safe VYRO tools. You can start a routine by voice and combine supported actions such as opening apps, starting Focus Mode, timers, and reminders.</p>
+            <p><strong>Example:</strong> “Run my Coding routine” → Open Chrome → Open GitHub → Enable Focus Mode.</p>
+            <p>Learn how routines work on the <Link href="/windows-ai-automation">Windows AI automation page</Link>.</p>
+          </section>
+
+          <section>
             <h2>Personality and emotional reactions</h2>
             <p>One reason users search for a Copilot alternative for Windows is that they want AI to feel less like a tool hidden in a box. VYRO adds a floating desktop companion, talking back, personality, and emotional reactions to make the experience feel more direct.</p>
             <p>That personality is part of the product identity. It helps VYRO feel like an AI companion for Windows rather than a standard desktop assistant with no character.</p>
           </section>
 
+          <section>
+            <h2>VYRO and Microsoft Copilot: a careful comparison</h2>
+            <p>These products are designed around different experiences. The comparison below describes VYRO&apos;s current product focus and avoids assuming a fixed Microsoft Copilot feature set, which can vary by Windows version, account, and configuration.</p>
+            <div className="article-comparison-table" role="table" aria-label="VYRO and Microsoft Copilot comparison">
+              <div className="article-comparison-row article-comparison-heading" role="row"><span role="columnheader">Dimension</span><span role="columnheader">VYRO</span><span role="columnheader">Microsoft Copilot</span></div>
+              {comparisonRows.map(([dimension, vyro, copilot]) => <div className="article-comparison-row" role="row" key={dimension}><strong role="rowheader">{dimension}</strong><span role="cell">{vyro}</span><span role="cell">{copilot}</span></div>)}
+            </div>
+          </section>
+
+          <section>
+            <h2>Privacy and permission model</h2>
+            <p>VYRO is designed around user control and clear permissions. Voice features use microphone access when enabled, and users can manage permissions through Windows. For current details about data, permissions, and desktop actions, read the <Link href="/security">VYRO Security page</Link>.</p>
+          </section>
+
           <section className="article-callout">
             <h2>Who VYRO is for</h2>
-            <p>VYRO is for Windows users who want a lightweight AI companion that feels visible, responsive, and fun. It is especially suited for people who like voice commands, quick app access, and a more personal desktop experience.</p>
-            <p>If you mainly want deep Microsoft ecosystem features, Microsoft Copilot may still make sense. If you want a personality-driven desktop AI companion, VYRO is built around that different idea.</p>
+            <p>VYRO is for Windows users who want a lightweight AI companion that feels visible, responsive, and fun. It is especially suited for people who like voice commands, quick app access, routines, and a more personal desktop experience.</p>
+            <p>If you mainly want deep Microsoft ecosystem features, Microsoft Copilot may still make sense. If you want a personality-driven desktop AI companion with supported actions and bounded routines, VYRO is built around that different idea. Explore the <Link href="/ai-assistant-for-pc">AI assistant for PC overview</Link> or the <Link href="/ai-desktop-assistant">desktop assistant page</Link>.</p>
           </section>
 
           <section>
