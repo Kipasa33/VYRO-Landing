@@ -79,7 +79,7 @@ const softwareApplicationJsonLd = {
   url: "https://vyrodesk.com/",
   offers: {
     "@type": "Offer",
-    price: "19",
+    price: "19.00",
     priceCurrency: "USD",
     availability: "https://schema.org/InStock",
   },

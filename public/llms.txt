@@ -19,7 +19,8 @@ VYRO is an AI desktop companion for Windows.
 
 ## Price
 
-- $19 one-time lifetime license
+- VYRO Core / Founder Edition: $19 one-time lifetime license
+- VYRO Pro: $29.99 when available
 
 ## Important public pages
 

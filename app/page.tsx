@@ -1,12 +1,12 @@
 "use client";
 
 import { motion, type Variants } from "framer-motion";
-import { ArrowDown, ArrowUpRight, Check, ChevronDown, Moon, Play, Sun } from "lucide-react";
+import { ArrowDown, ArrowUpRight, Check, ChevronDown, Gift, Moon, Play, Sun } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import PixelDrift from "./components/PixelDrift";
 import VyroFeatureSpotlight from "./components/VyroFeatureSpotlight";
-import { trackEventOnce } from "./lib/analytics";
+import { trackEvent, trackEventOnce } from "./lib/analytics";
 import { startPolarCheckout } from "./lib/polar-checkout";
 
 const voiceReactions = ["/audio/robot_click_01.mp3", "/audio/robot_click_02.mp3"];
@@ -124,8 +124,8 @@ function FoundersEditionCard() {
         <span className="pricing-availability">Available now</span>
         <span className="pricing-recommended">Founder offer</span>
       </div>
-      <h3>Founder Edition</h3>
-      <div className="pricing-price" aria-label="Founder Edition costs 19 dollars">
+      <h3>VYRO Core</h3>
+      <div className="pricing-price" aria-label="VYRO Core costs 19 dollars">
         <strong>$19</strong>
         <span>one-time</span>
       </div>
@@ -142,20 +142,20 @@ function FoundersEditionCard() {
         <li><Check size={18} /> Priority feedback</li>
       </ul>
       <p className="pricing-note">Advanced cloud AI modules may require a Pro plan later.</p>
-      <button className="pricing-card-cta" onClick={() => startPolarCheckout("landing_page", "pricing")}>Get Founder Edition <ArrowUpRight size={17} /></button>
+      <button className="pricing-card-cta" onClick={() => startPolarCheckout("landing_page", "pricing")}>Get VYRO <ArrowUpRight size={17} /></button>
     </motion.article>
   );
 }
 
 function ProCard() {
   const features = [
-    "Advanced cloud AI modules",
-    "More automation workflows",
-    "Browser and file intelligence",
-    "AI receptionist style modules",
-    "CRM and follow-up agents",
-    "Higher usage limits",
-    "Priority cloud features",
+    "Custom VYRO Automations",
+    "Voice, NFC & Scheduled Triggers",
+    "VYRO Memory",
+    "More Characters, Voices & Animations",
+    "Browser & File Intelligence",
+    "Background AI Agents",
+    "Higher AI Usage + Early Pro Access",
   ];
 
   return (
@@ -168,11 +168,11 @@ function ProCard() {
         <span className="pricing-availability">Coming later</span>
       </div>
       <h3>Pro</h3>
-      <div className="pricing-price" aria-label="Pro is planned at 49 dollars">
-        <strong>$49</strong>
+      <div className="pricing-price" aria-label="Pro is planned at 29 dollars and 99 cents">
+        <strong>$29.99</strong>
       </div>
-      <p className="pricing-helper">For advanced cloud AI and automation modules.</p>
-      <p className="pricing-description">Built for heavier AI workflows, cloud features, and future advanced assistants.</p>
+      <p className="pricing-helper">Turn VYRO into a smarter AI companion that remembers, automates, and acts for you.</p>
+      <p className="pricing-description">Built for deeper personalization and powerful AI automation.</p>
       <ul className="pricing-features">
         {features.map((feature) => <li key={feature}><Check size={18} /> {feature}</li>)}
       </ul>
@@ -336,9 +336,22 @@ function HeroProductDemo() {
 export default function Home() {
   const [dark, setDark] = useState(false);
   const [openFaq, setOpenFaq] = useState(0);
+  const [showCreatorRewardsIntro, setShowCreatorRewardsIntro] = useState(false);
   useEffect(() => {
     document.documentElement.dataset.theme = dark ? "dark" : "light";
   }, [dark]);
+  useEffect(() => {
+    const sessionKey = "vyro:creator-rewards-nav-intro";
+    try {
+      if (window.sessionStorage.getItem(sessionKey)) return;
+      window.sessionStorage.setItem(sessionKey, "1");
+      setShowCreatorRewardsIntro(true);
+      const timer = window.setTimeout(() => setShowCreatorRewardsIntro(false), 4000);
+      return () => window.clearTimeout(timer);
+    } catch {
+      // Keep the link usable if storage is unavailable; no persistent tracking is used.
+    }
+  }, []);
 
   return (
     <main>
@@ -349,7 +362,7 @@ export default function Home() {
       <div className="noise" />
       <nav>
         <a className="brand-mark" href="/" aria-label="VYRO home"><img src="/icon-32x32.png" alt="" /><span>VYRO</span></a>
-        <div className="nav-links"><a href="/save-50">Save 50%</a><a href="#demo">Demo</a><a href="/about">About</a><a href="#faq">FAQ</a><a href="/recover-key">Recover Key</a><button className="theme-toggle" onClick={() => setDark(!dark)} aria-label="Toggle theme">{dark ? <Sun size={18} /> : <Moon size={18} />}</button></div>
+        <div className="nav-links"><a href="/save-50" className={`creator-rewards-nav ${showCreatorRewardsIntro ? "is-intro" : ""}`} onClick={() => trackEvent("creator_rewards_nav_click", { location: "main_navigation" })}><Gift size={15} aria-hidden="true" /><span>Creator Rewards</span><b>NEW</b><i className="creator-rewards-tooltip" role="tooltip">Post VYRO. Earn it back.<br />2K views → 50% back<br />10K → 100% back<br />25K → VYRO Pro free</i></a><a href="#demo">Demo</a><a href="/about">About</a><a href="#faq">FAQ</a><a href="/recover-key">Recover Key</a><button className="theme-toggle" onClick={() => setDark(!dark)} aria-label="Toggle theme">{dark ? <Sun size={18} /> : <Moon size={18} />}</button></div>
       </nav>
 
       <section className="hero">

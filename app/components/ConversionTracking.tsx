@@ -57,7 +57,7 @@ export default function ConversionTracking() {
       if (anchor.href.startsWith("https://buy.polar.sh/")) {
         const ctaLocation = getCtaLocation(anchor, pathname);
         trackEvent("founder_checkout_click", { cta_location: ctaLocation, source: "direct_checkout_link" });
-        trackEvent("begin_checkout", { cta_location: ctaLocation, currency: "USD", value: 19 });
+        trackEvent("begin_checkout", { cta_location: ctaLocation, currency: "USD", value: 19.00 });
       }
 
       if (/\.exe(?:$|\?)/i.test(anchor.href)) {

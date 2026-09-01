@@ -105,7 +105,7 @@ const faqs = [
   },
   {
     question: "Is VYRO free?",
-    answer: "No. VYRO Founder Edition is currently a $19 one-time lifetime license for the core desktop app. Advanced cloud AI modules may require a Pro plan later.",
+    answer: "No. VYRO Core / Founder Edition is currently a $19 one-time lifetime license for the core desktop app. Advanced cloud AI modules may require a Pro plan later.",
   },
 ];
 
@@ -119,7 +119,7 @@ const softwareApplicationJsonLd = {
   url: "https://vyrodesk.com/",
   offers: {
     "@type": "Offer",
-    price: "19",
+    price: "19.00",
     priceCurrency: "USD",
     availability: "https://schema.org/InStock",
   },

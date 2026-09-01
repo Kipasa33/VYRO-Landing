@@ -8,7 +8,11 @@ export type AnalyticsEventName =
   | "download_click"
   | "purchase"
   | "scroll_50"
-  | "scroll_90";
+  | "scroll_90"
+  | "creator_rewards_view"
+  | "creator_rewards_claim_click"
+  | "creator_rewards_home_click"
+  | "creator_rewards_nav_click";
 
 type AnalyticsItem = Record<string, string | number>;
 type AnalyticsValue = string | number | boolean | AnalyticsItem[];
@@ -64,13 +68,13 @@ export function trackVerifiedPurchase(transactionId: string) {
 
   const sent = trackEvent("purchase", {
     transaction_id: transactionId,
-    value: 19,
+    value: 19.00,
     currency: "USD",
     items: [
       {
         item_id: "vyro-founder-edition",
-        item_name: "VYRO Founder Edition",
-        price: 19,
+        item_name: "VYRO Core / Founder Edition",
+        price: 19.00,
         quantity: 1,
       },
     ],

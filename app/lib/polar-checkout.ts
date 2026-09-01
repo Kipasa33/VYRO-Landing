@@ -5,7 +5,7 @@ export const POLAR_CHECKOUT_URL =
 
 export function startPolarCheckout(source = "landing_page", ctaLocation = source) {
   trackEvent("founder_checkout_click", { source, cta_location: ctaLocation });
-  trackEvent("begin_checkout", { source, cta_location: ctaLocation, currency: "USD", value: 19 });
+  trackEvent("begin_checkout", { source, cta_location: ctaLocation, currency: "USD", value: 19.00 });
   const event = { event: "checkout_started", source };
   window.dataLayer?.push(event);
   window.dispatchEvent(new CustomEvent("checkout_started", { detail: { source } }));

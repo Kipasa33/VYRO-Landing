@@ -29,7 +29,7 @@ const softwareApplicationJsonLd = {
   image: socialImage,
   offers: {
     "@type": "Offer",
-    price: 19,
+    price: "19.00",
     priceCurrency: "USD",
     availability: "https://schema.org/InStock",
     url: homeUrl,
