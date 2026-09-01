@@ -32,24 +32,28 @@ export const metadata: Metadata = {
 
 const faqs = [
   {
-    question: "Can I open apps using voice commands on Windows?",
-    answer: "Yes. A voice-enabled desktop assistant can listen for a supported command, identify the requested application, and launch it on Windows.",
+    question: "Can I open apps with voice commands on Windows?",
+    answer: "Yes. With a voice-enabled desktop assistant, you can say a supported app request and launch the matching supported application on Windows.",
   },
   {
-    question: "Can an AI assistant open applications on a PC?",
-    answer: "An AI assistant can open applications when it supports that desktop action and recognizes the requested app. Support varies between assistants and applications.",
+    question: "Can VYRO open desktop apps?",
+    answer: "Yes. VYRO can open supported Windows desktop apps when you give a supported voice command. It does not claim support for every installed app.",
   },
   {
-    question: "Is VYRO a voice assistant for Windows?",
-    answer: "Yes. VYRO is an AI desktop companion for Windows that responds to supported voice commands, talks back, and can open supported applications.",
+    question: "Can VYRO open websites and folders?",
+    answer: "Yes. VYRO can open websites and common Windows folders such as Downloads, Documents, Desktop, and Pictures, alongside supported desktop apps.",
   },
   {
-    question: "Can VYRO open Spotify or other desktop apps?",
-    answer: "VYRO can open supported desktop apps using voice commands. A request such as opening Spotify works when that app is available in the supported app configuration; unsupported apps will not launch.",
+    question: "Can I open multiple apps with one voice command?",
+    answer: "Yes, by using a current VYRO custom routine. A routine can contain multiple supported app-opening steps and other supported actions such as Focus Mode or a timer.",
   },
   {
-    question: "Does VYRO work on Windows 10 and Windows 11?",
-    answer: "Yes. VYRO is designed for Windows 10 and Windows 11.",
+    question: "Does VYRO work on Windows 11?",
+    answer: "Yes. VYRO is designed for Windows 11 as well as Windows 10.",
+  },
+  {
+    question: "Do I need to repeat the wake word for every command?",
+    answer: "Not for every supported follow-up. VYRO has a follow-up conversation mode, so you can continue a supported interaction without repeating the wake phrase each time.",
   },
 ];
 
@@ -152,7 +156,8 @@ export default function OpenAppsWithVoiceOnWindowsPage() {
         <div className="article-shell">
           <section className="article-callout">
             <h2>Quick answer: how can I open apps with voice commands on Windows?</h2>
-            <p>Yes. You can open apps with voice commands on Windows by using a voice-enabled desktop assistant that recognizes a supported request and launches the matching application. With VYRO, the interaction is designed to be simple: say a command such as “VYRO, open Spotify,” VYRO responds, and the supported app opens. This can reduce context switching when your hands are busy or you want to stay focused. Availability still depends on whether the requested app is supported and whether the microphone can clearly capture the command. VYRO is an early Windows product, so supported actions can continue to evolve.</p>
+            <p>Yes. You can open apps with voice commands on Windows by using a voice-enabled desktop assistant that recognizes a supported request and launches the matching application. With VYRO, say “VYRO, open Spotify” or “VYRO, open Chrome,” then VYRO responds and the supported app opens.</p>
+            <p>Voice launching depends on a supported app and a clear microphone request. VYRO is an early Windows product, so supported actions can continue to evolve.</p>
           </section>
 
           <section>
@@ -181,6 +186,12 @@ export default function OpenAppsWithVoiceOnWindowsPage() {
             <h2>How VYRO opens apps using voice commands</h2>
             <p>VYRO lives on the Windows desktop as an <Link href="/ai-desktop-assistant">AI desktop assistant</Link>. The user gives a supported voice command, VYRO responds, and the requested supported app opens.</p>
             <p>The action stays visible on the desktop. VYRO is not presented as hidden automation, and app launching remains limited to applications the product currently supports. For details about microphone use and user control, read the <Link href="/security">VYRO security page</Link>.</p>
+          </section>
+
+          <section>
+            <h2>Using VYRO to launch Windows apps by voice</h2>
+            <p>Start with voice wake, then say a short request that names the supported app. VYRO can also continue supported follow-up interactions in conversation mode, so you do not need to repeat the wake phrase for every follow-up request.</p>
+            <p>Voice controls are optional. Sleep, Wake Up, and Quiet Mode let you decide when VYRO is ready for voice interaction.</p>
           </section>
 
           <section className="article-feature-card">
@@ -213,7 +224,13 @@ export default function OpenAppsWithVoiceOnWindowsPage() {
           </section>
 
           <section>
-            <h2>Voice assistant vs manually opening apps</h2>
+            <h2>Opening websites and folders by voice</h2>
+            <p>App launching is only part of a voice-controlled Windows workflow. VYRO can also open websites and common folders such as Downloads, Documents, Desktop, and Pictures. It can use Google or web search, and can search or open YouTube when that is the faster next step.</p>
+            <p>For a complete overview of supported actions, visit the <Link href="/features">VYRO features page</Link>.</p>
+          </section>
+
+          <section>
+            <h2>Voice commands vs. Windows Search</h2>
             <div className="article-card-grid">
               <article className="security-card feature-detail-card">
                 <span>Voice assistant</span>
@@ -221,18 +238,37 @@ export default function OpenAppsWithVoiceOnWindowsPage() {
                 <p>Voice can be convenient, accessible, and useful while your attention is on another task. Recognition quality and app support still matter.</p>
               </article>
               <article className="security-card feature-detail-card">
-                <span>Manual control</span>
-                <h3>Predictable for every installed app</h3>
-                <p>Clicking a shortcut or using the Start menu works without voice recognition, but it can require more context switching.</p>
+                <span>Windows Search</span>
+                <h3>Useful for any installed app you can find</h3>
+                <p>Using Start or Windows Search works without voice recognition, but it can require more context switching and manual input.</p>
               </article>
             </div>
             <p>Neither approach needs to replace the other. A voice assistant for PC is most useful as an additional, optional way to launch supported apps.</p>
           </section>
 
           <section className="article-callout">
-            <h2>Current limitations to understand</h2>
-            <p>Voice commands depend on supported applications. Recognition can also be affected by microphone quality, background noise, pronunciation, and the surrounding environment. VYRO is still an early product, so users should expect the supported app list and voice experience to develop over time.</p>
+            <h2>What happens if VYRO does not recognize an app?</h2>
+            <p>Voice commands depend on supported applications. If VYRO does not recognize the app or the request is unclear, try the app&apos;s common name, speak the request again, or use Windows Search instead. Recognition can also be affected by microphone quality, background noise, pronunciation, and the surrounding environment.</p>
             <p>VYRO does not claim that every Windows application or advanced automation workflow is supported. Learn more about the current product on the <Link href="/ai-assistant-for-pc">AI assistant for PC page</Link>.</p>
+          </section>
+
+          <section className="article-feature-card">
+            <h2>Open multiple apps with a VYRO routine</h2>
+            <p>VYRO&apos;s current custom routines let you combine supported steps and launch them with a single voice request. For example:</p>
+            <p><strong>“Run my Coding routine”</strong><br />Open Chrome → Open GitHub → Enable Focus Mode</p>
+            <p>Routines can also include supported timers and reminders. Read how VYRO handles current routines and safe Windows actions on the <Link href="/windows-ai-automation">Windows AI automation page</Link>.</p>
+          </section>
+
+          <section>
+            <h2>Voice-controlled productivity with Focus Mode and routines</h2>
+            <p>Opening an app is often the first step in a work session. VYRO can pair supported voice launching with Focus Mode, timers, local reminders, and custom routines to help you move into a task with fewer manual steps.</p>
+            <p>These are bounded, supported actions—not unrestricted Windows automation.</p>
+          </section>
+
+          <section>
+            <h2>Privacy, permissions, and troubleshooting</h2>
+            <p>Voice commands use microphone access when voice features are enabled, and you can manage microphone permission through Windows. Keep VYRO updated, check that your microphone is selected and clear, and reduce background noise if recognition is inconsistent.</p>
+            <p>For more on permissions and user control, see the <Link href="/security">VYRO Security page</Link>.</p>
           </section>
 
           <section>
