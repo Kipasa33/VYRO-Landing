@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { ArrowLeft, Download, KeyRound, MessageCircle } from "lucide-react";
 import Link from "next/link";
 import VerifiedPurchaseTracker from "../components/VerifiedPurchaseTracker";
+import LicenseClaimCard from "../components/LicenseClaimCard";
 import { trackEvent } from "../lib/analytics";
 import { startPolarCheckout } from "../lib/polar-checkout";
 
@@ -21,6 +22,7 @@ export default function SuccessPage() {
         <span>PURCHASE COMPLETE</span>
         <h1>Purchase successful</h1>
         <p>Welcome to VYRO</p>
+        <LicenseClaimCard />
         <div className="success-actions">
           <button
             type="button"

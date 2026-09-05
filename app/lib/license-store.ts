@@ -1,6 +1,7 @@
 import { createHash, randomBytes } from "node:crypto";
 
 const CLAIM_TTL_SECONDS = 15 * 60;
+export const DESKTOP_SESSION_TTL_SECONDS = 30 * 24 * 60 * 60;
 const redisUrl = process.env.UPSTASH_REDIS_KV_REST_API_URL?.trim();
 const redisToken = process.env.UPSTASH_REDIS_KV_REST_API_TOKEN?.trim();
 
@@ -12,6 +13,14 @@ type LicenseRecord = {
   status: "active";
   created_at: string;
   revoked_at: null;
+};
+
+export type DesktopSessionRecord = {
+  session_hash: string;
+  license_hash: string;
+  entitlement: "core";
+  created_at: string;
+  expires_at: string;
 };
 
 function requireRedisConfig() {
@@ -77,6 +86,36 @@ export async function getLicenseHashForCheckout(checkoutId: string) {
 export async function getLicenseRecord(licenseHash: string) {
   const raw = await redisCommand<string | null>("GET", `vyro:license:${licenseHash}`);
   return raw ? (JSON.parse(raw) as LicenseRecord) : null;
+}
+
+export function hashDesktopSession(rawSession: string) {
+  return createHash("sha256").update(rawSession, "utf8").digest("hex");
+}
+
+export async function createDesktopSession(licenseHash: string) {
+  const rawSession = randomBytes(32).toString("base64url");
+  const sessionHash = hashDesktopSession(rawSession);
+  const now = Date.now();
+  const record: DesktopSessionRecord = {
+    session_hash: sessionHash,
+    license_hash: licenseHash,
+    entitlement: "core",
+    created_at: new Date(now).toISOString(),
+    expires_at: new Date(now + DESKTOP_SESSION_TTL_SECONDS * 1000).toISOString(),
+  };
+  await redisCommand("SET", `vyro:desktop-session:${sessionHash}`, JSON.stringify(record), "EX", String(DESKTOP_SESSION_TTL_SECONDS), "NX");
+  return { rawSession, record };
+}
+
+export async function getDesktopSession(sessionHash: string) {
+  const raw = await redisCommand<string | null>("GET", `vyro:desktop-session:${sessionHash}`);
+  return raw ? (JSON.parse(raw) as DesktopSessionRecord) : null;
+}
+
+export async function consumeRateLimit(key: string, limit: number, windowSeconds: number) {
+  const count = await redisCommand<number>("INCR", key);
+  if (count === 1) await redisCommand("EXPIRE", key, String(windowSeconds));
+  return count <= limit;
 }
 
 export async function consumeLicenseClaim(licenseHash: string) {
