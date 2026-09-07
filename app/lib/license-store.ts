@@ -41,6 +41,14 @@ async function redisCommand<T = unknown>(command: string, ...args: string[]): Pr
   return payload.result as T;
 }
 
+export async function claimLicenseEmailDelivery(orderId: string) {
+  return (await redisCommand<string | null>("SET", `vyro:polar:email:${orderId}`, "sent", "NX")) === "OK";
+}
+
+export async function releaseLicenseEmailDelivery(orderId: string) {
+  await redisCommand("DEL", `vyro:polar:email:${orderId}`);
+}
+
 function licenseKey() {
   const hex = randomBytes(16).toString("hex").toUpperCase();
   return `VYRO-${hex.slice(0, 8)}-${hex.slice(8, 16)}-${hex.slice(16, 24)}-${hex.slice(24)}`;
@@ -86,6 +94,10 @@ export async function getLicenseHashForCheckout(checkoutId: string) {
 export async function getLicenseRecord(licenseHash: string) {
   const raw = await redisCommand<string | null>("GET", `vyro:license:${licenseHash}`);
   return raw ? (JSON.parse(raw) as LicenseRecord) : null;
+}
+
+export async function getLicenseClaim(licenseHash: string) {
+  return redisCommand<string | null>("GET", `vyro:license-claim:${licenseHash}`);
 }
 
 export function hashDesktopSession(rawSession: string) {
