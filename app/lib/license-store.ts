@@ -7,12 +7,13 @@ const redisToken = process.env.UPSTASH_REDIS_KV_REST_API_TOKEN?.trim();
 
 type LicenseRecord = {
   license_hash: string;
-  polar_order_id: string;
+  polar_order_id: string | null;
   polar_checkout_id: string | null;
   entitlement: "core";
   status: "active";
   created_at: string;
   revoked_at: null;
+  source?: string;
 };
 
 export type DesktopSessionRecord = {
@@ -52,6 +53,27 @@ export async function releaseLicenseEmailDelivery(orderId: string) {
 function licenseKey() {
   const hex = randomBytes(16).toString("hex").toUpperCase();
   return `VYRO-${hex.slice(0, 8)}-${hex.slice(8, 16)}-${hex.slice(16, 24)}-${hex.slice(24)}`;
+}
+
+export async function createManualTestLicense() {
+  const guardKey = "vyro:test-license:manual-20260907";
+  const claimed = await redisCommand<string | null>("SET", guardKey, "claimed", "NX");
+  if (claimed !== "OK") return null;
+
+  const rawLicense = licenseKey();
+  const licenseHash = hashLicenseKey(rawLicense);
+  const record: LicenseRecord = {
+    license_hash: licenseHash,
+    polar_order_id: null,
+    polar_checkout_id: null,
+    entitlement: "core",
+    status: "active",
+    created_at: new Date().toISOString(),
+    revoked_at: null,
+    source: "manual-production-test",
+  };
+  await redisCommand("SET", `vyro:license:${licenseHash}`, JSON.stringify(record));
+  return { license: rawLicense, entitlement: record.entitlement };
 }
 
 export function hashLicenseKey(rawLicense: string) {
