@@ -56,7 +56,7 @@ function licenseKey() {
 }
 
 export async function createManualTestLicense() {
-  const guardKey = "vyro:test-license:manual-20260907";
+  const guardKey = "vyro:test-license:final-activation-20260916";
   const claimed = await redisCommand<string | null>("SET", guardKey, "claimed", "NX");
   if (claimed !== "OK") return null;
 
