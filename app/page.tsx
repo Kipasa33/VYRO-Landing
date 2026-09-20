@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, type Variants } from "framer-motion";
+import { AnimatePresence, motion, type Variants } from "framer-motion";
 import { ArrowDown, ArrowUpRight, Check, ChevronDown, Gift, Moon, Play, Sun } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
@@ -60,7 +60,7 @@ const roadmapItems = [
   { badge: "future", icon: "\u{1F916}", title: "Agent Mode", description: "Let VYRO help with tasks, research, reminders, and workflow automation.", tone: "future" },
 ];
 
-function VYROMascot() {
+function VYROMascot({ companionIndex }: { companionIndex: number }) {
   const nextVoiceRef = useRef(0);
   const activeAudioRef = useRef<HTMLAudioElement | null>(null);
 
@@ -104,9 +104,21 @@ function VYROMascot() {
         transition={{ duration: .25, ease: "easeOut" }}
         aria-label="Play VYRO reaction"
       >
-        <video className="vyro-robot-video" autoPlay loop muted playsInline preload="metadata" aria-label="Animated VYRO AI companion mascot">
-          <source src="/vyro-robot.webm" type="video/webm" />
-        </video>
+        <AnimatePresence mode="wait" initial={false}>
+          {companionIndex === 0 && (
+            <motion.video key="robot" className="vyro-robot-video hero-main-companion" initial={{ opacity: 0, scale: .96 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: .96 }} transition={{ duration: .35 }} autoPlay loop muted playsInline preload="metadata" aria-label="Animated VYRO AI companion mascot">
+              <source src="/vyro-robot.webm" type="video/webm" />
+            </motion.video>
+          )}
+          {companionIndex === 1 && (
+            <motion.div key="cute" className="hero-main-companion hero-main-companion-image" initial={{ opacity: 0, scale: .94, x: 10 }} animate={{ opacity: 1, scale: 1, x: 0 }} exit={{ opacity: 0, scale: .94, x: -10 }} transition={{ duration: .35 }}>
+              <Image src="/characters/vyro-cute.png" alt="Cute Companion character" fill sizes="256px" />
+            </motion.div>
+          )}
+          {companionIndex === 2 && (
+            <motion.video key="ghost" className="hero-main-companion hero-main-companion-video" src="/characters/vyro-ghost.webm" poster="/characters/vyro-ghost-poster.png" initial={{ opacity: 0, scale: .94, x: 10 }} animate={{ opacity: 1, scale: 1, x: 0 }} exit={{ opacity: 0, scale: .94, x: -10 }} transition={{ duration: .35 }} autoPlay loop muted playsInline preload="metadata" aria-label="Animated Ghost character" />
+          )}
+        </AnimatePresence>
       </motion.button>
       <div className="shadow video-shadow" />
     </motion.div>
@@ -229,16 +241,27 @@ function TrustRail() {
 
 function HeroProductDemo() {
   const [activeScene, setActiveScene] = useState(0);
+  const [companionIndex, setCompanionIndex] = useState(0);
 
   useEffect(() => {
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (reducedMotion) return;
 
-    const rotationTimer = window.setInterval(() => {
+    const rotationTimer = window.setTimeout(() => {
       setActiveScene((currentScene) => (currentScene + 1) % heroDemoScenes.length);
     }, 6000);
 
-    return () => window.clearInterval(rotationTimer);
+    return () => window.clearTimeout(rotationTimer);
+  }, [activeScene]);
+
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const companionTimer = window.setInterval(() => {
+      setCompanionIndex((currentCompanion) => (currentCompanion + 1) % 3);
+    }, 6000);
+
+    return () => window.clearInterval(companionTimer);
   }, []);
 
   useEffect(() => {
@@ -261,7 +284,7 @@ function HeroProductDemo() {
       <div className="hero-demo-frame">
         <div className="hero-demo-toolbar" aria-hidden="true"><span /><span /><span /><b>LIVE DESKTOP ACTION</b></div>
         <div className={`hero-demo-stage hero-demo-stage-${activeScene}`}>
-          <VYROMascot />
+          <VYROMascot companionIndex={companionIndex} />
           <div className="hero-demo-scenes">
             {activeScene === 0 && <div className="hero-demo-scene hero-demo-voice">
               <div className="hero-demo-step hero-demo-command">
@@ -303,12 +326,15 @@ function HeroProductDemo() {
                 <strong>Choose your companion</strong>
                 <p>Switch characters anytime to match your vibe.</p>
               </div>
-              <div className="hero-character-preview" aria-label="VYRO character preview switching from VYRO Robot to Cute Companion">
+              <div className="hero-character-preview" aria-label="VYRO character preview switching from VYRO Robot to Cute Companion to Ghost">
                 <div className="hero-character-image hero-character-image-robot">
                   <Image src="/characters/vyro-robot.png" alt="VYRO Robot character" fill sizes="112px" />
                 </div>
                 <div className="hero-character-image hero-character-image-cute">
                   <Image src="/characters/vyro-cute.png" alt="Cute Companion character" fill sizes="112px" />
+                </div>
+                <div className="hero-character-image hero-character-image-ghost">
+                  <video src="/characters/vyro-ghost.webm" poster="/characters/vyro-ghost-poster.png" autoPlay muted loop playsInline preload="metadata" aria-label="Animated Ghost character" />
                 </div>
                 <i aria-hidden="true" />
               </div>
@@ -321,6 +347,11 @@ function HeroProductDemo() {
                 <div className="hero-character-option hero-character-option-cute">
                   <span><Image src="/characters/vyro-cute.png" alt="" fill sizes="40px" /></span>
                   <b>Cute Companion</b>
+                  <Check size={13} aria-hidden="true" />
+                </div>
+                <div className="hero-character-option hero-character-option-ghost">
+                  <span><Image src="/characters/vyro-ghost-poster.png" alt="" fill sizes="40px" /></span>
+                  <b>Ghost</b>
                   <Check size={13} aria-hidden="true" />
                 </div>
               </div>
